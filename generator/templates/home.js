@@ -95,9 +95,12 @@ module.exports = function home(products, blogPosts) {
 
   <section class="section-alt">
     <div class="container">
-      <div class="section-head">
-        <span class="kicker">Why CSP4TECH</span>
-        <h2>A local partner, not an overseas support queue</h2>
+      <div class="split-head">
+        <div>
+          <span class="kicker">Why CSP4TECH</span>
+          <h2>A local partner, not an overseas support queue</h2>
+        </div>
+        <p class="split-head-aside">Implementation, migration, integrations and ongoing support — handled by the same Beirut team, in Arabic or English.</p>
       </div>
       <div class="grid grid-3">
         <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><h3>Certified &amp; ISO-aligned</h3><p>Certified Zoho consultants for CRM, Books, People, and Creator, working to ISO-aligned quality standards.</p></div>
@@ -114,9 +117,9 @@ module.exports = function home(products, blogPosts) {
         <h2>Zoho services that cover the full lifecycle</h2>
       </div>
       <div class="grid grid-3">
-        <div class="card"><h3>Implementation &amp; Migration</h3><p>From first workflow to full go-live, including migrating off Salesforce, HubSpot, QuickBooks, or spreadsheets.</p></div>
-        <div class="card"><h3>Customization &amp; Integrations</h3><p>Custom Zoho Creator apps, API integrations, and automations built around how your team actually works.</p></div>
-        <div class="card"><h3>Training &amp; Support</h3><p>Hands-on training for your team plus ongoing support — a phone call away, not a ticket in a queue.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 8 16 13"/><path d="M21 8H9a5 5 0 0 0-5 5v3"/><polyline points="8 21 3 16 8 11"/><path d="M3 16h5"/></svg></div><h3>Implementation &amp; Migration</h3><p>From first workflow to full go-live, including migrating off Salesforce, HubSpot, QuickBooks, or spreadsheets.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div><h3>Customization &amp; Integrations</h3><p>Custom Zoho Creator apps, API integrations, and automations built around how your team actually works.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Training &amp; Support</h3><p>Hands-on training for your team plus ongoing support — a phone call away, not a ticket in a queue.</p></div>
       </div>
     </div>
   </section>
@@ -135,7 +138,7 @@ module.exports = function home(products, blogPosts) {
           ${p.logo ? `<img src="/images/logos/${p.logo}" alt="" class="product-logo" width="40" height="40">` : ""}
           <h3>${p.name}</h3>
           <p>${p.tagline}</p>
-          <a href="/zoho-products/${p.slug}.html" class="btn btn-ghost btn-sm" style="margin-top:10px;">Learn more</a>
+          <a href="/zoho-products/${p.slug}.html" class="btn btn-ghost btn-sm">Learn more</a>
         </div>`
           )
           .join("")}
@@ -164,17 +167,19 @@ module.exports = function home(products, blogPosts) {
     </div>
   </section>
 
-  <section>
+  <section class="section-dark">
     <div class="container">
-      <div class="section-head">
-        <span class="kicker">By the numbers</span>
-        <h2>Real Zoho implementation experience</h2>
-      </div>
-      <div class="stat-grid">
-        <div><div class="stat-num">${config.stats.founded}</div><div class="stat-label">In business since</div></div>
-        <div><div class="stat-num">${config.stats.projectsDelivered}</div><div class="stat-label">Businesses onboarded</div></div>
-        <div><div class="stat-num">${config.stats.zohoAppsImplemented}</div><div class="stat-label">Zoho apps we implement</div></div>
-        <div><div class="stat-num">${config.stats.industriesServed}</div><div class="stat-label">Industries served</div></div>
+      <div class="stat-band">
+        <div class="stat-band-intro">
+          <span class="kicker">By the numbers</span>
+          <h2>Real Zoho implementation experience</h2>
+        </div>
+        <div class="stat-grid">
+          <div><div class="stat-num">${config.stats.founded}</div><div class="stat-label">In business since</div></div>
+          <div><div class="stat-num">${config.stats.projectsDelivered}</div><div class="stat-label">Businesses onboarded</div></div>
+          <div><div class="stat-num">${config.stats.zohoAppsImplemented}</div><div class="stat-label">Zoho apps we implement</div></div>
+          <div><div class="stat-num">${config.stats.industriesServed}</div><div class="stat-label">Industries served</div></div>
+        </div>
       </div>
     </div>
   </section>
