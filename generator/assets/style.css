@@ -518,7 +518,55 @@ section { padding: 78px 0; }
 .industry-panel-desc { font-size: 1rem; margin-bottom: 12px; font-weight: 600; color: var(--color-ink); }
 .industry-panel-detail { font-size: 0.95rem; margin-bottom: 20px; }
 .industry-benefits-label { display: block; font-weight: 700; color: var(--color-ink); margin-bottom: 10px; }
-.industry-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px; }
+.industry-panel-body { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 36px; align-items: start; }
+.industry-benefits { display: grid; grid-template-columns: 1fr; gap: 10px 32px; }
+
+/* ---------- Per-industry CRM module diagram ----------
+   A sketch of how the CRM is configured for that sector: real module
+   names, no record data, and visibly a diagram rather than a screenshot.
+   Swapped out automatically when a real `screenshot` is supplied. */
+.industry-visual-label {
+  display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--color-ink-soft); margin-bottom: 12px;
+}
+.industry-shot { width: 100%; border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); }
+.crmwin {
+  background: #fff; border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-md); overflow: hidden;
+}
+.crmwin-bar {
+  display: flex; gap: 6px; padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(180deg, #fcfcff 0%, #f7f7fc 100%);
+}
+.crmwin-bar span { width: 8px; height: 8px; border-radius: 50%; background: #dcdae9; }
+.crmwin-tabs {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+.crmwin-tab {
+  font-size: 0.76rem; font-weight: 600; color: var(--color-ink-soft);
+  background: var(--color-surface-alt); border: 1px solid var(--color-border);
+  border-radius: 999px; padding: 5px 11px; white-space: nowrap;
+}
+.crmwin-tab.is-active {
+  background: var(--accent, var(--color-primary)); border-color: transparent;
+  color: #fff; font-weight: 700;
+}
+.crmwin-rows { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.crmwin-row { display: flex; align-items: center; gap: 10px; }
+.crmwin-row i { width: 22px; height: 22px; border-radius: 6px; opacity: .22; flex: none; }
+.crmwin-row u { height: 8px; border-radius: 999px; background: #eceaf6; text-decoration: none; }
+
+@media (max-width: 980px) {
+  .industry-panel-body { grid-template-columns: 1fr; gap: 28px; }
+  .industry-benefits { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .industry-benefits { grid-template-columns: 1fr; }
+}
+
+
 .industry-benefits li { position: relative; padding-left: 16px; font-size: 0.95rem; color: var(--color-ink-soft); }
 .industry-benefits li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-primary); }
 

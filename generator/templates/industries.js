@@ -60,12 +60,41 @@ module.exports = function industriesSection() {
               <span class="industry-panel-icon" style="background:${ind.color}">${ICONS[ind.icon]}</span>
               <h3>${ind.name}</h3>
             </div>
-            <p class="industry-panel-desc">${ind.description}</p>
-            <p class="industry-panel-detail">${ind.detail}</p>
-            <span class="industry-benefits-label">Key Benefits:</span>
-            <ul class="industry-benefits">
-              ${ind.benefits.map((b) => `<li>${b}</li>`).join("")}
-            </ul>
+            <div class="industry-panel-body">
+              <div class="industry-panel-copy">
+                <p class="industry-panel-desc">${ind.description}</p>
+                <p class="industry-panel-detail">${ind.detail}</p>
+                <span class="industry-benefits-label">Key Benefits:</span>
+                <ul class="industry-benefits">
+                  ${ind.benefits.map((b) => `<li>${b}</li>`).join("")}
+                </ul>
+              </div>
+              <div class="industry-panel-visual">
+                <span class="industry-visual-label">Modules we'd set up in Zoho CRM</span>
+                ${
+                  ind.screenshot
+                    ? `<img src="/images/industries/${ind.screenshot}" alt="Zoho CRM configured for ${ind.name}" class="industry-shot" loading="lazy">`
+                    : `
+                <!-- Diagram of the module setup for this sector, drawn in CSS.
+                     Deliberately shows module names only and no record data:
+                     it is a sketch of how the CRM would be configured, never a
+                     screenshot of a live or client system. -->
+                <div class="crmwin" aria-hidden="true">
+                  <div class="crmwin-bar"><span></span><span></span><span></span></div>
+                  <div class="crmwin-tabs">
+                    ${ind.modules
+                      .map((m, mi) => `<span class="crmwin-tab${mi === 0 ? " is-active" : ""}" style="${mi === 0 ? `--accent:${ind.color}` : ""}">${m}</span>`)
+                      .join("")}
+                  </div>
+                  <div class="crmwin-rows">
+                    ${[72, 58, 84, 46, 66]
+                      .map((w) => `<div class="crmwin-row"><i style="background:${ind.color}"></i><u style="width:${w}%"></u></div>`)
+                      .join("")}
+                  </div>
+                </div>`
+                }
+              </div>
+            </div>
           </div>`
             )
             .join("")}

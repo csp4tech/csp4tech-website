@@ -14,6 +14,12 @@ module.exports = [
     description: "Property listings, leads, and tenant management in one CRM.",
     detail:
       "Agents and brokers spend more time chasing paperwork than closing deals. We set up Zoho CRM to track every listing, buyer, and viewing in one place, so nothing falls through the cracks between the first call and the signed contract.",
+    // Modules shown in the panel's CRM diagram. These are the modules we'd
+    // actually configure for this sector - a sketch of the setup, not a
+    // screenshot of a live system, and no record data is ever shown.
+    // Optional `screenshot` (filename in generator/assets/industries/) takes
+    // the diagram's place when a real exported screenshot is available.
+    modules: ["Leads", "Properties", "Viewings", "Contracts", "Owners"],
     benefits: [
       "Listing & inventory management",
       "Lead & viewing scheduling",
@@ -29,6 +35,12 @@ module.exports = [
     description: "Fleet & order tracking, delivery status, and route optimization.",
     detail:
       "When shipments, drivers, and warehouse stock live in separate spreadsheets, delays are inevitable. We connect Zoho CRM, Inventory, and Creator so dispatch, tracking, and billing update automatically as a shipment moves.",
+    // Modules shown in the panel's CRM diagram. These are the modules we'd
+    // actually configure for this sector - a sketch of the setup, not a
+    // screenshot of a live system, and no record data is ever shown.
+    // Optional `screenshot` (filename in generator/assets/industries/) takes
+    // the diagram's place when a real exported screenshot is available.
+    modules: ["Orders", "Shipments", "Fleet", "Routes", "Drivers"],
     benefits: [
       "Shipment tracking",
       "Warehouse & inventory",
@@ -44,6 +56,12 @@ module.exports = [
     description: "Manage itineraries, bookings, and CRM in one place.",
     detail:
       "Building a package, chasing supplier rates, and following up with the client shouldn't need three different tools. We set up Zoho to handle the whole trip lifecycle — from the first quote to the final invoice — so nothing gets missed during peak season.",
+    // Modules shown in the panel's CRM diagram. These are the modules we'd
+    // actually configure for this sector - a sketch of the setup, not a
+    // screenshot of a live system, and no record data is ever shown.
+    // Optional `screenshot` (filename in generator/assets/industries/) takes
+    // the diagram's place when a real exported screenshot is available.
+    modules: ["Enquiries", "Itineraries", "Bookings", "Suppliers", "Invoices"],
     benefits: [
       "Package builder & quotes",
       "Supplier contracts & rates",
@@ -59,6 +77,12 @@ module.exports = [
     description: "Accounting, approvals, audits, and analytics built for scale.",
     detail:
       "Manual approvals and month-end reconciliation eat up time your finance team could spend on planning. We configure Zoho Books and Analytics around your actual approval chain and reporting needs, with proper audit trails built in from day one.",
+    // Modules shown in the panel's CRM diagram. These are the modules we'd
+    // actually configure for this sector - a sketch of the setup, not a
+    // screenshot of a live system, and no record data is ever shown.
+    // Optional `screenshot` (filename in generator/assets/industries/) takes
+    // the diagram's place when a real exported screenshot is available.
+    modules: ["Clients", "Invoices", "Approvals", "Audit Trail", "Reports"],
     benefits: [
       "General ledger & reporting",
       "Approvals & audit trails",
@@ -74,6 +98,12 @@ module.exports = [
     description: "For clinics & hospitals with patient-first workflows.",
     detail:
       "Patient records, appointments, and billing need to move fast without compromising on compliance. We set up Zoho for clinics and hospitals so front-desk staff, doctors, and billing teams all work from the same up-to-date record.",
+    // Modules shown in the panel's CRM diagram. These are the modules we'd
+    // actually configure for this sector - a sketch of the setup, not a
+    // screenshot of a live system, and no record data is ever shown.
+    // Optional `screenshot` (filename in generator/assets/industries/) takes
+    // the diagram's place when a real exported screenshot is available.
+    modules: ["Patients", "Appointments", "Treatments", "Invoices", "Follow-ups"],
     benefits: [
       "Patient CRM & appointments",
       "Inventory & pharmacy",
@@ -89,6 +119,12 @@ module.exports = [
     description: "Perfect for agencies and consulting teams.",
     detail:
       "Agencies and consulting teams live or die by utilization and timely billing. We configure Zoho Projects and Desk so project plans, support tickets, and timesheets all feed the same dashboard your team already checks daily.",
+    // Modules shown in the panel's CRM diagram. These are the modules we'd
+    // actually configure for this sector - a sketch of the setup, not a
+    // screenshot of a live system, and no record data is ever shown.
+    // Optional `screenshot` (filename in generator/assets/industries/) takes
+    // the diagram's place when a real exported screenshot is available.
+    modules: ["Clients", "Projects", "Milestones", "Timesheets", "Invoices"],
     benefits: [
       "Project planning & Gantt",
       "Helpdesk & SLAs",
@@ -104,6 +140,12 @@ module.exports = [
     description: "Production, inventory, and quality in one flow.",
     detail:
       "A missed BOM update or an untracked batch can cascade into a costly recall. We set up Zoho to connect production planning, inventory, and quality control, so what's on the floor always matches what's in the system.",
+    // Modules shown in the panel's CRM diagram. These are the modules we'd
+    // actually configure for this sector - a sketch of the setup, not a
+    // screenshot of a live system, and no record data is ever shown.
+    // Optional `screenshot` (filename in generator/assets/industries/) takes
+    // the diagram's place when a real exported screenshot is available.
+    modules: ["Work Orders", "Production", "Inventory", "Quality Checks", "Suppliers"],
     benefits: [
       "BOM & work orders",
       "Production planning",
