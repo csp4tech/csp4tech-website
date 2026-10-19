@@ -82,7 +82,9 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 .site-header.is-scrolled { box-shadow: 0 4px 20px rgba(30,27,46,0.1); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--color-primary-dark); }
-.brand .brand-mark { width: 34px; height: 34px; }
+/* logo-mark.png is 241x268 (taller than wide). Forcing a square box
+   squashed the brand mark ~11% on every page. */
+.brand .brand-mark { height: 34px; width: auto; }
 .primary-nav { display: none; }
 .primary-nav ul { display: flex; align-items: center; gap: 4px; }
 .primary-nav > ul > li { position: relative; }
@@ -339,15 +341,25 @@ section { padding: 78px 0; }
 .card > .btn { margin-bottom: 0; }
 .card > p:last-of-type { margin-bottom: 18px; }
 .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: var(--color-primary-light); }
+/* Glyph-only icons: no tile, no fill, just the mark in brand teal. Chosen
+   over a filled tile because the tiles read as heavy and template-ish at
+   this size. */
 .card .icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  background: linear-gradient(145deg, var(--color-primary) 0%, #00a89c 100%);
-  color: #fff; display: flex; align-items: center; justify-content: center;
-  margin-bottom: 18px; font-weight: 800; font-size: 1.15rem;
-  box-shadow: 0 6px 14px rgba(0,128,119,0.28);
+  width: auto; height: 34px;
+  display: flex; align-items: center; justify-content: flex-start;
+  color: var(--color-primary); margin-bottom: 14px;
+  background: none; box-shadow: none; border-radius: 0;
   transition: transform .2s ease;
 }
-.card:hover .icon { transform: scale(1.1); }
+.card .icon svg { width: 30px; height: 30px; stroke-width: 1.7; }
+
+/* Images inside a card must not stretch. .card is a flex column, so a
+   direct child image defaults to align-self: stretch and gets pulled to
+   the card's full width while its height stays pinned - which distorted
+   the Zoho partner badge to roughly 2.7x its correct width. */
+.card > img { align-self: flex-start; max-width: 100%; height: auto; }
+.card > img.badge-img { height: 40px; width: auto; margin-bottom: 14px; }
+.card:hover .icon { transform: translateY(-2px); }
 .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
 .card p { font-size: 0.92rem; margin-bottom: 0; }
 

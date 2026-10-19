@@ -54,7 +54,7 @@ function header(products, activePath) {
   return `
   <header class="site-header">
     <div class="container">
-      <a href="/" class="brand"><img src="/images/logo-mark.png" alt="" class="brand-mark" width="34" height="34"> CSP4TECH</a>
+      <a href="/" class="brand"><img src="/images/logo-mark.png" alt="" class="brand-mark" width="31" height="34"> CSP4TECH</a>
       <nav class="primary-nav" aria-label="Primary">
         <ul>
           <li><a href="/services.html" class="nav-link">Services</a></li>

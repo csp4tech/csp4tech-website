@@ -48,8 +48,8 @@ module.exports = function about() {
         <h2>Certified, and held to a real quality standard</h2>
       </div>
       <div class="grid grid-3">
-        <div class="card"><img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" style="height:32px;width:auto;margin-bottom:14px;" width="220" height="61"><h3>Zoho Authorized Partner</h3><p>Officially certified to implement, customize, and support the Zoho product suite.</p></div>
-        <div class="card"><div class="icon">🎓</div><h3>Certified Consultants</h3><p>Certified across Zoho CRM, Books, People, and Creator — not generalists learning on your project.</p></div>
+        <div class="card"><img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="badge-img" width="600" height="167"><h3>Zoho Authorized Partner</h3><p>Officially certified to implement, customize, and support the Zoho product suite.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div><h3>Certified Consultants</h3><p>Certified across Zoho CRM, Books, People, and Creator — not generalists learning on your project.</p></div>
         <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h3>${config.languages}</h3><p>We work with your team in the language they're most comfortable in, including full Arabic/RTL support.</p></div>
       </div>
     </div>
@@ -62,10 +62,10 @@ module.exports = function about() {
         <h2>Wired correctly for Lebanon from day one</h2>
       </div>
       <div class="grid grid-4">
-        <div class="card"><div class="icon">🧾</div><h3>NSSF</h3><p style="font-size:.9rem;">Payroll and Zoho People set up around real NSSF contribution rules, not a generic template.</p></div>
-        <div class="card"><div class="icon">💵</div><h3>VAT invoicing</h3><p style="font-size:.9rem;">Zoho Books configured for Lebanese VAT — correct rates, invoice formatting, and filing-ready reports.</p></div>
-        <div class="card"><div class="icon">🏦</div><h3>Income tax (MOF)</h3><p style="font-size:.9rem;">Chart of accounts and reporting mapped to what your accountant needs for Ministry of Finance filings.</p></div>
-        <div class="card"><div class="icon">🔁</div><h3>LBP/USD multi-currency</h3><p style="font-size:.9rem;">Dual-currency invoicing and reporting, built for how Lebanese businesses actually price and get paid.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><h3>NSSF</h3><p style="font-size:.9rem;">Payroll and Zoho People set up around real NSSF contribution rules, not a generic template.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="14" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg></div><h3>VAT invoicing</h3><p style="font-size:.9rem;">Zoho Books configured for Lebanese VAT — correct rates, invoice formatting, and filing-ready reports.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 10 12 4 21 10"/><line x1="5" y1="10" x2="5" y2="19"/><line x1="10" y1="10" x2="10" y2="19"/><line x1="14" y1="10" x2="14" y2="19"/><line x1="19" y1="10" x2="19" y2="19"/><line x1="3" y1="20" x2="21" y2="20"/></svg></div><h3>Income tax (MOF)</h3><p style="font-size:.9rem;">Chart of accounts and reporting mapped to what your accountant needs for Ministry of Finance filings.</p></div>
+        <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 2 21 6 17 10"/><path d="M21 6H7a4 4 0 0 0-4 4"/><polyline points="7 22 3 18 7 14"/><path d="M3 18h14a4 4 0 0 0 4-4"/></svg></div><h3>LBP/USD multi-currency</h3><p style="font-size:.9rem;">Dual-currency invoicing and reporting, built for how Lebanese businesses actually price and get paid.</p></div>
       </div>
     </div>
   </section>
