@@ -39,6 +39,13 @@ module.exports = [
   {
     slug: "oracle",
     logo: "oracle.svg",
+    // Oracle's brand identity is a wordmark with no separate icon-only
+    // mark (unlike the other platforms here) — squeezed into the tiny
+    // fixed-size inline icon slot used next to plain text links, it
+    // becomes an illegible sliver rather than a logo. Skip the inline
+    // icon there; the full wordmark still renders fine in the larger
+    // card/hero spots where width is free to scale with it.
+    logoSquare: false,
     name: "Oracle",
     tagline: "NetSuite and Oracle Fusion/EBS implementation and support",
     description:
