@@ -15,8 +15,8 @@ module.exports = function home(products, blogPosts) {
     <div class="container hero-inner has-media">
       <div class="hero-text">
         <img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="partner-badge" width="220" height="61">
-        <h1>Certified Zoho Partner — Based in Lebanon, Serving <em>Clients Worldwide</em></h1>
-        <p class="lead">End-to-end Zoho consulting: implementation, migration, integrations, and ongoing support across the full Zoho suite — delivered remotely to clients anywhere, with Arabic/English (RTL) experience and a Beirut-based team.</p>
+        <h1>Zoho, set up the way your business <em>actually works</em></h1>
+        <p class="lead">A Zoho Authorized Partner based in Beirut — implementation, migration, integrations and ongoing support across the full Zoho suite, for clients in Lebanon and worldwide, in Arabic or English.</p>
         <div class="hero-actions">
           <a href="/contact-us.html" class="btn btn-primary">Get a Free Consultation</a>
           <a href="/zoho-products/" class="btn btn-ghost">Browse Zoho Products</a>
@@ -29,7 +29,50 @@ module.exports = function home(products, blogPosts) {
         </div>
       </div>
       <div class="hero-media">
-        <img src="/images/illustrations/home.svg" alt="Illustration of two people shaking hands over a successful partnership" width="951" height="428" loading="eager">
+        <!-- Decorative only: a stylised workspace, not a screenshot of any real
+             system and not anyone's data. Drawn in CSS rather than shipped as an
+             image so it stays sharp on every screen and costs no extra download.
+             The three app icons are Zoho's own, from the partner icon pack. -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hv-window">
+            <div class="hv-titlebar"><span></span><span></span><span></span></div>
+            <div class="hv-body">
+              <div class="hv-rail">
+                <div class="hv-rail-dot is-active"></div>
+                <div class="hv-rail-dot"></div>
+                <div class="hv-rail-dot"></div>
+                <div class="hv-rail-dot"></div>
+                <div class="hv-rail-dot"></div>
+              </div>
+              <div class="hv-canvas">
+                <div class="hv-toolbar"><span class="hv-pill-wide"></span><span class="hv-pill-sm"></span></div>
+                <div class="hv-board">
+                  <div class="hv-col">
+                    <span class="hv-col-head"></span>
+                    <span class="hv-card"></span>
+                    <span class="hv-card"></span>
+                  </div>
+                  <div class="hv-col">
+                    <span class="hv-col-head is-accent"></span>
+                    <span class="hv-card"></span>
+                    <span class="hv-card is-tall"></span>
+                  </div>
+                  <div class="hv-col">
+                    <span class="hv-col-head"></span>
+                    <span class="hv-card"></span>
+                  </div>
+                </div>
+                <div class="hv-chart">
+                  <span style="--bar:46%"></span><span style="--bar:68%"></span><span style="--bar:54%"></span>
+                  <span style="--bar:86%"></span><span style="--bar:72%"></span><span style="--bar:94%"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hv-chip hv-chip-a"><img src="/images/logos/crm.png" alt="" width="26" height="26"></div>
+          <div class="hv-chip hv-chip-b"><img src="/images/logos/books.png" alt="" width="26" height="26"></div>
+          <div class="hv-chip hv-chip-c"><img src="/images/logos/desk.png" alt="" width="26" height="26"></div>
+        </div>
       </div>
     </div>
   </section>

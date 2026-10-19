@@ -24,6 +24,13 @@
   --shadow-lg: 0 20px 45px rgba(30,27,46,0.12);
   --max-width: 1200px;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Headings use the same Inter family as body text, but served as a
+     variable font with an optical-size axis: at large sizes Inter
+     switches to its Display cut, which is tighter and more refined
+     than the text cut. A separate display family was tried and
+     dropped - it could not be rendered for review here, and shipping
+     a typeface nobody had actually looked at was not worth the risk. */
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -39,7 +46,12 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; margin: 0; padding: 0; }
-h1, h2, h3, h4 { line-height: 1.2; margin: 0 0 0.5em; font-weight: 700; letter-spacing: -0.01em; }
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  line-height: 1.14; margin: 0 0 0.5em; font-weight: 800; letter-spacing: -0.025em;
+}
+h3, h4 { font-weight: 700; letter-spacing: -0.015em; }
 p { margin: 0 0 1em; color: var(--color-ink-soft); }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
@@ -129,7 +141,7 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden;
-  padding: 72px 0 56px; background: linear-gradient(180deg, var(--color-primary-light) 0%, #fff 100%);
+  padding: 92px 0 84px; background: linear-gradient(180deg, var(--color-primary-light) 0%, #fff 100%);
 }
 /* Soft animated color blobs drifting behind the hero content — pure CSS,
    no images. Kept subtle (low opacity, heavy blur) so it reads as depth,
@@ -162,9 +174,9 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--color-border); padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; color: var(--color-primary-dark); box-shadow: var(--shadow-sm); margin-bottom: 22px; }
 .partner-badge { height: 44px; width: auto; margin: 0 auto 24px; display: block; filter: drop-shadow(0 2px 6px rgba(30,27,46,0.12)); }
 .footer-badge { height: 34px; width: auto; opacity: 0.9; }
-.hero h1 { font-size: clamp(2rem, 4.2vw, 3.1rem); color: var(--color-ink); }
+.hero h1 { font-size: clamp(2.5rem, 5vw, 3.9rem); color: var(--color-ink); margin-bottom: 0.45em; }
 .hero h1 em { font-style: normal; color: var(--color-primary); }
-.hero p.lead { font-size: 1.1rem; max-width: 640px; margin: 0 auto 28px; }
+.hero p.lead { font-size: 1.15rem; line-height: 1.65; max-width: 640px; margin: 0 auto 28px; }
 .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
 .pill-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .pill { background: #fff; border: 1px solid var(--color-border); border-radius: 999px; padding: 8px 16px; font-size: 0.82rem; font-weight: 600; color: var(--color-ink-soft); }
@@ -181,6 +193,104 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 .hero-inner.has-media .pill-row { justify-content: flex-start; }
 .hero-media { display: flex; align-items: center; justify-content: center; animation: hero-enter-media .8s cubic-bezier(.2,.7,.3,1) .12s both; }
 .hero-media img { width: 100%; max-width: 440px; height: auto; display: block; }
+
+/* ---------- Hero visual (decorative, CSS-drawn) ----------
+   A stylised app window with floating Zoho app icons. Deliberately abstract:
+   no real data, no real screenshot, nothing claiming to be a live system.
+   Built in CSS rather than as an image so it is crisp on any display and
+   adds zero network requests. Every animation here is transform/opacity
+   only, and all of it stops under prefers-reduced-motion (see below). */
+.hero-visual { position: relative; width: 100%; max-width: 520px; }
+.hv-window {
+  position: relative; z-index: 1; background: #fff;
+  border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg); overflow: hidden;
+  animation: hv-float 7s ease-in-out infinite alternate;
+}
+.hv-titlebar {
+  display: flex; gap: 6px; align-items: center;
+  padding: 12px 16px; border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(180deg, #fcfcff 0%, #f7f7fc 100%);
+}
+.hv-titlebar span { width: 9px; height: 9px; border-radius: 50%; background: #dcdae9; }
+.hv-titlebar span:first-child { background: #f2b8a2; }
+.hv-titlebar span:nth-child(2) { background: #f4d9a6; }
+.hv-titlebar span:nth-child(3) { background: #b5ded9; }
+
+.hv-body { display: grid; grid-template-columns: 46px 1fr; min-height: 268px; }
+.hv-rail {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 18px 0; background: var(--color-primary-light);
+  border-right: 1px solid var(--color-border);
+}
+.hv-rail-dot { width: 18px; height: 18px; border-radius: 6px; background: #cfe9e6; }
+.hv-rail-dot.is-active { background: var(--color-primary); }
+
+.hv-canvas { padding: 18px; display: flex; flex-direction: column; gap: 16px; }
+.hv-toolbar { display: flex; align-items: center; gap: 8px; }
+.hv-pill-wide { width: 104px; height: 10px; border-radius: 999px; background: #e9e7f4; }
+.hv-pill-sm { width: 42px; height: 10px; border-radius: 999px; background: #f1eff9; }
+
+.hv-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.hv-col { display: flex; flex-direction: column; gap: 7px; }
+.hv-col-head { height: 7px; border-radius: 999px; background: var(--color-primary); opacity: .75; }
+.hv-col-head.is-accent { background: var(--color-accent); }
+.hv-card {
+  height: 26px; border-radius: 7px; background: #f7f7fc;
+  border: 1px solid var(--color-border);
+}
+.hv-card.is-tall { height: 38px; }
+
+.hv-chart { display: flex; align-items: flex-end; gap: 7px; height: 56px; margin-top: auto; }
+.hv-chart span {
+  flex: 1; height: var(--bar); border-radius: 5px 5px 2px 2px;
+  background: linear-gradient(180deg, var(--color-primary) 0%, #4fb3aa 100%);
+  transform-origin: bottom;
+  animation: hv-bar 2.6s cubic-bezier(.2,.7,.3,1) both;
+}
+.hv-chart span:nth-child(2) { animation-delay: .08s; }
+.hv-chart span:nth-child(3) { animation-delay: .16s; }
+.hv-chart span:nth-child(4) { animation-delay: .24s; background: linear-gradient(180deg, var(--color-accent) 0%, #f08a52 100%); }
+.hv-chart span:nth-child(5) { animation-delay: .32s; }
+.hv-chart span:nth-child(6) { animation-delay: .40s; }
+
+/* Floating app-icon chips around the window */
+.hv-chip {
+  position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; background: #fff; border: 1px solid var(--color-border);
+  border-radius: 14px; box-shadow: var(--shadow-md);
+  animation: hv-float 5.5s ease-in-out infinite alternate;
+}
+.hv-chip img { width: 26px; height: 26px; object-fit: contain; }
+.hv-chip-a { top: 6%; right: -14px; animation-duration: 6s; }
+.hv-chip-b { bottom: 16%; left: -20px; animation-duration: 7.5s; animation-delay: -2s; }
+.hv-chip-c { bottom: -14px; right: 16%; animation-duration: 6.8s; animation-delay: -4s; }
+
+@keyframes hv-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+@keyframes hv-bar {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+@media (max-width: 860px) {
+  .hero-visual { max-width: 420px; margin: 0 auto; }
+  .hv-chip { width: 40px; height: 40px; border-radius: 12px; }
+  .hv-chip img { width: 22px; height: 22px; }
+}
+
+/* ---------- Soft gradient sections + floating image cards ---------- */
+.section-alt {
+  background: linear-gradient(180deg, #fff 0%, var(--color-surface-alt) 18%, var(--color-surface-alt) 82%, #fff 100%);
+}
+/* Lift page imagery onto a soft card, the way product sites present
+   screenshots — applies to the illustration heroes on the inner pages. */
+.hero-media img {
+  border-radius: var(--radius-lg);
+}
+
 @keyframes hero-enter-media {
   from { opacity: 0; transform: translateX(24px); }
   to { opacity: 1; transform: translateX(0); }
@@ -193,16 +303,20 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
   .hero-inner.has-media p.lead { margin: 0 auto 28px; }
   .hero-inner.has-media .hero-actions,
   .hero-inner.has-media .pill-row { justify-content: center; }
-  .hero-media { order: -1; margin-bottom: 8px; }
+  /* The headline and the call-to-action come first on a phone. The old
+     rule floated the hero image above them, which pushed the button
+     below the fold now that the visual is a full app window. */
+  .hero-media { order: 0; margin-top: 32px; }
   .hero-media img { max-width: 260px; }
+  .hero-visual { max-width: 340px; }
 }
 
 /* ---------- Sections ---------- */
-section { padding: 64px 0; }
+section { padding: 96px 0; }
 .section-alt { background: var(--color-surface-alt); }
-.section-head { max-width: 640px; margin: 0 auto 40px; text-align: center; }
+.section-head { max-width: 680px; margin: 0 auto 56px; text-align: center; }
 .section-head .kicker { color: var(--color-accent-dark); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; display: block; }
-.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.section-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
 
 .grid { display: grid; gap: 24px; }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
@@ -264,6 +378,10 @@ section { padding: 64px 0; }
   .hero::before, .hero::after { animation: none; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .hero-inner, .hero-media { animation: none; }
+  /* The hero visual's float and chart-grow stop too; the bars must still
+     end up at full height, so scaleY is reset rather than left mid-animation. */
+  .hv-window, .hv-chip { animation: none; }
+  .hv-chart span { animation: none; transform: none; opacity: 1; }
   .wa-float { animation: none; }
   .mega-menu, .mobile-nav, .back-to-top, .site-header { transition: none; }
   .faq summary::after { transition: none; }
