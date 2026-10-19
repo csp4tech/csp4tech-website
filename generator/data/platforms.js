@@ -7,6 +7,13 @@ module.exports = [
   {
     slug: "odoo",
     logo: "odoo.svg",
+    // `logoIcon` is the square icon-only mark, used wherever the logo has
+    // to sit in a small inline slot next to text. Brands whose main logo
+    // is a wide wordmark need one, or the wordmark shrinks to an
+    // illegible sliver in that slot. Odoo's is the single purple ring —
+    // the mark Odoo itself uses as its app icon — framed out of their own
+    // official wordmark file rather than redrawn.
+    logoIcon: "odoo-mark.svg",
     name: "Odoo",
     tagline: "Flexible open-source ERP implementation and support",
     description:
@@ -39,13 +46,12 @@ module.exports = [
   {
     slug: "oracle",
     logo: "oracle.svg",
-    // Oracle's brand identity is a wordmark with no separate icon-only
-    // mark (unlike the other platforms here) — squeezed into the tiny
-    // fixed-size inline icon slot used next to plain text links, it
-    // becomes an illegible sliver rather than a logo. Skip the inline
-    // icon there; the full wordmark still renders fine in the larger
-    // card/hero spots where width is free to scale with it.
-    logoSquare: false,
+    // Oracle publishes no separate icon-only mark, but the "O" of the
+    // ORACLE wordmark is what they use as their own favicon — so the
+    // small-slot icon is that letterform, framed out of their official
+    // wordmark file rather than redrawn. The full wordmark still renders
+    // in the larger card/hero spots where width can scale with it.
+    logoIcon: "oracle-mark.svg",
     name: "Oracle",
     tagline: "NetSuite and Oracle Fusion/EBS implementation and support",
     description:

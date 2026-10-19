@@ -61,7 +61,15 @@ module.exports = function platformPage(platform, allPlatforms) {
         <h2>We also work with</h2>
       </div>
       <div class="related-products">
-        ${others.map((p) => `<a href="/platforms/${p.slug}.html">${p.logo && p.logoSquare !== false ? `<img src="/images/platform-logos/${p.logo}" alt="" class="nav-app-icon">` : ""}${p.name}</a>`).join("")}
+        ${others
+          .map((p) => {
+            // Prefer the square icon-only mark here: this slot is a 16px
+            // icon beside text, where a wide wordmark reads as a sliver.
+            const mark = p.logoIcon || p.logo;
+            const icon = mark ? `<img src="/images/platform-logos/${mark}" alt="" class="nav-app-icon">` : "";
+            return `<a href="/platforms/${p.slug}.html">${icon}${p.name}</a>`;
+          })
+          .join("")}
       </div>
     </div>
   </section>`
