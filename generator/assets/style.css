@@ -378,6 +378,33 @@ section { padding: 64px 0; }
 .platform-hero-icon { height: 40px; width: auto; max-width: 200px; object-fit: contain; flex: none; }
 .card .platform-logo { height: 32px; width: auto; max-width: 160px; object-fit: contain; margin-bottom: 14px; display: block; }
 
+/* ---------- "Our presence" (events / where we show up) ---------- */
+.presence { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 36px; align-items: center; }
+.presence-meta h3 { font-size: 1.25rem; margin: 0 0 6px; }
+.presence-tag {
+  display: inline-block; background: var(--color-primary-light); color: var(--color-primary-dark);
+  padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-bottom: 14px;
+}
+.presence-sub { font-size: 0.85rem; color: var(--color-ink-soft); margin: 0 0 14px; }
+.presence-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.presence-photo { margin: 0; }
+.presence-photo img {
+  width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+  border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+}
+.presence-photo figcaption { font-size: 0.76rem; color: var(--color-ink-soft); margin-top: 8px; line-height: 1.4; }
+
+@media (max-width: 860px) {
+  .presence { grid-template-columns: 1fr; gap: 24px; }
+  /* Three tall portraits stacked would be a lot of scrolling on a phone,
+     so below this width they become a swipeable strip instead. */
+  .presence-photos {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; padding-bottom: 6px;
+  }
+  .presence-photo { flex: 0 0 62%; scroll-snap-align: start; }
+}
+
 .related-products { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px; }
 .related-products a { display: block; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 14px 16px; font-weight: 700; font-size: 0.9rem; }
 .related-products a:hover { border-color: var(--color-primary); color: var(--color-primary); }

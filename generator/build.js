@@ -82,6 +82,14 @@ function copyAssets() {
   // Microsoft, Oracle, Salesforce, Shopify) — sourced from each company's
   // own Wikimedia Commons / Simple Icons brand assets, used only to
   // identify the platform (nominative use), never to claim certification.
+  const presenceDir = path.join(assetsDir, "presence");
+  if (fs.existsSync(presenceDir)) {
+    fs.mkdirSync(path.join(DIST, "images", "presence"), { recursive: true });
+    for (const file of fs.readdirSync(presenceDir)) {
+      fs.copyFileSync(path.join(presenceDir, file), path.join(DIST, "images", "presence", file));
+    }
+  }
+
   const platformLogosDir = path.join(assetsDir, "platform-logos");
   if (fs.existsSync(platformLogosDir)) {
     fs.mkdirSync(path.join(DIST, "images", "platform-logos"), { recursive: true });

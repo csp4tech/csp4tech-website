@@ -2,6 +2,7 @@ const config = require("../data/config");
 const faq = require("../data/faq");
 const platforms = require("../data/platforms");
 const integrations = require("../data/integrations");
+const presence = require("../data/presence");
 
 module.exports = function home(products, blogPosts) {
   const featured = products.filter((p) =>
@@ -134,6 +135,42 @@ module.exports = function home(products, blogPosts) {
       </div>
     </div>
   </section>
+
+  ${
+    presence.length
+      ? (() => {
+          const latest = presence[0];
+          return `
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Our presence</span>
+        <h2>Where you'll find us</h2>
+      </div>
+      <div class="presence">
+        <div class="presence-meta">
+          <span class="presence-tag">${latest.role}</span>
+          <h3>${latest.event} — ${latest.location}</h3>
+          <p class="presence-sub">${latest.fullName} · ${latest.edition} · ${latest.period}</p>
+          <p>${latest.blurb}</p>
+        </div>
+        <div class="presence-photos">
+          ${latest.photos
+            .map(
+              (ph) => `
+          <figure class="presence-photo">
+            <img src="/images/presence/${ph.file}" alt="${ph.alt}" width="800" height="1067" loading="lazy">
+            <figcaption>${ph.caption}</figcaption>
+          </figure>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+  </section>`;
+        })()
+      : ""
+  }
 
   <section class="section-alt">
     <div class="container">
