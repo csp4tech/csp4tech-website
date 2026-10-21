@@ -244,6 +244,30 @@ module.exports = function home(products, blogPosts) {
     </div>
   </section>
 
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Go deeper</span>
+        <h2>Pages written for your situation</h2>
+        <p>Rather than one generic overview, we write up each industry and each service separately — including the cases where we would tell you not to do it.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <span class="kicker">Solutions</span>
+          <h3>By industry and by function</h3>
+          <p>Manufacturing, retail, distribution, real estate, contracting, healthcare, education, agriculture and NGOs — plus accounting, inventory, HR, attendance and visitor management.</p>
+          <a href="/solutions/" class="btn btn-ghost btn-sm">Browse solutions</a>
+        </div>
+        <div class="card">
+          <span class="kicker">AI &amp; Apps</span>
+          <h3>AI and software development</h3>
+          <p>AI agents, chatbots, document processing and automation built inside Zoho, plus custom software, web, mobile and e-commerce — with an honest read on where AI does not help.</p>
+          <a href="/ai-apps/" class="btn btn-ghost btn-sm">Browse AI &amp; apps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="container" style="max-width:780px;text-align:center;">
       <p style="font-size:.85rem;color:var(--color-ink-soft);">Beyond our Zoho specialty, our team also has hands-on implementation experience with ${platforms.map((p) => p.name).join(", ")}.

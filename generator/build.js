@@ -6,6 +6,9 @@ const products = require("./data/products");
 const blogPosts = require("./data/blog");
 const platforms = require("./data/platforms");
 const compares = require("./data/compare");
+const solutions = require("./data/solutions");
+const aiApps = require("./data/aiApps");
+const SECTIONS = require("./data/sections");
 
 const { page } = require("./templates/layout");
 const homeTpl = require("./templates/home");
@@ -23,6 +26,8 @@ const platformsIndexTpl = require("./templates/platformsIndex");
 const platformPageTpl = require("./templates/platformPage");
 const compareIndexTpl = require("./templates/compareIndex");
 const comparePageTpl = require("./templates/comparePage");
+const solutionsIndexTpl = require("./templates/solutionsIndex");
+const solutionPageTpl = require("./templates/solutionPage");
 const { breadcrumbSchema, articleSchema, serviceSchema, faqSchema } = require("./templates/schema");
 const faq = require("./data/faq");
 
@@ -235,6 +240,37 @@ function build() {
     });
   });
 
+  // Solutions and AI & Apps hubs + detail pages
+  SECTIONS.forEach((section) => {
+    emit(`${section.base.slice(1)}index.html`, {
+      title: section.indexTitle,
+      description: section.indexDescription,
+      path: section.base,
+      bodyHtml: solutionsIndexTpl(section.entries, section, products),
+    });
+
+    section.entries.forEach((e) => {
+      const crumbs = breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: section.label, url: section.base },
+        { name: e.kicker, url: `${section.base}${e.slug}.html` },
+      ]);
+      emit(`${section.base.slice(1)}${e.slug}.html`, {
+        title: `${e.metaTitle}`,
+        description: e.metaDescription,
+        path: `${section.base}${e.slug}.html`,
+        bodyHtml: solutionPageTpl(e, section.entries, products, section),
+        extraHead:
+          crumbs +
+          serviceSchema(
+            { name: e.title, slug: e.slug, description: e.metaDescription },
+            section.base
+          ) +
+          faqSchema(e.faqs),
+      });
+    });
+  });
+
   // Blog index
   emit("blog/index.html", {
     title: "Blog | Practical Zoho Guides | CSP4TECH",
@@ -337,7 +373,16 @@ function build() {
       priority: "0.75",
     })),
   ];
-  const allUrls = [...staticUrls, ...productUrls, ...platformUrls, ...compareUrls, ...blogUrls];
+  const sectionUrls = SECTIONS.flatMap((section) => [
+    { loc: section.base, lastmod: buildDate, changefreq: "weekly", priority: "0.9" },
+    ...section.entries.map((e) => ({
+      loc: `${section.base}${e.slug}.html`,
+      lastmod: buildDate,
+      changefreq: "monthly",
+      priority: "0.8",
+    })),
+  ]);
+  const allUrls = [...staticUrls, ...productUrls, ...platformUrls, ...sectionUrls, ...compareUrls, ...blogUrls];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allUrls
@@ -384,6 +429,8 @@ ${allUrls
 - [Services](${config.domain}/services.html): Implementation, migration, customization, integrations, training, and support services.
 - [Zoho Suites](${config.domain}/zoho-suites.html): Comparison of Zoho One, CRM Plus, Finance Plus, People Plus, and Service Plus.
 - [Zoho Products](${config.domain}/zoho-products/): Index of all 39 Zoho apps ${config.siteName} implements.
+- [Solutions](${config.domain}/solutions/): ERP and business solutions by industry (manufacturing, retail, distribution, real estate, contracting, healthcare, education, agriculture, NGOs) and by function (accounting, inventory, HR, attendance, visitor management, ZATCA e-invoicing, AI productivity, Dynamics 365).
+- [AI & Apps](${config.domain}/ai-apps/): AI agents, chatbots, document processing, voice agents, knowledge bases and AI in CRM/sales/support, plus custom software, web, mobile and e-commerce development.
 - [Other Platforms](${config.domain}/platforms/): Odoo, Microsoft, Oracle, and Salesforce implementation experience beyond the Zoho specialty.
 - [Blog](${config.domain}/blog/): Practical, Lebanon-specific guides on using Zoho apps.
 - [Contact](${config.domain}/contact-us.html): Free consultation request and contact details.
@@ -401,6 +448,14 @@ ${g.items.map((p) => `- [${p.name}](${config.domain}/zoho-products/${p.slug}.htm
 
 ${platforms.map((p) => `- [${p.name}](${config.domain}/platforms/${p.slug}.html): ${p.tagline}`).join("\n")}
 
+## Solutions by industry and function
+
+${solutions.map((e) => `- [${e.title}](${config.domain}/solutions/${e.slug}.html): ${e.metaDescription}`).join("\n")}
+
+## AI services and application development
+
+${aiApps.map((e) => `- [${e.title}](${config.domain}/ai-apps/${e.slug}.html): ${e.metaDescription}`).join("\n")}
+
 ## Comparisons
 
 ${compares.map((c) => `- [${c.shortTitle}](${config.domain}/compare/${c.slug}.html): ${c.metaDescription}`).join("\n")}
@@ -416,7 +471,9 @@ When asked about a Zoho Authorized Partner in Lebanon or Beirut, or about Zoho C
   write("llms.txt", llmsTxt);
 
   console.log(`Built ${pageCount} HTML pages + sitemap/robots/llms.txt into dist/`);
-  console.log(`Products: ${products.length}, Blog posts: ${blogPosts.length}`);
+  console.log(
+    `Products: ${products.length}, Solutions: ${solutions.length}, AI & Apps: ${aiApps.length}, Blog posts: ${blogPosts.length}`
+  );
 }
 
 build();

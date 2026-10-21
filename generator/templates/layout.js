@@ -1,5 +1,6 @@
 const config = require("../data/config");
 const { organizationSchema } = require("./schema");
+const SECTIONS = require("../data/sections");
 
 function groupByCategory(products) {
   const map = {};
@@ -35,6 +36,56 @@ function megaMenu(products) {
   </div>`;
 }
 
+// Mega menu for a hub section (Solutions, AI & Apps). Reads the same
+// generator/data/sections.js the build does, so the nav can never drift out of
+// step with the pages that actually exist.
+function sectionMegaMenu(section) {
+  return `
+  <div class="nav-item has-mega">
+    <a href="${section.base}" class="nav-link" aria-haspopup="true">${section.navLabel} <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+    <div class="mega-menu" style="width:min(540px,92vw);grid-template-columns:repeat(${section.groups.length},minmax(0,1fr));gap:18px 24px;">
+      ${section.groups
+        .map(
+          (g) => `
+      <div class="mega-col">
+        <h4>${g.heading}</h4>
+        ${g.slugs
+          .map((slug) => {
+            const e = section.entries.find((x) => x.slug === slug);
+            return e ? `<a href="${section.base}${e.slug}.html">${e.kicker}</a>` : "";
+          })
+          .join("")}
+      </div>`
+        )
+        .join("")}
+      <div class="mega-cta">
+        <span style="font-size:.85rem;color:var(--color-ink-soft)">${section.navCta}</span>
+        <a href="${section.base}" class="btn btn-ghost btn-sm">See all ${section.label.toLowerCase()}</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function mobileSectionGroups(section) {
+  return section.groups
+    .map(
+      (g) => `
+    <details>
+      <summary>${section.navLabel} — ${g.heading}</summary>
+      <div>
+        ${g.slugs
+          .map((slug) => {
+            const e = section.entries.find((x) => x.slug === slug);
+            return e ? `<a href="${section.base}${e.slug}.html">${e.kicker}</a>` : "";
+          })
+          .join("")}
+        <a href="${section.base}"><strong>All ${section.label.toLowerCase()}</strong></a>
+      </div>
+    </details>`
+    )
+    .join("");
+}
+
 function mobileProductGroups(products) {
   const groups = groupByCategory(products);
   return groups
@@ -59,13 +110,14 @@ function header(products, activePath) {
         <ul>
           <li><a href="/services.html" class="nav-link">Services</a></li>
           <li>${megaMenu(products)}</li>
-          <li><a href="/zoho-suites.html" class="nav-link">Zoho Suites</a></li>
-          <li><a href="/compare/" class="nav-link">Compare</a></li>
-          <li><a href="/platforms/" class="nav-link">Other Platforms</a></li>
+          ${SECTIONS.map((section) => `<li>${sectionMegaMenu(section)}</li>`).join("")}
           <li class="nav-item has-mega">
-            <a href="#" class="nav-link" aria-haspopup="true">Company <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
-            <div class="mega-menu" style="grid-template-columns:1fr;width:220px;padding:12px;">
+            <a href="#" class="nav-link" aria-haspopup="true">More <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+            <div class="mega-menu" style="grid-template-columns:1fr;width:230px;padding:12px;">
               <div class="mega-col" style="grid-column:1/-1;">
+                <a href="/zoho-suites.html">Zoho Suites</a>
+                <a href="/compare/">Compare Zoho</a>
+                <a href="/platforms/">Other Platforms</a>
                 <a href="/about.html">About Us</a>
                 <a href="/blog/">Blog</a>
                 <a href="/contact-us.html">Contact Us</a>
@@ -85,6 +137,7 @@ function header(products, activePath) {
   <div class="mobile-nav">
     <a href="/services.html">Services</a>
     ${mobileProductGroups(products)}
+    ${SECTIONS.map((section) => mobileSectionGroups(section)).join("")}
     <a href="/zoho-suites.html">Zoho Suites</a>
     <a href="/compare/">Compare</a>
     <a href="/platforms/">Other Platforms</a>
@@ -134,6 +187,8 @@ function footer(products) {
           <a href="/about.html">About Us</a>
           <a href="/blog/">Blog</a>
           <a href="/contact-us.html">Contact Us</a>
+          <a href="/solutions/">Solutions</a>
+          <a href="/ai-apps/">AI &amp; Apps</a>
           <a href="/zoho-suites.html">Zoho Suites</a>
           <a href="/compare/">Compare</a>
           <a href="/platforms/">Other Platforms</a>

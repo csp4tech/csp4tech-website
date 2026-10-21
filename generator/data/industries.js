@@ -8,6 +8,9 @@
 module.exports = [
   {
     slug: "real-estate",
+    // Deep link from the homepage/services industry tabs to the full
+    // write-up in generator/data/solutions.js. Omit where no page exists.
+    solutionSlug: "real-estate-erp",
     name: "Real Estate",
     icon: "home",
     color: "#6738EA",
@@ -29,6 +32,9 @@ module.exports = [
   },
   {
     slug: "logistics",
+    // Deep link from the homepage/services industry tabs to the full
+    // write-up in generator/data/solutions.js. Omit where no page exists.
+    solutionSlug: "distribution-erp-software",
     name: "Logistics",
     icon: "truck",
     color: "#22B04C",
@@ -71,6 +77,9 @@ module.exports = [
   },
   {
     slug: "finance",
+    // Deep link from the homepage/services industry tabs to the full
+    // write-up in generator/data/solutions.js. Omit where no page exists.
+    solutionSlug: "accounting-erp-software",
     name: "Finance",
     icon: "database",
     color: "#EA9E16",
@@ -92,6 +101,9 @@ module.exports = [
   },
   {
     slug: "healthcare",
+    // Deep link from the homepage/services industry tabs to the full
+    // write-up in generator/data/solutions.js. Omit where no page exists.
+    solutionSlug: "healthcare-erp-solution",
     name: "Healthcare",
     icon: "cross",
     color: "#8C4DEE",
@@ -134,6 +146,9 @@ module.exports = [
   },
   {
     slug: "manufacturing",
+    // Deep link from the homepage/services industry tabs to the full
+    // write-up in generator/data/solutions.js. Omit where no page exists.
+    solutionSlug: "manufacturing-erp-software",
     name: "Manufacturing",
     icon: "factory",
     color: "#4B5563",
