@@ -6,7 +6,23 @@
 module.exports = {
   siteName: "CSP4TECH",
   domain: "https://www.csp4tech.com",
-  tagline: "Certified Zoho Partner — Based in Lebanon, Serving Clients Worldwide",
+  tagline: "Zoho Authorized Partner — headquartered in Beirut, working across the region and beyond",
+
+  // Where CSP4TECH actually works. Named regions beat a vague "worldwide":
+  // they are specific, credible, and people search for them. Only add a
+  // region here when there is real client work behind it — this feeds the
+  // visible copy AND the schema.org areaServed, so an invented region would
+  // be a claim to search engines as well as to readers.
+  regions: {
+    hq: "Beirut, Lebanon",
+    // One-line form for body copy.
+    line: "Lebanon, the Gulf, Iraq and North Africa",
+    // Shorter form, for places where the full line does not fit.
+    short: "Lebanon, the Gulf and North Africa",
+    // schema.org areaServed. Region-level rather than a long country list,
+    // so it stays accurate as client work shifts around within a region.
+    schema: ["Lebanon", "Gulf Cooperation Council", "Iraq", "North Africa", "Worldwide"],
+  },
   email: "info@csp4tech.com",
   phone: { display: "+961 78 744 789", href: "96178744789" },
   whatsapp: "96178744789",

@@ -28,7 +28,7 @@ function organizationSchema() {
       addressRegion: config.address.region,
       addressCountry: config.address.country,
     },
-    areaServed: ["Lebanon", "Worldwide"],
+    areaServed: config.regions.schema,
     geo: { "@type": "GeoCoordinates", latitude: config.geo.lat, longitude: config.geo.lng },
     foundingDate: String(config.stats.founded),
     knowsLanguage: ["en", "ar"],
@@ -88,7 +88,7 @@ function serviceSchema(product, basePath) {
     name: `${product.name} Implementation`,
     description: product.description,
     provider: { "@type": "Organization", name: config.siteName, url: config.domain },
-    areaServed: ["Lebanon", "Worldwide"],
+    areaServed: config.regions.schema,
     url: `${config.domain}${base}${product.slug}`,
   });
 }

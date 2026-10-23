@@ -7,7 +7,7 @@ module.exports = function about() {
       <div class="hero-text">
         <span class="eyebrow">About CSP4TECH</span>
         <h1>Empowering businesses through Zoho — from Lebanon to the world</h1>
-        <p class="lead">We're a Beirut-based Zoho Authorized Partner helping SMEs and enterprises — in Lebanon and around the world — run their operations on one connected platform: implementation, migration, training, and support, delivered by a team that actually picks up the phone.</p>
+        <p class="lead">We're a Zoho Authorized Partner headquartered in Beirut, helping SMEs and enterprises across Lebanon, the Gulf, Iraq and North Africa run their operations on one connected platform: implementation, migration, training and support, delivered by a team that actually picks up the phone.</p>
       </div>
       <div class="hero-media">
         <img src="/images/illustrations/about.svg" alt="Illustration of a team working together" width="889" height="880" loading="eager">
@@ -32,7 +32,7 @@ module.exports = function about() {
         <span class="kicker">Our story</span>
         <h2>Local expertise, not an outsourced ticket queue</h2>
         <p>CSP4TECH was founded to close a gap we kept seeing: Lebanese businesses adopting powerful software like Zoho, then getting generic, overseas support that didn't understand VAT rules, LBP/USD accounting, or the fact that half their sales conversations happen on WhatsApp.</p>
-        <p>Since ${config.stats.founded}, we've focused on exactly that — implementation and support built around how a business actually operates, not a generic template. Today that means clients across Lebanon, the region, and beyond, all delivered by a team based in Beirut Digital District.</p>
+        <p>Since ${config.stats.founded}, we've focused on exactly that — implementation and support built around how a business actually operates, not a generic template. Today that means clients across Lebanon, the Gulf, Iraq and North Africa, all delivered by one team working out of Beirut Digital District.</p>
       </div>
       <div class="grid" style="gap:16px;">
         <div class="card"><h3>Mission</h3><p>Give growing businesses — wherever they're based — enterprise-grade tools without an enterprise-size budget or a faceless support desk.</p></div>
@@ -59,7 +59,8 @@ module.exports = function about() {
     <div class="container">
       <div class="section-head">
         <span class="kicker">Compliance</span>
-        <h2>Wired correctly for Lebanon from day one</h2>
+        <h2>Local compliance, handled properly — starting with Lebanon</h2>
+        <p>Below is the Lebanese detail, because that is where most of our work sits. We go to the same depth in the other markets we serve — <a href="/solutions/zatca-e-invoicing">Saudi e-invoicing under ZATCA</a>, for instance.</p>
       </div>
       <div class="grid grid-4">
         <div class="card"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><h3>NSSF</h3><p style="font-size:.9rem;">Payroll and Zoho People set up around real NSSF contribution rules, not a generic template.</p></div>

@@ -17,7 +17,7 @@ module.exports = function home(products, blogPosts) {
       <div class="hero-text">
         <img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="partner-badge" width="220" height="61">
         <h1>Zoho, set up the way your business <em>actually works</em></h1>
-        <p class="lead">A Zoho Authorized Partner based in Beirut — implementation, migration, integrations and ongoing support across the full Zoho suite, for clients in Lebanon and worldwide, in Arabic or English.</p>
+        <p class="lead">A Zoho Authorized Partner headquartered in Beirut — implementation, migration, integrations and ongoing support across the full Zoho suite, for clients in Lebanon, the Gulf, Iraq and North Africa, in Arabic or English.</p>
         <div class="hero-actions">
           <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
           <a href="/zoho-products/" class="btn btn-ghost">Browse Zoho Products</a>
@@ -80,7 +80,7 @@ module.exports = function home(products, blogPosts) {
 
   <section>
     <div class="container">
-      <p class="text-center" style="font-weight:700;color:var(--color-ink-soft);margin-bottom:20px;">Trusted by businesses across Lebanon and beyond</p>
+      <p class="text-center" style="font-weight:700;color:var(--color-ink-soft);margin-bottom:20px;">Trusted by businesses across Lebanon and the wider region</p>
       <div class="trusted-marquee">
         <div class="trusted-track">
           ${config.trustedByClients

@@ -168,7 +168,7 @@ function footer(products) {
       <div class="footer-grid">
         <div>
           <div class="footer-brand">CSP4TECH</div>
-          <p style="color:#9C9AC4;font-size:0.88rem;max-width:280px;">${config.tagline}. End-to-end Zoho consulting for businesses in Lebanon and worldwide — implementation, migration, integrations, and ongoing support.</p>
+          <p style="color:#9C9AC4;font-size:0.88rem;max-width:280px;">${config.tagline}. End-to-end Zoho consulting — implementation, migration, integrations and ongoing support — for businesses across ${config.regions.line}.</p>
           <div class="social-row" style="margin-top:16px;">
             <a href="${config.social.linkedin}" aria-label="LinkedIn" target="_blank" rel="noopener me">
               <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M100.28 448H7.4V148.9h92.88zm-46.44-339.9C24.09 108.1 0 83.5 0 53.6 0 23.7 24.1-.9 53.84-.9c29.7 0 53.84 24.6 53.84 53.6 0 29.9-24.14 54.4-53.84 54.4zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
@@ -204,14 +204,47 @@ function footer(products) {
           <a href="/zoho-suites">Zoho Suites</a>
           <a href="/compare/">Compare</a>
           <a href="/platforms/">Other Platforms</a>
-          <a href="mailto:${config.email}">${config.email}</a>
-          <a href="tel:+${config.phone.href}">${config.phone.display}</a>
         </div>
       </div>
+
+      <!-- Contact details in the footer, not only on the contact page: most
+           visitors who want to talk are at the bottom of some other page when
+           they decide. WhatsApp leads because that is how business is
+           actually done here and across the region. -->
+      <div class="footer-contact">
+        <h2 class="footer-col-title">Talk to us</h2>
+        <div class="footer-contact-grid">
+          <a class="fc-item" href="https://wa.me/${config.whatsapp}" target="_blank" rel="noopener">
+            <span class="fc-ic fc-wa"><svg width="17" height="17" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3.3 8.7 3.3 15.7c0 2.5.7 4.8 1.9 6.8L3 29l6.7-2.1c1.9 1 4.1 1.6 6.3 1.6 7 0 12.7-5.7 12.7-12.7C28.7 8.7 23 3 16 3zm0 23c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.2 1.2-3.9-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.5C5.4 9.9 10.2 5.1 16 5.1s10.6 4.8 10.6 10.6S21.8 26 16 26zm5.6-7.5c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6l.5-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg></span>
+            <span class="fc-text"><strong>WhatsApp</strong>${config.phone.display}</span>
+          </a>
+          <a class="fc-item" href="tel:+${config.phone.href}">
+            <span class="fc-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span class="fc-text"><strong>Call us</strong>${config.phone.display}</span>
+          </a>
+          <a class="fc-item" href="mailto:${config.email}">
+            <span class="fc-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+            <span class="fc-text"><strong>Email</strong>${config.email}</span>
+          </a>
+          <div class="fc-item">
+            <span class="fc-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="fc-text"><strong>Head office</strong>${config.address.lebanon}</span>
+          </div>
+          <div class="fc-item">
+            <span class="fc-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <span class="fc-text"><strong>Hours</strong>${config.hours}</span>
+          </div>
+          <div class="fc-item">
+            <span class="fc-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <span class="fc-text"><strong>Where we work</strong>${config.regions.line}</span>
+          </div>
+        </div>
+      </div>
+
       <div class="footer-bottom">
         <span>&copy; ${new Date().getFullYear()} CSP4TECH. All rights reserved.</span>
         <span><a href="/privacy-policy">Privacy Policy</a> · <a href="/terms">Terms of Use</a></span>
-        <span>${config.address.lebanon}</span>
+        <span>Headquartered in ${config.regions.hq}</span>
       </div>
     </div>
   </footer>

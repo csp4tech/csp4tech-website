@@ -774,3 +774,29 @@ section { padding: 78px 0; }
    second row; 3 + 2 reads as intentional. */
 @media (min-width: 1040px) { .grid-3-fixed { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .feature-list li .check.check-warn { background: #FDECE7; color: #C2410C; }
+
+/* ---------- Footer contact strip ---------- */
+/* Contact details sit in the footer of every page, not only on the contact
+   page: someone who decides to get in touch is usually at the bottom of
+   whatever page they were reading. WhatsApp comes first because that is how
+   business is actually done in Lebanon and across the region. */
+.footer-contact { border-top: 1px solid rgba(255, 255, 255, .09); margin-top: 32px; padding-top: 26px; }
+.footer-contact-grid {
+  display: grid; gap: 16px 28px;
+  grid-template-columns: repeat(auto-fit, minmax(236px, 1fr));
+}
+.fc-item { display: flex; gap: 11px; align-items: flex-start; color: #C7C6F5; font-size: .86rem; }
+a.fc-item:hover { color: #fff; }
+a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
+.fc-ic {
+  flex: none; width: 32px; height: 32px; border-radius: 9px;
+  background: rgba(255, 255, 255, .08); color: #8FE3DA;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .18s ease;
+}
+.fc-ic.fc-wa { color: #4FE08A; }
+.fc-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.4; }
+.fc-text strong { color: #fff; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+@media (max-width: 560px) {
+  .footer-contact-grid { grid-template-columns: 1fr; gap: 14px; }
+}
