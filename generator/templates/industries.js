@@ -68,7 +68,7 @@ module.exports = function industriesSection() {
                 <ul class="industry-benefits">
                   ${ind.benefits.map((b) => `<li>${b}</li>`).join("")}
                 </ul>
-                ${ind.solutionSlug ? `<a href="/solutions/${ind.solutionSlug}.html" class="btn btn-ghost btn-sm" style="margin-top:16px;">Read the full ${ind.name} write-up</a>` : ""}
+                ${ind.solutionSlug ? `<a href="/solutions/${ind.solutionSlug}" class="btn btn-ghost btn-sm" style="margin-top:16px;">Read the full ${ind.name} write-up</a>` : ""}
               </div>
               <div class="industry-panel-visual">
                 <span class="industry-visual-label">Modules we'd set up in Zoho CRM</span>

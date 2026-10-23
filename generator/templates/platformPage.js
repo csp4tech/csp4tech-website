@@ -1,3 +1,4 @@
+const { sizeAttrs } = require("../lib/imageSize");
 const config = require("../data/config");
 
 module.exports = function platformPage(platform, allPlatforms) {
@@ -8,13 +9,13 @@ module.exports = function platformPage(platform, allPlatforms) {
     <div class="container">
       <p class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/platforms/">Other Platforms</a><span>/</span>${platform.name}</p>
       <div class="product-hero-icon-row">
-        ${platform.logo ? `<img src="/images/platform-logos/${platform.logo}" alt="" class="platform-hero-icon" height="40">` : ""}
+        ${platform.logo ? `<img src="/images/platform-logos/${platform.logo}" alt="" class="platform-hero-icon"${sizeAttrs(`platform-logos/${platform.logo}`)}>` : ""}
         <span class="category-tag" style="margin-bottom:0;">Also implemented by CSP4TECH</span>
       </div>
       <h1>${platform.name}</h1>
       <p class="tagline lead" style="margin-bottom:24px;">${platform.tagline}</p>
       <div class="hero-actions" style="justify-content:flex-start;">
-        <a href="/contact-us.html" class="btn btn-primary">Get a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
         <a href="/platforms/" class="btn btn-ghost">See other platforms</a>
       </div>
     </div>
@@ -45,8 +46,8 @@ module.exports = function platformPage(platform, allPlatforms) {
       </div>
       <p style="max-width:620px;">Most of our client work is Zoho implementation, where we're an official Authorized Partner. If you're evaluating platforms rather than set on one, we can walk you through how ${platform.name} compares to Zoho for your specific case, with no pressure either way.</p>
       <div class="hero-actions" style="justify-content:flex-start;margin-top:20px;margin-bottom:0;">
-        <a href="/zoho-suites.html" class="btn btn-ghost">Compare Zoho suites</a>
-        <a href="/contact-us.html" class="btn btn-primary">Ask us</a>
+        <a href="/zoho-suites" class="btn btn-ghost">Compare Zoho suites</a>
+        <a href="/contact-us" class="btn btn-primary">Ask us</a>
       </div>
     </div>
   </section>
@@ -66,8 +67,8 @@ module.exports = function platformPage(platform, allPlatforms) {
             // Prefer the square icon-only mark here: this slot is a 16px
             // icon beside text, where a wide wordmark reads as a sliver.
             const mark = p.logoIcon || p.logo;
-            const icon = mark ? `<img src="/images/platform-logos/${mark}" alt="" class="nav-app-icon">` : "";
-            return `<a href="/platforms/${p.slug}.html">${icon}${p.name}</a>`;
+            const icon = mark ? `<img src="/images/platform-logos/${mark}" alt="" class="nav-app-icon"${sizeAttrs(`platform-logos/${mark}`)}>` : "";
+            return `<a href="/platforms/${p.slug}">${icon}${p.name}</a>`;
           })
           .join("")}
       </div>
@@ -81,7 +82,7 @@ module.exports = function platformPage(platform, allPlatforms) {
       <div class="cta-band">
         <h2>Ready to talk about ${platform.name}?</h2>
         <p>Tell us where you're stuck today and we'll give you a straightforward read on the right next step.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Book a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-accent">Book a Free Consultation</a>
       </div>
     </div>
   </section>`;

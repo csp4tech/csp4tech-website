@@ -90,7 +90,7 @@ module.exports = function about() {
       <div class="cta-band">
         <h2>Want to work with a Zoho partner that's actually reachable?</h2>
         <p>Tell us about your business and we'll put together a straightforward implementation plan.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Talk to Our Team</a>
+        <a href="/contact-us" class="btn btn-accent">Talk to Our Team</a>
       </div>
     </div>
   </section>`;

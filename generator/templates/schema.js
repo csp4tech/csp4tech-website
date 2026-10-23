@@ -3,7 +3,7 @@ const config = require("../data/config");
 // Convert "Mon–Sat, 9:00 AM – 6:00 PM (Beirut)" into schema.org's "Mo-Sa 09:00-18:00" shape.
 // Kept as a plain constant here (rather than parsed) so it stays obviously correct/edit-able.
 const OPENING_HOURS = "Mo-Sa 09:00-18:00";
-const FULL_ADDRESS = `${config.siteName}, Beirut Digital District, Block 1499, Floor 1, Beirut, Lebanon`;
+const FULL_ADDRESS = `${config.siteName}, ${config.address.lebanon}`;
 
 function ld(obj) {
   return `<script type="application/ld+json">${JSON.stringify(obj)}</script>`;
@@ -23,11 +23,14 @@ function organizationSchema() {
     email: config.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Beirut Digital District, Block 1499, Floor 1",
-      addressLocality: "Beirut",
-      addressCountry: "LB",
+      streetAddress: config.address.street,
+      addressLocality: config.address.locality,
+      addressRegion: config.address.region,
+      addressCountry: config.address.country,
     },
     areaServed: ["Lebanon", "Worldwide"],
+    geo: { "@type": "GeoCoordinates", latitude: config.geo.lat, longitude: config.geo.lng },
+    foundingDate: String(config.stats.founded),
     knowsLanguage: ["en", "ar"],
     openingHours: OPENING_HOURS,
     openingHoursSpecification: {
@@ -86,7 +89,7 @@ function serviceSchema(product, basePath) {
     description: product.description,
     provider: { "@type": "Organization", name: config.siteName, url: config.domain },
     areaServed: ["Lebanon", "Worldwide"],
-    url: `${config.domain}${base}${product.slug}.html`,
+    url: `${config.domain}${base}${product.slug}`,
   });
 }
 
@@ -102,4 +105,46 @@ function faqSchema(qaPairs) {
   });
 }
 
-module.exports = { organizationSchema, breadcrumbSchema, articleSchema, serviceSchema, faqSchema };
+// Identifies the site itself (distinct from the organization behind it) and
+// ties it to the publisher. No SearchAction: that tells Google there is a
+// site-search endpoint it can surface, and this site has none — declaring one
+// that does not exist is worse than declaring nothing.
+function websiteSchema() {
+  return ld({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: config.siteName,
+    url: config.domain,
+    inLanguage: "en",
+    publisher: { "@type": "Organization", name: config.siteName, url: config.domain },
+  });
+}
+
+// For index/hub pages: states that the page IS a list, and what is on it, in
+// the order shown. Lets Google treat the hub as a collection rather than
+// guessing from the markup.
+function itemListSchema(items, { name } = {}) {
+  return ld({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: name || undefined,
+    numberOfItems: items.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      url: it.url.startsWith("http") ? it.url : `${config.domain}${it.url}`,
+    })),
+  });
+}
+
+module.exports = {
+  organizationSchema,
+  breadcrumbSchema,
+  articleSchema,
+  serviceSchema,
+  faqSchema,
+  websiteSchema,
+  itemListSchema,
+};

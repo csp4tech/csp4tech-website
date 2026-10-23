@@ -23,8 +23,8 @@ module.exports = function comparePage(entry, allCompares, products) {
       </div>
       <h1>${entry.title}</h1>
       <div class="hero-actions" style="justify-content:flex-start;margin-top:20px;margin-bottom:0;">
-        <a href="/contact-us.html" class="btn btn-primary">Get a Free Consultation</a>
-        ${zohoProduct ? `<a href="/zoho-products/${zohoProduct.slug}.html" class="btn btn-ghost">${zohoProduct.logo ? `<img src="/images/logos/${zohoProduct.logo}" alt="" width="16" height="16" class="nav-app-icon" style="margin-right:6px;">` : ""}See ${zohoProduct.name} details</a>` : ""}
+        <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
+        ${zohoProduct ? `<a href="/zoho-products/${zohoProduct.slug}" class="btn btn-ghost">${zohoProduct.logo ? `<img src="/images/logos/${zohoProduct.logo}" alt="" width="16" height="16" class="nav-app-icon" style="margin-right:6px;">` : ""}See ${zohoProduct.name} details</a>` : ""}
       </div>
     </div>
   </section>
@@ -119,7 +119,7 @@ module.exports = function comparePage(entry, allCompares, products) {
           .map((c) => {
             const zp = products.find((p) => p.slug === c.zohoProductSlug);
             const icon = zp && zp.logo ? `<img src="/images/logos/${zp.logo}" alt="" width="16" height="16" class="nav-app-icon">` : "";
-            return `<a href="/compare/${c.slug}.html">${icon}${c.shortTitle}</a>`;
+            return `<a href="/compare/${c.slug}">${icon}${c.shortTitle}</a>`;
           })
           .join("")}
       </div>
@@ -133,7 +133,7 @@ module.exports = function comparePage(entry, allCompares, products) {
       <div class="cta-band">
         <h2>Thinking about switching to ${entry.columns[0]}?</h2>
         <p>We'll walk you through migration, timeline, and cost with no pressure — including when it's not the right move.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Book a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-accent">Book a Free Consultation</a>
       </div>
     </div>
   </section>`;

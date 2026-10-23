@@ -1,3 +1,4 @@
+const { sizeAttrs } = require("../lib/imageSize");
 module.exports = function platformsIndex(platforms) {
   return `
   <section class="hero" style="padding-bottom:36px;">
@@ -10,19 +11,22 @@ module.exports = function platformsIndex(platforms) {
 
   <section>
     <div class="container">
+      <div class="section-head" style="text-align:left;margin:0 0 24px;max-width:none;">
+        <h2>Platforms we have hands-on experience with</h2>
+      </div>
       <div class="grid grid-2">
         ${platforms
           .map(
             (p) => `
-        <a href="/platforms/${p.slug}.html" class="card">
-          ${p.logo ? `<img src="/images/platform-logos/${p.logo}" alt="" class="platform-logo" height="32">` : ""}
+        <a href="/platforms/${p.slug}" class="card">
+          ${p.logo ? `<img src="/images/platform-logos/${p.logo}" alt="" class="platform-logo"${sizeAttrs(`platform-logos/${p.logo}`)}>` : ""}
           <h3>${p.name}</h3>
           <p>${p.tagline}</p>
         </a>`
           )
           .join("")}
       </div>
-      <p class="text-center" style="font-size:.85rem;margin-top:24px;color:#9C9AC4;">Not an official partner/certification for these platforms — this reflects hands-on implementation experience. See our <a href="/zoho-suites.html" style="color:var(--color-primary);">Zoho Authorized Partner</a> work for our certified specialty.</p>
+      <p class="text-center" style="font-size:.85rem;margin-top:24px;color:#9C9AC4;">Not an official partner/certification for these platforms — this reflects hands-on implementation experience. See our <a href="/zoho-suites" style="color:var(--color-primary);">Zoho Authorized Partner</a> work for our certified specialty.</p>
     </div>
   </section>
 
@@ -31,7 +35,7 @@ module.exports = function platformsIndex(platforms) {
       <div class="cta-band">
         <h2>Not sure which platform is right for you?</h2>
         <p>Tell us what you're trying to solve and we'll give you a straightforward, no-pressure recommendation — including when Zoho isn't the best fit.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Ask Us</a>
+        <a href="/contact-us" class="btn btn-accent">Ask Us</a>
       </div>
     </div>
   </section>`;

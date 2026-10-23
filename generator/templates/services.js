@@ -1,3 +1,4 @@
+const { sizeAttrs } = require("../lib/imageSize");
 const platforms = require("../data/platforms");
 const industriesSection = require("./industries");
 
@@ -18,6 +19,9 @@ module.exports = function services() {
 
   <section>
     <div class="container">
+      <div class="section-head" style="text-align:left;margin:0 0 24px;max-width:none;">
+        <h2>What we actually do</h2>
+      </div>
       <div class="grid grid-2">
         <div class="card">
           <h3>Implementation</h3>
@@ -75,8 +79,8 @@ module.exports = function services() {
         ${platforms
           .map(
             (p) => `
-        <a href="/platforms/${p.slug}.html" class="card">
-          ${p.logo ? `<img src="/images/platform-logos/${p.logo}" alt="" class="platform-logo" height="28" style="height:28px;margin-bottom:10px;">` : ""}
+        <a href="/platforms/${p.slug}" class="card">
+          ${p.logo ? `<img src="/images/platform-logos/${p.logo}" alt="" class="platform-logo"${sizeAttrs(`platform-logos/${p.logo}`)} style="height:28px;margin-bottom:10px;">` : ""}
           <h3 style="font-size:1.05rem;">${p.name}</h3>
           <p style="font-size:.85rem;">${p.tagline}</p>
         </a>`
@@ -91,7 +95,7 @@ module.exports = function services() {
       <div class="cta-band">
         <h2>Not sure where to start?</h2>
         <p>Tell us what's broken today — spreadsheets, a CRM you've outgrown, manual payroll — and we'll recommend the right first step.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Book a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-accent">Book a Free Consultation</a>
       </div>
     </div>
   </section>`;

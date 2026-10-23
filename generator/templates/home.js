@@ -1,3 +1,4 @@
+const { sizeAttrs } = require("../lib/imageSize");
 const config = require("../data/config");
 const faq = require("../data/faq");
 const platforms = require("../data/platforms");
@@ -18,7 +19,7 @@ module.exports = function home(products, blogPosts) {
         <h1>Zoho, set up the way your business <em>actually works</em></h1>
         <p class="lead">A Zoho Authorized Partner based in Beirut — implementation, migration, integrations and ongoing support across the full Zoho suite, for clients in Lebanon and worldwide, in Arabic or English.</p>
         <div class="hero-actions">
-          <a href="/contact-us.html" class="btn btn-primary">Get a Free Consultation</a>
+          <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
           <a href="/zoho-products/" class="btn btn-ghost">Browse Zoho Products</a>
         </div>
         <div class="pill-row">
@@ -83,10 +84,10 @@ module.exports = function home(products, blogPosts) {
       <div class="trusted-marquee">
         <div class="trusted-track">
           ${config.trustedByClients
-            .map((c) => `<div class="trusted-logo"><img src="/images/clients/${c.file}" alt="${c.name}" loading="lazy"></div>`)
+            .map((c) => `<div class="trusted-logo"><img src="/images/clients/${c.file}" alt="${c.name}"${sizeAttrs(`clients/${c.file}`)} loading="lazy"></div>`)
             .join("")}
           ${config.trustedByClients
-            .map((c) => `<div class="trusted-logo trusted-dup" aria-hidden="true"><img src="/images/clients/${c.file}" alt="" loading="lazy"></div>`)
+            .map((c) => `<div class="trusted-logo trusted-dup" aria-hidden="true"><img src="/images/clients/${c.file}" alt=""${sizeAttrs(`clients/${c.file}`)} loading="lazy"></div>`)
             .join("")}
         </div>
       </div>
@@ -138,7 +139,7 @@ module.exports = function home(products, blogPosts) {
           ${p.logo ? `<img src="/images/logos/${p.logo}" alt="" class="product-logo" width="40" height="40">` : ""}
           <h3>${p.name}</h3>
           <p>${p.tagline}</p>
-          <a href="/zoho-products/${p.slug}.html" class="btn btn-ghost btn-sm">Learn more</a>
+          <a href="/zoho-products/${p.slug}" class="btn btn-ghost btn-sm">Learn more</a>
         </div>`
           )
           .join("")}
@@ -156,10 +157,10 @@ module.exports = function home(products, blogPosts) {
       <div class="trusted-marquee">
         <div class="trusted-track">
           ${integrations
-            .map((i) => `<div class="trusted-logo"><img src="/images/${i.dir}/${i.file}" alt="${i.name}" loading="lazy"></div>`)
+            .map((i) => `<div class="trusted-logo"><img src="/images/${i.dir}/${i.file}" alt="${i.name}"${sizeAttrs(`${i.dir}/${i.file}`)} loading="lazy"></div>`)
             .join("")}
           ${integrations
-            .map((i) => `<div class="trusted-logo trusted-dup" aria-hidden="true"><img src="/images/${i.dir}/${i.file}" alt="" loading="lazy"></div>`)
+            .map((i) => `<div class="trusted-logo trusted-dup" aria-hidden="true"><img src="/images/${i.dir}/${i.file}" alt=""${sizeAttrs(`${i.dir}/${i.file}`)} loading="lazy"></div>`)
             .join("")}
         </div>
       </div>
@@ -230,7 +231,7 @@ module.exports = function home(products, blogPosts) {
         ${latestPosts
           .map(
             (b) => `
-        <a href="/blog/${b.slug}.html" class="blog-card">
+        <a href="/blog/${b.slug}" class="blog-card">
           <div class="body">
             <span class="meta">${new Date(b.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })} · ${b.readTime}</span>
             <h3>${b.title}</h3>
@@ -300,7 +301,7 @@ module.exports = function home(products, blogPosts) {
       <div class="cta-band">
         <h2>Get Started with Zoho</h2>
         <p>Tell us where your team is stuck today — we'll reply within one business day with a straightforward plan.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Book a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-accent">Book a Free Consultation</a>
       </div>
     </div>
   </section>`;

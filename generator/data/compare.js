@@ -25,10 +25,12 @@
 module.exports = [
   {
     slug: "zoho-crm-vs-salesforce",
+    // Short enough that Google will not truncate it; the long H1 stays in `title`.
+    metaTitle: "Zoho CRM vs Salesforce vs HubSpot vs Dynamics",
     zohoProductSlug: "crm",
     title: "Zoho CRM vs Salesforce vs HubSpot vs Microsoft Dynamics 365: Which CRM Is Best in 2026?",
     metaDescription:
-      "An honest, feature-by-feature comparison of Zoho CRM, Salesforce, HubSpot, and Microsoft Dynamics 365 Sales — entry-tier pricing, what's included, and who each one actually suits.",
+      "A feature-by-feature comparison of Zoho CRM, Salesforce, HubSpot and Dynamics 365 Sales: entry-tier pricing, what is included, and who each one suits.",
     kicker: "CRM Comparison",
     shortTitle: "Zoho CRM vs Salesforce, HubSpot & Dynamics 365",
     intro: [
@@ -98,6 +100,8 @@ module.exports = [
   },
   {
     slug: "zoho-books-vs-quickbooks",
+    // Short enough that Google will not truncate it; the long H1 stays in `title`.
+    metaTitle: "Zoho Books vs QuickBooks Online vs Xero (2026)",
     zohoProductSlug: "books",
     title: "Zoho Books vs QuickBooks Online vs Xero: Which Accounting Software Is Best in 2026?",
     metaDescription:
@@ -162,6 +166,8 @@ module.exports = [
   },
   {
     slug: "zoho-people-vs-bamboohr",
+    // Short enough that Google will not truncate it; the long H1 stays in `title`.
+    metaTitle: "Zoho People vs BambooHR vs Gusto (2026)",
     zohoProductSlug: "people",
     title: "Zoho People vs BambooHR vs Gusto: Which HR Software Is Best in 2026?",
     metaDescription:
@@ -226,6 +232,8 @@ module.exports = [
   },
   {
     slug: "zoho-desk-vs-zendesk",
+    // Short enough that Google will not truncate it; the long H1 stays in `title`.
+    metaTitle: "Zoho Desk vs Zendesk vs Freshdesk (2026)",
     zohoProductSlug: "desk",
     title: "Zoho Desk vs Zendesk vs Freshdesk: Which Helpdesk Software Is Best in 2026?",
     metaDescription:

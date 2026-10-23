@@ -18,7 +18,7 @@ module.exports = function solutionPage(entry, siblings, products, section) {
       <h1>${entry.title}</h1>
       <p class="tagline lead" style="margin-bottom:24px;max-width:720px;">${entry.intro[0]}</p>
       <div class="hero-actions" style="justify-content:flex-start;margin-bottom:0;">
-        <a href="/contact-us.html" class="btn btn-primary">Get a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
         <a href="${section.base}" class="btn btn-ghost">See all ${section.label.toLowerCase()}</a>
       </div>
     </div>
@@ -77,7 +77,7 @@ module.exports = function solutionPage(entry, siblings, products, section) {
         ${apps
           .map(
             (p) =>
-              `<a href="/zoho-products/${p.slug}.html">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon">` : ""}${p.name}</a>`
+              `<a href="/zoho-products/${p.slug}">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon">` : ""}${p.name}</a>`
           )
           .join("")}
       </div>
@@ -115,7 +115,7 @@ module.exports = function solutionPage(entry, siblings, products, section) {
         <h2>${section.relatedHeading}</h2>
       </div>
       <div class="related-products">
-        ${others.map((e) => `<a href="${section.base}${e.slug}.html">${e.kicker}</a>`).join("")}
+        ${others.map((e) => `<a href="${section.base}${e.slug}">${e.kicker}</a>`).join("")}
       </div>
     </div>
   </section>`
@@ -127,7 +127,7 @@ module.exports = function solutionPage(entry, siblings, products, section) {
       <div class="cta-band">
         <h2>Want a straight answer on whether this fits?</h2>
         <p>Tell us how the work runs today. We'll tell you what we would change, what we would leave alone, and what it would take.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Book a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-accent">Book a Free Consultation</a>
       </div>
     </div>
   </section>`;

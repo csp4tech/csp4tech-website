@@ -21,7 +21,7 @@ module.exports = function blogPost(post, allPosts) {
       ${post.body.map(renderBlock).join("")}
       <div class="card" style="margin-top:32px;background:var(--color-primary-light);border:none;">
         <p style="margin-bottom:12px;font-weight:600;color:var(--color-ink);">Want help setting this up for your team?</p>
-        <a href="/contact-us.html" class="btn btn-primary btn-sm">Book a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-primary btn-sm">Book a Free Consultation</a>
       </div>
     </div>
   </section>
@@ -35,7 +35,7 @@ module.exports = function blogPost(post, allPosts) {
         ${more
           .map(
             (b) => `
-        <a href="/blog/${b.slug}.html" class="blog-card">
+        <a href="/blog/${b.slug}" class="blog-card">
           <div class="body">
             <span class="meta">${new Date(b.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })} · ${b.readTime}</span>
             <h3>${b.title}</h3>

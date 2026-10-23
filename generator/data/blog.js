@@ -3,6 +3,7 @@
 module.exports = [
   {
     slug: "lebanese-distribution-unified-sales-on-zoho",
+    metaTitle: "Zoho for a Lebanese Distributor: One Sales System",
     title: "How a Lebanese Distribution Business Unified Sales on Zoho",
     date: "2026-02-03", readTime: "6 min read",
     excerpt: "A distributor tracking orders across notebooks and WhatsApp threads moved to Zoho CRM and Inventory — here's what actually changed.",
@@ -17,6 +18,7 @@ module.exports = [
   },
   {
     slug: "top-7-reasons-lebanese-businesses-choose-zoho-crm",
+    metaTitle: "Why Lebanese Businesses Choose Zoho CRM | CSP4TECH",
     title: "Top 7 Reasons Lebanese Businesses Choose Zoho CRM in 2026",
     date: "2026-02-17", readTime: "5 min read",
     excerpt: "Cost matters, but it's rarely the only reason. Here's what actually drives Zoho CRM adoption among the businesses we work with.",
@@ -36,6 +38,7 @@ module.exports = [
   },
   {
     slug: "zoho-books-vs-quickbooks-lebanese-smes",
+    metaTitle: "Zoho Books vs QuickBooks for Lebanese SMEs",
     title: "Zoho Books vs QuickBooks for Lebanese SMEs: Which Should You Pick?",
     date: "2026-03-03", readTime: "7 min read",
     excerpt: "Both are solid accounting platforms. The right one depends on currency handling, local compliance, and what else you're already running.",
@@ -50,6 +53,7 @@ module.exports = [
   },
   {
     slug: "migrate-salesforce-to-zoho-crm-lebanon",
+    metaTitle: "Migrate Salesforce to Zoho CRM in Lebanon",
     title: "How to Migrate from Salesforce to Zoho CRM in Lebanon (Step-by-Step)",
     date: "2026-03-17", readTime: "8 min read",
     excerpt: "A practical migration checklist for teams moving off Salesforce — what to export, what to rebuild, and what to leave behind.",
@@ -68,6 +72,7 @@ module.exports = [
   },
   {
     slug: "zoho-one-pricing-lebanon-2026",
+    metaTitle: "Zoho One Pricing in Lebanon (2026) | CSP4TECH",
     title: "Zoho One Pricing in Lebanon (2026): Is the All-in-One Suite Worth It?",
     date: "2026-03-31", readTime: "6 min read",
     excerpt: "Zoho One bundles 45+ apps under one per-employee license. Here's how to work out if that's actually cheaper than buying separately.",
@@ -80,6 +85,9 @@ module.exports = [
   },
   {
     slug: "setting-up-zoho-people-hr-payroll-lebanon",
+    metaTitle: "Zoho People Setup for HR in Lebanon | CSP4TECH",
+    metaDescription:
+      "From employee records to leave policies and Lebanese public holidays, here is what a proper Zoho People setup looks like for a business in Lebanon.",
     title: "Setting Up Zoho People for HR & Payroll in Lebanon",
     date: "2026-04-14", readTime: "6 min read",
     excerpt: "From employee records to leave policies — what a proper Zoho People setup looks like for a Lebanese SME.",
@@ -98,6 +106,9 @@ module.exports = [
   },
   {
     slug: "custom-zoho-creator-app-vs-off-the-shelf",
+    metaTitle: "Custom Zoho Creator App vs Off-the-Shelf",
+    metaDescription:
+      "Low-code makes custom apps tempting for everything. Here is how we decide when a Zoho Creator build is worth it and when a configured product wins.",
     title: "When to Build a Custom Zoho Creator App vs Buy Off-the-Shelf",
     date: "2026-04-28", readTime: "5 min read",
     excerpt: "Low-code makes custom apps tempting for everything. Here's how we decide when it's actually the right call.",
@@ -112,6 +123,7 @@ module.exports = [
   },
   {
     slug: "zoho-crm-vs-hubspot-beirut-team",
+    metaTitle: "Zoho CRM vs HubSpot for a Beirut Team",
     title: "Zoho CRM vs HubSpot in Lebanon: Which One Fits Your Beirut Team?",
     date: "2026-05-12", readTime: "6 min read",
     excerpt: "Both are excellent CRMs. The difference for Lebanese businesses usually comes down to pricing model and local support.",
@@ -124,6 +136,7 @@ module.exports = [
   },
   {
     slug: "whatsapp-business-zoho-crm-lebanese-sales-playbook",
+    metaTitle: "WhatsApp Business + Zoho CRM: Lebanese Playbook",
     title: "Connecting WhatsApp Business to Zoho CRM: A Lebanese Sales Playbook",
     date: "2026-05-26", readTime: "6 min read",
     excerpt: "WhatsApp is where most Lebanese sales conversations already happen. Here's how to get it out of personal phones and into your CRM.",
@@ -136,6 +149,9 @@ module.exports = [
   },
   {
     slug: "zoho-books-vat-multicurrency-chart-of-accounts",
+    metaTitle: "Zoho Books: Lebanese VAT and LBP/USD Accounts",
+    metaDescription:
+      "VAT invoicing, LBP and USD running side by side, and a chart of accounts your accountant recognises: the three things that make or break Zoho Books here.",
     title: "Zoho Books for Lebanese Businesses: VAT, Multi-Currency & Chart of Accounts",
     date: "2026-06-09", readTime: "7 min read",
     excerpt: "The three things that make or break a Zoho Books setup for a business operating in USD and LBP.",
@@ -163,6 +179,9 @@ module.exports = [
   },
   {
     slug: "zoho-desk-lebanese-customer-support-scales",
+    metaTitle: "Zoho Desk for Lebanese Customer Support",
+    metaDescription:
+      "Support-by-inbox works until it does not. Here is the point at which Lebanese teams need a real helpdesk, and how a Zoho Desk setup is put together.",
     title: "Zoho Desk: Lebanese Customer Support That Actually Scales",
     date: "2026-07-07", readTime: "5 min read",
     excerpt: "Support-by-inbox works until it doesn't. Here's the point at which most teams need a real ticketing system.",
@@ -174,6 +193,8 @@ module.exports = [
   },
   {
     slug: "zoho-analytics-turning-data-into-decisions",
+    metaDescription:
+      "Dashboards are easy to build and easy to ignore. Here is how to make sure a Zoho Analytics dashboard gets opened, trusted and acted on every week.",
     title: "Zoho Analytics: Turning Data Into Decisions",
     date: "2026-07-21", readTime: "5 min read",
     excerpt: "Dashboards are easy to build and easy to ignore. Here's how to make sure yours actually get used.",
@@ -185,6 +206,8 @@ module.exports = [
   },
   {
     slug: "email-marketing-lebanon-zoho-campaigns",
+    metaDescription:
+      "Email still works in Lebanon's B2B and retail markets, if it is set up to reach the inbox. Lists, deliverability and Zoho Campaigns, explained plainly.",
     title: "Email Marketing in Lebanon with Zoho Campaigns",
     date: "2026-08-04", readTime: "5 min read",
     excerpt: "Email still works in Lebanon's B2B and retail markets — if it's set up to actually land in the inbox.",
@@ -229,6 +252,7 @@ module.exports = [
   },
   {
     slug: "zoho-mail-vs-google-workspace-lebanese-businesses",
+    metaTitle: "Zoho Mail vs Google Workspace in Lebanon",
     title: "Zoho Mail vs Google Workspace for Lebanese Businesses",
     date: "2026-05-19", readTime: "5 min read",
     excerpt: "Both give you professional email on your domain. The differences show up in pricing, data residency, and how deep you go into either ecosystem.",
@@ -240,6 +264,8 @@ module.exports = [
   },
   {
     slug: "capturing-customer-feedback-in-lebanon",
+    metaDescription:
+      "Most businesses only hear from unhappy customers. Here is how to hear from everyone else too, using Zoho Survey and Zoho CRM together.",
     title: "Capturing Customer Feedback in Lebanon",
     date: "2026-06-02", readTime: "4 min read",
     excerpt: "Most businesses only hear from unhappy customers. Here's how to hear from everyone else too.",
@@ -251,6 +277,7 @@ module.exports = [
   },
   {
     slug: "zoho-subscriptions-lebanese-saas-recurring-billing",
+    metaTitle: "Zoho Subscriptions for Recurring Billing",
     title: "Zoho Subscriptions for Lebanese SaaS & Recurring Billing",
     date: "2026-06-16", readTime: "5 min read",
     excerpt: "Recurring billing brings its own headaches — failed payments, plan changes, proration. Here's how to handle them without custom code.",
@@ -262,6 +289,7 @@ module.exports = [
   },
   {
     slug: "best-crm-software-2026-zoho-vs-salesforce",
+    metaTitle: "Best CRM Software in 2026: Zoho vs Salesforce",
     title: "Best CRM Software in 2026: Zoho CRM vs Salesforce vs HubSpot",
     date: "2026-08-29", readTime: "4 min read",
     excerpt: "\"Best CRM\" depends entirely on budget and team size. Here's how Zoho CRM, Salesforce, and HubSpot actually stack up at the tier most small and mid-size teams buy.",
@@ -280,6 +308,7 @@ module.exports = [
   },
   {
     slug: "best-accounting-software-2026-zoho-books-vs-quickbooks",
+    metaTitle: "Best Accounting Software 2026: Zoho vs QuickBooks",
     title: "Best Accounting Software for Small Business in 2026: Zoho Books vs QuickBooks vs Xero",
     date: "2026-09-01", readTime: "4 min read",
     excerpt: "QuickBooks is the default most people reach for. Here's what Zoho Books and Xero actually offer at a comparable price point before you commit.",
@@ -298,6 +327,7 @@ module.exports = [
   },
   {
     slug: "best-hr-software-2026-zoho-people-vs-bamboohr",
+    metaTitle: "Best HR Software 2026: Zoho People vs BambooHR",
     title: "Best HR Software in 2026: Zoho People vs BambooHR vs Gusto",
     date: "2026-09-04", readTime: "4 min read",
     excerpt: "Payroll-first, HR-first, or automation-first — Zoho People, Gusto, and BambooHR solve different problems. Here's how to tell which one you actually need.",
@@ -316,6 +346,7 @@ module.exports = [
   },
   {
     slug: "best-helpdesk-software-2026-zoho-desk-vs-zendesk",
+    metaTitle: "Best Helpdesk Software 2026: Zoho Desk vs Zendesk",
     title: "Best Helpdesk Software in 2026: Zoho Desk vs Zendesk vs Freshdesk",
     date: "2026-09-08", readTime: "4 min read",
     excerpt: "Zendesk's fully-featured tier costs roughly four times what Zoho Desk charges for a similar feature set. Here's what that price gap actually buys.",

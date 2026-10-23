@@ -20,7 +20,7 @@ module.exports = function productsIndex(products) {
         ${g.items
           .map(
             (p) => `
-        <a href="/zoho-products/${p.slug}.html" class="card">
+        <a href="/zoho-products/${p.slug}" class="card">
           ${p.logo ? `<img src="/images/logos/${p.logo}" alt="" class="product-logo" width="40" height="40">` : ""}
           <h3>${p.name}</h3>
           <p>${p.tagline}</p>
@@ -37,7 +37,7 @@ module.exports = function productsIndex(products) {
       <div class="cta-band">
         <h2>Not sure which apps you need?</h2>
         <p>Tell us how your team works today and we'll recommend the right starting point.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Get a Recommendation</a>
+        <a href="/contact-us" class="btn btn-accent">Get a Recommendation</a>
       </div>
     </div>
   </section>`;

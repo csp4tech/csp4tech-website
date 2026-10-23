@@ -29,7 +29,7 @@ module.exports = function suites(products) {
         <ul class="feature-list" style="margin-top:14px;">
           ${one.features.map((f) => `<li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>${f}</li>`).join("")}
         </ul>
-        <a href="/zoho-products/one.html" class="btn btn-primary btn-sm" style="margin-top:16px;">Learn more about Zoho One</a>
+        <a href="/zoho-products/one" class="btn btn-primary btn-sm" style="margin-top:16px;">Learn more about Zoho One</a>
       </div>
     </div>
   </section>
@@ -50,7 +50,7 @@ module.exports = function suites(products) {
           <ul class="feature-list" style="margin-top:10px;">
             ${p.features.slice(0, 3).map((f) => `<li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>${f}</li>`).join("")}
           </ul>
-          <a href="/zoho-products/${p.slug}.html" class="btn btn-ghost btn-sm" style="margin-top:14px;">Learn more</a>
+          <a href="/zoho-products/${p.slug}" class="btn btn-ghost btn-sm" style="margin-top:14px;">Learn more</a>
         </div>`
           )
           .join("")}
@@ -65,7 +65,7 @@ module.exports = function suites(products) {
         <h2>We'll model the cost against your real headcount</h2>
       </div>
       <p class="text-center" style="max-width:600px;margin:0 auto 24px;">Suite pricing only pays off if your team actually uses most of the bundle. We compare Zoho One against buying individual apps for your specific team size before recommending either.</p>
-      <p class="text-center"><a href="/contact-us.html" class="btn btn-primary">Get a Suite Recommendation</a></p>
+      <p class="text-center"><a href="/contact-us" class="btn btn-primary">Get a Suite Recommendation</a></p>
     </div>
   </section>`;
 };

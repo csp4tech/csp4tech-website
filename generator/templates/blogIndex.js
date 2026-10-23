@@ -10,11 +10,14 @@ module.exports = function blogIndex(posts) {
   </section>
   <section style="padding-top:0;">
     <div class="container">
+      <div class="section-head" style="text-align:left;margin:0 0 24px;max-width:none;">
+        <h2>Every article we have published</h2>
+      </div>
       <div class="grid grid-3">
         ${sorted
           .map(
             (b) => `
-        <a href="/blog/${b.slug}.html" class="blog-card">
+        <a href="/blog/${b.slug}" class="blog-card">
           <div class="body">
             <span class="meta">${new Date(b.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })} · ${b.readTime}</span>
             <h3>${b.title}</h3>

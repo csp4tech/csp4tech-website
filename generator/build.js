@@ -28,7 +28,7 @@ const compareIndexTpl = require("./templates/compareIndex");
 const comparePageTpl = require("./templates/comparePage");
 const solutionsIndexTpl = require("./templates/solutionsIndex");
 const solutionPageTpl = require("./templates/solutionPage");
-const { breadcrumbSchema, articleSchema, serviceSchema, faqSchema } = require("./templates/schema");
+const { breadcrumbSchema, articleSchema, serviceSchema, faqSchema, websiteSchema, itemListSchema } = require("./templates/schema");
 const faq = require("./data/faq");
 
 const ROOT = path.join(__dirname, "..");
@@ -129,17 +129,17 @@ function build() {
   // Home
   emit("index.html", {
     title: "Zoho Implementation Partner | Lebanon & Worldwide | CSP4TECH",
-    description: "Zoho Authorized Partner based in Beirut, Lebanon. CRM, accounting, HR, and inventory implementation, migration & support for businesses in Lebanon and around the world.",
+    description: "Zoho Authorized Partner in Beirut, Lebanon. CRM, accounting, HR and inventory implementation, migration and support, for clients here and worldwide.",
     path: "/",
     bodyHtml: homeTpl(products, blogPosts),
-    extraHead: faqSchema(faq),
+    extraHead: websiteSchema() + faqSchema(faq),
   });
 
   // About
   emit("about.html", {
     title: "About CSP4TECH | Zoho Authorized Partner in Beirut, Lebanon",
-    description: "CSP4TECH is a Beirut-based Zoho Authorized Partner serving clients in Lebanon and worldwide since 2018 — certified consultants, responsive support, Arabic/English delivery.",
-    path: "/about.html",
+    description: "CSP4TECH is a Beirut-based Zoho Authorized Partner serving clients in Lebanon and worldwide since 2018, in Arabic and English, with support after go-live.",
+    path: "/about",
     bodyHtml: aboutTpl(),
   });
 
@@ -147,7 +147,7 @@ function build() {
   emit("contact-us.html", {
     title: "Contact CSP4TECH | Zoho Consultation — Lebanon & Worldwide",
     description: "Get in touch with CSP4TECH for a free Zoho consultation. Based in Beirut, Lebanon, serving clients worldwide — reply within one business day.",
-    path: "/contact-us.html",
+    path: "/contact-us",
     bodyHtml: contactTpl(),
   });
 
@@ -155,7 +155,7 @@ function build() {
   emit("services.html", {
     title: "Zoho Services | Implementation, Migration & Support | CSP4TECH",
     description: "Zoho implementation, migration, customization, automation, training, and support for businesses in Lebanon and worldwide.",
-    path: "/services.html",
+    path: "/services",
     bodyHtml: servicesTpl(),
   });
 
@@ -163,7 +163,7 @@ function build() {
   emit("zoho-suites.html", {
     title: "Compare Zoho Suites | Zoho One, CRM Plus & More | CSP4TECH",
     description: "Compare Zoho One against Zoho's focused suites — CRM Plus, Finance Plus, People Plus, Service Plus — and find the right bundle for your team.",
-    path: "/zoho-suites.html",
+    path: "/zoho-suites",
     bodyHtml: suitesTpl(products),
   });
 
@@ -173,6 +173,15 @@ function build() {
     description: "Browse every Zoho app CSP4TECH implements and supports — Sales & CRM, Finance, HR & Payroll, Service & Support, Analytics, and Workplace tools.",
     path: "/zoho-products/",
     bodyHtml: productsIndexTpl(products),
+    extraHead:
+      breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Zoho Products", url: "/zoho-products/" },
+      ]) +
+      itemListSchema(
+        products.map((p) => ({ name: p.name, url: `/zoho-products/${p.slug}` })),
+        { name: "Zoho products CSP4TECH implements" }
+      ),
   });
 
   // Individual product pages
@@ -180,12 +189,12 @@ function build() {
     const crumbs = breadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Zoho Products", url: "/zoho-products/" },
-      { name: p.name, url: `/zoho-products/${p.slug}.html` },
+      { name: p.name, url: `/zoho-products/${p.slug}` },
     ]);
     emit(`zoho-products/${p.slug}.html`, {
       title: `${p.name} Implementation & Support | CSP4TECH`,
       description: `${p.tagline} CSP4TECH implements and supports ${p.name} for businesses in Lebanon and worldwide.`,
-      path: `/zoho-products/${p.slug}.html`,
+      path: `/zoho-products/${p.slug}`,
       bodyHtml: productPageTpl(p, products),
       extraHead: crumbs + serviceSchema(p),
     });
@@ -194,10 +203,19 @@ function build() {
   // Other Platforms index (Odoo, Microsoft, Oracle, Salesforce — implementation
   // experience, not certified/authorized partnerships like Zoho).
   emit("platforms/index.html", {
-    title: "Other Platforms We Implement | Odoo, Microsoft, Oracle, Salesforce | CSP4TECH",
-    description: "Beyond our Zoho Authorized Partner specialty, CSP4TECH also has hands-on implementation experience with Odoo, Microsoft Dynamics 365/Power Platform, Oracle NetSuite/Fusion, and Salesforce.",
+    title: "Odoo, Microsoft, Oracle & Salesforce | CSP4TECH",
+    description: "Beyond our Zoho Authorized Partner specialty, CSP4TECH has hands-on implementation experience with Odoo, Microsoft Dynamics 365, Oracle NetSuite and Salesforce.",
     path: "/platforms/",
     bodyHtml: platformsIndexTpl(platforms),
+    extraHead:
+      breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Other Platforms", url: "/platforms/" },
+      ]) +
+      itemListSchema(
+        platforms.map((p) => ({ name: p.name, url: `/platforms/${p.slug}` })),
+        { name: "Other platforms CSP4TECH implements" }
+      ),
   });
 
   // Individual platform pages
@@ -205,12 +223,12 @@ function build() {
     const crumbs = breadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Other Platforms", url: "/platforms/" },
-      { name: p.name, url: `/platforms/${p.slug}.html` },
+      { name: p.name, url: `/platforms/${p.slug}` },
     ]);
     emit(`platforms/${p.slug}.html`, {
       title: `${p.name} Implementation Services | CSP4TECH`,
-      description: `${p.tagline} CSP4TECH's team has hands-on implementation experience with ${p.name} for businesses in Lebanon and worldwide.`,
-      path: `/platforms/${p.slug}.html`,
+      description: `${p.tagline}. Hands-on experience from CSP4TECH, a Beirut-based Zoho Authorized Partner serving Lebanon and worldwide.`,
+      path: `/platforms/${p.slug}`,
       bodyHtml: platformPageTpl(p, platforms),
       extraHead: crumbs + serviceSchema(p, "/platforms/"),
     });
@@ -218,10 +236,19 @@ function build() {
 
   // Compare index (Zoho apps vs competitors — SEO comparison landing pages)
   emit("compare/index.html", {
-    title: "Zoho vs the Competition | CRM, Accounting, HR & Helpdesk Comparisons | CSP4TECH",
+    title: "Compare Zoho vs Salesforce, QuickBooks & More",
     description: "Honest, sourced comparisons of Zoho CRM, Books, People, and Desk against Salesforce, QuickBooks, BambooHR, Zendesk, and more.",
     path: "/compare/",
     bodyHtml: compareIndexTpl(compares, products),
+    extraHead:
+      breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Compare", url: "/compare/" },
+      ]) +
+      itemListSchema(
+        compares.map((c) => ({ name: c.shortTitle, url: `/compare/${c.slug}` })),
+        { name: "Zoho vs competitor comparisons" }
+      ),
   });
 
   // Individual comparison pages
@@ -229,12 +256,12 @@ function build() {
     const crumbs = breadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Compare", url: "/compare/" },
-      { name: c.shortTitle, url: `/compare/${c.slug}.html` },
+      { name: c.shortTitle, url: `/compare/${c.slug}` },
     ]);
     emit(`compare/${c.slug}.html`, {
-      title: `${c.title} | CSP4TECH`,
+      title: c.metaTitle ? `${c.metaTitle} | CSP4TECH` : `${c.title} | CSP4TECH`,
       description: c.metaDescription,
-      path: `/compare/${c.slug}.html`,
+      path: `/compare/${c.slug}`,
       bodyHtml: comparePageTpl(c, compares, products),
       extraHead: crumbs + faqSchema(c.faqs),
     });
@@ -247,18 +274,27 @@ function build() {
       description: section.indexDescription,
       path: section.base,
       bodyHtml: solutionsIndexTpl(section.entries, section, products),
+      extraHead:
+        breadcrumbSchema([
+          { name: "Home", url: "/" },
+          { name: section.label, url: section.base },
+        ]) +
+        itemListSchema(
+          section.entries.map((e) => ({ name: e.title, url: `${section.base}${e.slug}` })),
+          { name: section.indexH1 }
+        ),
     });
 
     section.entries.forEach((e) => {
       const crumbs = breadcrumbSchema([
         { name: "Home", url: "/" },
         { name: section.label, url: section.base },
-        { name: e.kicker, url: `${section.base}${e.slug}.html` },
+        { name: e.kicker, url: `${section.base}${e.slug}` },
       ]);
       emit(`${section.base.slice(1)}${e.slug}.html`, {
         title: `${e.metaTitle}`,
         description: e.metaDescription,
-        path: `${section.base}${e.slug}.html`,
+        path: `${section.base}${e.slug}`,
         bodyHtml: solutionPageTpl(e, section.entries, products, section),
         extraHead:
           crumbs +
@@ -277,6 +313,17 @@ function build() {
     description: "Practical, Lebanon-specific guides on Zoho CRM, Books, People, and more — written by the team that implements them.",
     path: "/blog/",
     bodyHtml: blogIndexTpl(blogPosts),
+    extraHead:
+      breadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Blog", url: "/blog/" },
+      ]) +
+      itemListSchema(
+        [...blogPosts]
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .map((b) => ({ name: b.title, url: `/blog/${b.slug}` })),
+        { name: "CSP4TECH blog articles" }
+      ),
   });
 
   // Blog posts
@@ -284,14 +331,14 @@ function build() {
     const crumbs = breadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Blog", url: "/blog/" },
-      { name: b.title, url: `/blog/${b.slug}.html` },
+      { name: b.title, url: `/blog/${b.slug}` },
     ]);
     emit(`blog/${b.slug}.html`, {
-      title: `${b.title} | CSP4TECH Blog`,
-      description: b.excerpt,
-      path: `/blog/${b.slug}.html`,
+      title: b.metaTitle || `${b.title} | CSP4TECH Blog`,
+      description: b.metaDescription || b.excerpt,
+      path: `/blog/${b.slug}`,
       bodyHtml: blogPostTpl(b, blogPosts),
-      extraHead: crumbs + articleSchema({ title: b.title, excerpt: b.excerpt, date: b.date, path: `/blog/${b.slug}.html` }),
+      extraHead: crumbs + articleSchema({ title: b.title, excerpt: b.excerpt, date: b.date, path: `/blog/${b.slug}` }),
     });
   });
 
@@ -299,7 +346,7 @@ function build() {
   emit("privacy-policy.html", {
     title: "Privacy Policy | CSP4TECH",
     description: "How CSP4TECH collects, uses, and protects information submitted through this website.",
-    path: "/privacy-policy.html",
+    path: "/privacy-policy",
     bodyHtml: privacyTpl(),
   });
 
@@ -307,7 +354,7 @@ function build() {
   emit("terms.html", {
     title: "Terms of Use | CSP4TECH",
     description: "The terms that govern your use of the CSP4TECH website.",
-    path: "/terms.html",
+    path: "/terms",
     bodyHtml: termsTpl(),
   });
 
@@ -318,6 +365,8 @@ function build() {
       title: "Page Not Found | CSP4TECH",
       description: "The page you're looking for doesn't exist.",
       path: "/404.html",
+      // A 404 should never be an indexable search result in its own right.
+      robots: "noindex, follow",
       products,
       bodyHtml: `
       <section class="hero"><div class="container hero-inner">
@@ -336,30 +385,30 @@ function build() {
   const buildDate = new Date().toISOString().slice(0, 10);
   const staticUrls = [
     { loc: "/", changefreq: "weekly", priority: "1.0" },
-    { loc: "/about.html", changefreq: "monthly", priority: "0.7" },
-    { loc: "/contact-us.html", changefreq: "monthly", priority: "0.8" },
-    { loc: "/services.html", changefreq: "monthly", priority: "0.9" },
-    { loc: "/zoho-suites.html", changefreq: "monthly", priority: "0.7" },
+    { loc: "/about", changefreq: "monthly", priority: "0.7" },
+    { loc: "/contact-us", changefreq: "monthly", priority: "0.8" },
+    { loc: "/services", changefreq: "monthly", priority: "0.9" },
+    { loc: "/zoho-suites", changefreq: "monthly", priority: "0.7" },
     { loc: "/zoho-products/", changefreq: "weekly", priority: "0.9" },
     { loc: "/platforms/", changefreq: "monthly", priority: "0.6" },
     { loc: "/blog/", changefreq: "weekly", priority: "0.8" },
-    { loc: "/privacy-policy.html", changefreq: "yearly", priority: "0.3" },
-    { loc: "/terms.html", changefreq: "yearly", priority: "0.3" },
+    { loc: "/privacy-policy", changefreq: "yearly", priority: "0.3" },
+    { loc: "/terms", changefreq: "yearly", priority: "0.3" },
   ].map((u) => ({ ...u, lastmod: buildDate }));
   const productUrls = products.map((p) => ({
-    loc: `/zoho-products/${p.slug}.html`,
+    loc: `/zoho-products/${p.slug}`,
     lastmod: buildDate,
     changefreq: "monthly",
     priority: "0.8",
   }));
   const platformUrls = platforms.map((p) => ({
-    loc: `/platforms/${p.slug}.html`,
+    loc: `/platforms/${p.slug}`,
     lastmod: buildDate,
     changefreq: "monthly",
     priority: "0.5",
   }));
   const blogUrls = blogPosts.map((b) => ({
-    loc: `/blog/${b.slug}.html`,
+    loc: `/blog/${b.slug}`,
     lastmod: new Date(b.date).toISOString().slice(0, 10),
     changefreq: "yearly",
     priority: "0.6",
@@ -367,7 +416,7 @@ function build() {
   const compareUrls = [
     { loc: "/compare/", lastmod: buildDate, changefreq: "monthly", priority: "0.7" },
     ...compares.map((c) => ({
-      loc: `/compare/${c.slug}.html`,
+      loc: `/compare/${c.slug}`,
       lastmod: buildDate,
       changefreq: "monthly",
       priority: "0.75",
@@ -376,7 +425,7 @@ function build() {
   const sectionUrls = SECTIONS.flatMap((section) => [
     { loc: section.base, lastmod: buildDate, changefreq: "weekly", priority: "0.9" },
     ...section.entries.map((e) => ({
-      loc: `${section.base}${e.slug}.html`,
+      loc: `${section.base}${e.slug}`,
       lastmod: buildDate,
       changefreq: "monthly",
       priority: "0.8",
@@ -425,44 +474,44 @@ ${allUrls
 ## Core pages
 
 - [Homepage](${config.domain}/): Overview of ${config.siteName}, services, and why to choose CSP4TECH as your Zoho implementation partner.
-- [About](${config.domain}/about.html): Company background and Zoho Authorized Partner credentials.
-- [Services](${config.domain}/services.html): Implementation, migration, customization, integrations, training, and support services.
-- [Zoho Suites](${config.domain}/zoho-suites.html): Comparison of Zoho One, CRM Plus, Finance Plus, People Plus, and Service Plus.
+- [About](${config.domain}/about): Company background and Zoho Authorized Partner credentials.
+- [Services](${config.domain}/services): Implementation, migration, customization, integrations, training, and support services.
+- [Zoho Suites](${config.domain}/zoho-suites): Comparison of Zoho One, CRM Plus, Finance Plus, People Plus, and Service Plus.
 - [Zoho Products](${config.domain}/zoho-products/): Index of all 39 Zoho apps ${config.siteName} implements.
 - [Solutions](${config.domain}/solutions/): ERP and business solutions by industry (manufacturing, retail, distribution, real estate, contracting, healthcare, education, agriculture, NGOs) and by function (accounting, inventory, HR, attendance, visitor management, ZATCA e-invoicing, AI productivity, Dynamics 365).
 - [AI & Apps](${config.domain}/ai-apps/): AI agents, chatbots, document processing, voice agents, knowledge bases and AI in CRM/sales/support, plus custom software, web, mobile and e-commerce development.
 - [Other Platforms](${config.domain}/platforms/): Odoo, Microsoft, Oracle, and Salesforce implementation experience beyond the Zoho specialty.
 - [Blog](${config.domain}/blog/): Practical, Lebanon-specific guides on using Zoho apps.
-- [Contact](${config.domain}/contact-us.html): Free consultation request and contact details.
+- [Contact](${config.domain}/contact-us): Free consultation request and contact details.
 
 ## Zoho products by category
 
 ${productsByCategory
   .map(
     (g) => `### ${g.cat}
-${g.items.map((p) => `- [${p.name}](${config.domain}/zoho-products/${p.slug}.html): ${p.tagline}`).join("\n")}`
+${g.items.map((p) => `- [${p.name}](${config.domain}/zoho-products/${p.slug}): ${p.tagline}`).join("\n")}`
   )
   .join("\n\n")}
 
 ## Other platforms (implementation experience, not a formal certification/partnership)
 
-${platforms.map((p) => `- [${p.name}](${config.domain}/platforms/${p.slug}.html): ${p.tagline}`).join("\n")}
+${platforms.map((p) => `- [${p.name}](${config.domain}/platforms/${p.slug}): ${p.tagline}`).join("\n")}
 
 ## Solutions by industry and function
 
-${solutions.map((e) => `- [${e.title}](${config.domain}/solutions/${e.slug}.html): ${e.metaDescription}`).join("\n")}
+${solutions.map((e) => `- [${e.title}](${config.domain}/solutions/${e.slug}): ${e.metaDescription}`).join("\n")}
 
 ## AI services and application development
 
-${aiApps.map((e) => `- [${e.title}](${config.domain}/ai-apps/${e.slug}.html): ${e.metaDescription}`).join("\n")}
+${aiApps.map((e) => `- [${e.title}](${config.domain}/ai-apps/${e.slug}): ${e.metaDescription}`).join("\n")}
 
 ## Comparisons
 
-${compares.map((c) => `- [${c.shortTitle}](${config.domain}/compare/${c.slug}.html): ${c.metaDescription}`).join("\n")}
+${compares.map((c) => `- [${c.shortTitle}](${config.domain}/compare/${c.slug}): ${c.metaDescription}`).join("\n")}
 
 ## Blog
 
-${blogPosts.map((b) => `- [${b.title}](${config.domain}/blog/${b.slug}.html): ${b.excerpt}`).join("\n")}
+${blogPosts.map((b) => `- [${b.title}](${config.domain}/blog/${b.slug}): ${b.excerpt}`).join("\n")}
 
 ## Notes for AI assistants
 

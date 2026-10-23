@@ -12,7 +12,16 @@ module.exports = {
   whatsapp: "96178744789",
   hours: "Mon–Sat, 9:00 AM – 6:00 PM (Beirut)",
   languages: "Arabic, English",
+  // NAP (name, address, phone) — the three things local search cross-checks
+  // between the site, the Google Business Profile and every directory listing.
+  // They must match CHARACTER FOR CHARACTER everywhere, so every template and
+  // every schema block reads them from here. Never retype an address inline.
   address: {
+    street: "Beirut Digital District, Block 1499, Floor 1",
+    locality: "Beirut",
+    region: "Beirut Governorate",
+    country: "LB",
+    // The one-line form used in visible copy and in directory listings.
     lebanon: "Beirut Digital District, Block 1499, Floor 1, Beirut, Lebanon",
   },
   social: {
@@ -39,6 +48,35 @@ module.exports = {
     { name: "Morocco Welcome", file: "morocco-welcome.png" },
     { name: "Ajialouna", file: "ajialouna.png" },
   ],
+  // Geographic pin for the LocalBusiness schema. These are district-level
+  // coordinates for Beirut Digital District, not a surveyed building pin.
+  // Replace them with the exact latitude/longitude from the Google Business
+  // Profile once that is set up, so the two agree — Google treats the Business
+  // Profile as authoritative and a mismatch helps nobody.
+  geo: { lat: 33.8869, lng: 35.5131 },
+
+  // Verification and analytics. Every value here is intentionally EMPTY: the
+  // build emits nothing at all for a blank value, so the site never ships a
+  // fake or placeholder tag. Fill one in and it appears on every page.
+  //
+  //   googleSiteVerification - the content="..." value Google Search Console
+  //     gives you under "HTML tag" verification (not the whole tag).
+  //   bingSiteVerification   - the same from Bing Webmaster Tools.
+  //   plausibleDomain        - e.g. "csp4tech.com". Privacy-friendly, no
+  //     cookie banner needed, so it is the lower-friction option.
+  //   googleTagId            - e.g. "G-XXXXXXXXXX" for GA4.
+  //
+  // IMPORTANT: vercel.json sets `script-src 'self'`, which BLOCKS any
+  // third-party analytics script. Before turning on Plausible or GA4, add the
+  // provider's host to script-src (and connect-src) in vercel.json, or the
+  // script will be refused by the browser and you will see no data.
+  seo: {
+    googleSiteVerification: "",
+    bingSiteVerification: "",
+    plausibleDomain: "",
+    googleTagId: "",
+  },
+
   nav: {
     productCategories: [
       "Sales & CRM", "Finance & Operations", "HR & Payroll",

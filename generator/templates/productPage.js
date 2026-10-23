@@ -14,7 +14,7 @@ module.exports = function productPage(product, allProducts) {
       <h1>${product.name}</h1>
       <p class="tagline lead" style="margin-bottom:24px;">${product.tagline}</p>
       <div class="hero-actions" style="justify-content:flex-start;">
-        <a href="/contact-us.html" class="btn btn-primary">Get a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
         <a href="/zoho-products/" class="btn btn-ghost">Browse other apps</a>
       </div>
     </div>
@@ -61,7 +61,7 @@ module.exports = function productPage(product, allProducts) {
         <h2>Other apps in ${product.category}</h2>
       </div>
       <div class="related-products">
-        ${related.map((p) => `<a href="/zoho-products/${p.slug}.html">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon">` : ""}${p.name}</a>`).join("")}
+        ${related.map((p) => `<a href="/zoho-products/${p.slug}">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon">` : ""}${p.name}</a>`).join("")}
       </div>
     </div>
   </section>`
@@ -73,7 +73,7 @@ module.exports = function productPage(product, allProducts) {
       <div class="cta-band">
         <h2>Ready to set up ${product.name}?</h2>
         <p>Book a free consultation and we'll scope the right configuration for your team.</p>
-        <a href="/contact-us.html" class="btn btn-accent">Book a Free Consultation</a>
+        <a href="/contact-us" class="btn btn-accent">Book a Free Consultation</a>
       </div>
     </div>
   </section>`;

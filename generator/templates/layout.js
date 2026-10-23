@@ -2,6 +2,18 @@ const config = require("../data/config");
 const { organizationSchema } = require("./schema");
 const SECTIONS = require("../data/sections");
 
+// Everything that lands inside an HTML attribute (title, description, og/
+// twitter tags) goes through this. A single unescaped double quote closes the
+// attribute early: one blog excerpt opening with a quoted phrase silently
+// produced an EMPTY meta description for that whole page before this existed.
+function esc(str) {
+  return String(str == null ? "" : str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function groupByCategory(products) {
   const map = {};
   products.forEach((p) => {
@@ -23,8 +35,8 @@ function megaMenu(products) {
         .map(
           (g) => `
       <div class="mega-col">
-        <h4>${g.category}</h4>
-        ${g.items.map((p) => `<a href="/zoho-products/${p.slug}.html">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon">` : ""}${p.name}</a>`).join("")}
+        <p class="mega-col-title">${g.category}</p>
+        ${g.items.map((p) => `<a href="/zoho-products/${p.slug}">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon" loading="lazy" decoding="async">` : ""}${p.name}</a>`).join("")}
       </div>`
         )
         .join("")}
@@ -48,11 +60,11 @@ function sectionMegaMenu(section) {
         .map(
           (g) => `
       <div class="mega-col">
-        <h4>${g.heading}</h4>
+        <p class="mega-col-title">${g.heading}</p>
         ${g.slugs
           .map((slug) => {
             const e = section.entries.find((x) => x.slug === slug);
-            return e ? `<a href="${section.base}${e.slug}.html">${e.kicker}</a>` : "";
+            return e ? `<a href="${section.base}${e.slug}">${e.kicker}</a>` : "";
           })
           .join("")}
       </div>`
@@ -76,7 +88,7 @@ function mobileSectionGroups(section) {
         ${g.slugs
           .map((slug) => {
             const e = section.entries.find((x) => x.slug === slug);
-            return e ? `<a href="${section.base}${e.slug}.html">${e.kicker}</a>` : "";
+            return e ? `<a href="${section.base}${e.slug}">${e.kicker}</a>` : "";
           })
           .join("")}
         <a href="${section.base}"><strong>All ${section.label.toLowerCase()}</strong></a>
@@ -94,7 +106,7 @@ function mobileProductGroups(products) {
     <details>
       <summary>${g.category}</summary>
       <div>
-        ${g.items.map((p) => `<a href="/zoho-products/${p.slug}.html">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon">` : ""}${p.name}</a>`).join("")}
+        ${g.items.map((p) => `<a href="/zoho-products/${p.slug}">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="16" height="16" class="nav-app-icon" loading="lazy" decoding="async">` : ""}${p.name}</a>`).join("")}
       </div>
     </details>`
     )
@@ -108,26 +120,26 @@ function header(products, activePath) {
       <a href="/" class="brand"><img src="/images/logo-mark.png" alt="" class="brand-mark" width="31" height="34"> CSP4TECH</a>
       <nav class="primary-nav" aria-label="Primary">
         <ul>
-          <li><a href="/services.html" class="nav-link">Services</a></li>
+          <li><a href="/services" class="nav-link">Services</a></li>
           <li>${megaMenu(products)}</li>
           ${SECTIONS.map((section) => `<li>${sectionMegaMenu(section)}</li>`).join("")}
           <li class="nav-item has-mega">
             <a href="#" class="nav-link" aria-haspopup="true">More <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
             <div class="mega-menu" style="grid-template-columns:1fr;width:230px;padding:12px;">
               <div class="mega-col" style="grid-column:1/-1;">
-                <a href="/zoho-suites.html">Zoho Suites</a>
+                <a href="/zoho-suites">Zoho Suites</a>
                 <a href="/compare/">Compare Zoho</a>
                 <a href="/platforms/">Other Platforms</a>
-                <a href="/about.html">About Us</a>
+                <a href="/about">About Us</a>
                 <a href="/blog/">Blog</a>
-                <a href="/contact-us.html">Contact Us</a>
+                <a href="/contact-us">Contact Us</a>
               </div>
             </div>
           </li>
         </ul>
       </nav>
       <div class="header-actions">
-        <a href="/contact-us.html" class="btn btn-primary btn-sm">Get Started</a>
+        <a href="/contact-us" class="btn btn-primary btn-sm">Get Started</a>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </button>
@@ -135,16 +147,16 @@ function header(products, activePath) {
     </div>
   </header>
   <div class="mobile-nav">
-    <a href="/services.html">Services</a>
+    <a href="/services">Services</a>
     ${mobileProductGroups(products)}
     ${SECTIONS.map((section) => mobileSectionGroups(section)).join("")}
-    <a href="/zoho-suites.html">Zoho Suites</a>
+    <a href="/zoho-suites">Zoho Suites</a>
     <a href="/compare/">Compare</a>
     <a href="/platforms/">Other Platforms</a>
-    <a href="/about.html">About Us</a>
+    <a href="/about">About Us</a>
     <a href="/blog/">Blog</a>
-    <a href="/contact-us.html">Contact Us</a>
-    <a href="/contact-us.html" class="btn btn-primary btn-block" style="margin-top:16px;">Get Started</a>
+    <a href="/contact-us">Contact Us</a>
+    <a href="/contact-us" class="btn btn-primary btn-block" style="margin-top:16px;">Get Started</a>
   </div>`;
 }
 
@@ -174,22 +186,22 @@ function footer(products) {
           .map(
             (g) => `
         <div>
-          <h4>${g.category}</h4>
+          <h2 class="footer-col-title">${g.category}</h2>
           ${g.items
             .slice(0, 6)
-            .map((p) => `<a href="/zoho-products/${p.slug}.html">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="14" height="14" class="footer-app-icon">` : ""}${p.name}</a>`)
+            .map((p) => `<a href="/zoho-products/${p.slug}">${p.logo ? `<img src="/images/logos/${p.logo}" alt="" width="14" height="14" class="footer-app-icon" loading="lazy" decoding="async">` : ""}${p.name}</a>`)
             .join("")}
         </div>`
           )
           .join("")}
         <div>
-          <h4>Company</h4>
-          <a href="/about.html">About Us</a>
+          <h2 class="footer-col-title">Company</h2>
+          <a href="/about">About Us</a>
           <a href="/blog/">Blog</a>
-          <a href="/contact-us.html">Contact Us</a>
+          <a href="/contact-us">Contact Us</a>
           <a href="/solutions/">Solutions</a>
           <a href="/ai-apps/">AI &amp; Apps</a>
-          <a href="/zoho-suites.html">Zoho Suites</a>
+          <a href="/zoho-suites">Zoho Suites</a>
           <a href="/compare/">Compare</a>
           <a href="/platforms/">Other Platforms</a>
           <a href="mailto:${config.email}">${config.email}</a>
@@ -198,7 +210,7 @@ function footer(products) {
       </div>
       <div class="footer-bottom">
         <span>&copy; ${new Date().getFullYear()} CSP4TECH. All rights reserved.</span>
-        <span><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Use</a></span>
+        <span><a href="/privacy-policy">Privacy Policy</a> · <a href="/terms">Terms of Use</a></span>
         <span>${config.address.lebanon}</span>
       </div>
     </div>
@@ -209,36 +221,70 @@ function footer(products) {
   <button type="button" class="back-to-top" aria-label="Back to top">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 15V5M10 5L4 11M10 5l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
-  <script src="/js/main.js"></script>`;
+  <script src="/js/main.js" defer></script>`;
 }
 
-function page({ title, description, path, bodyHtml, products, extraHead = "" }) {
+// Search-engine verification meta tags. Each is emitted only when its value is
+// filled in, so the site never ships an empty or placeholder tag.
+function verificationTags() {
+  const out = [];
+  if (config.seo && config.seo.googleSiteVerification) {
+    out.push(`<meta name="google-site-verification" content="${esc(config.seo.googleSiteVerification)}">`);
+  }
+  if (config.seo && config.seo.bingSiteVerification) {
+    out.push(`<meta name="msvalidate.01" content="${esc(config.seo.bingSiteVerification)}">`);
+  }
+  return out.join("\n");
+}
+
+// Analytics, also opt-in: nothing loads until an ID is configured, so the site
+// stays script-free (and cookie-banner-free) by default. Note that
+// vercel.json's `script-src 'self'` must be widened for whichever provider is
+// switched on, or the browser will refuse to run the script.
+function analyticsTags() {
+  if (!config.seo) return "";
+  if (config.seo.plausibleDomain) {
+    return `<script defer data-domain="${esc(config.seo.plausibleDomain)}" src="https://plausible.io/js/script.js"></script>`;
+  }
+  if (config.seo.googleTagId) {
+    const id = esc(config.seo.googleTagId);
+    return `<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}');</script>`;
+  }
+  return "";
+}
+
+function page({ title, description, path, bodyHtml, products, extraHead = "", robots = "index, follow" }) {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title}</title>
-<meta name="description" content="${description}">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${config.domain}${path}">
 <link rel="icon" href="/images/logo-mark.png" type="image/png">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="${robots}">
 <meta property="og:site_name" content="${config.siteName}">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="${title}">
-<meta property="og:description" content="${description}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="${config.domain}${path}">
 <meta property="og:image" content="${config.domain}/images/og-banner.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:site" content="@csp4tech">
 <meta name="twitter:image" content="${config.domain}/images/og-banner.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+${verificationTags()}
 ${organizationSchema()}
 ${extraHead}
+${analyticsTags()}
 </head>
 <body>
 ${header(products, path)}

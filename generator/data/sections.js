@@ -13,7 +13,7 @@ const SECTIONS = [
     navCta: "Industry setups and the capabilities most businesses need.",
     indexTitle: "ERP & Business Solutions by Industry | Lebanon | CSP4TECH",
     indexDescription:
-      "Zoho-based ERP and business solutions by industry and by function \u2014 manufacturing, retail, distribution, real estate, contracting, healthcare, education, NGOs, accounting, inventory and HR.",
+      "Zoho ERP and business solutions by industry and by function: manufacturing, retail, distribution, real estate, contracting, healthcare, education, NGOs and more.",
     indexH1: "Solutions Built Around How Your Industry Actually Works",
     indexLead:
       "Every industry has its own paperwork, its own exceptions and its own way of pricing work. These pages describe what we configure for each one, what it costs you in effort, and where we would tell you not to bother.",
