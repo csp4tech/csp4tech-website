@@ -160,6 +160,22 @@ function header(products, activePath) {
   </div>`;
 }
 
+// A labelled row of footer links. Used for the services and per-market rows.
+// Every entry must resolve to a real page — a chip pointing nowhere is a
+// broken link, and a row of chips pointing at interchangeable pages is the
+// doorway pattern search engines demote.
+function footerChipRow(heading, blurb, items) {
+  if (!items || !items.length) return "";
+  return `
+      <div class="footer-chips">
+        <h2 class="footer-col-title">${heading}</h2>
+        ${blurb ? `<p class="footer-chips-note">${blurb}</p>` : ""}
+        <div class="footer-chip-grid">
+          ${items.map((i) => `<a href="${i.href}">${i.label}</a>`).join("")}
+        </div>
+      </div>`;
+}
+
 function footer(products) {
   const groups = groupByCategory(products).slice(0, 3);
   return `
@@ -240,6 +256,34 @@ function footer(products) {
           </div>
         </div>
       </div>
+
+      <!-- Services and per-market link rows. Every chip points at a page that
+           genuinely exists and says something specific; none of this is a
+           keyword list pointing at near-identical landing pages. -->
+      ${footerChipRow(
+        "Our services",
+        "What CSP4TECH does, by discipline and by industry.",
+        [
+          ...SECTIONS.find((s) => s.key === "aiApps").entries.map((e) => ({ label: e.kicker, href: `/ai-apps/${e.slug}` })),
+          ...SECTIONS.find((s) => s.key === "solutions").entries.map((e) => ({ label: e.kicker, href: `/solutions/${e.slug}` })),
+        ]
+      )}
+      ${footerChipRow(
+        "Zoho partner by country",
+        "We have one office, in Beirut. Each market page sets out the Zoho data centre, currency and working week that apply there.",
+        SECTIONS.find((s) => s.key === "markets").entries.map((e) => ({
+          label: `Zoho Partner ${e.country}`,
+          href: `/markets/${e.slug}`,
+        }))
+      )}
+      ${footerChipRow(
+        "Software &amp; AI development by country",
+        "Custom software, web and mobile apps and AI work, delivered into the same markets.",
+        SECTIONS.find((s) => s.key === "markets").entries.map((e) => ({
+          label: `Software &amp; AI ${e.country}`,
+          href: `/markets/${e.slug}#software`,
+        }))
+      )}
 
       <div class="footer-bottom">
         <span>&copy; ${new Date().getFullYear()} CSP4TECH. All rights reserved.</span>

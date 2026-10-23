@@ -1,5 +1,6 @@
 const solutions = require("./solutions");
 const aiApps = require("./aiApps");
+const markets = require("./markets");
 
 // The two shyphan-parity hubs. Both data sets share one shape, so one pair of
 // templates renders both; this is the only place their copy and URLs live.
@@ -99,6 +100,35 @@ const SECTIONS = [
           "ecommerce-website",
           "it-staff-augmentation",
         ],
+      },
+    ],
+  },
+  {
+    key: "markets",
+    entries: markets,
+    base: "/markets/",
+    label: "Where We Work",
+    navLabel: "Where We Work",
+    navCta: "One office in Beirut. Clients across the region and beyond.",
+    indexTitle: "Where We Work | Zoho Partner Across 18 Markets",
+    indexDescription:
+      "CSP4TECH works from one office in Beirut Digital District with businesses across the Gulf, the Levant, Europe, Asia-Pacific and the Americas.",
+    indexH1: "One Team in Beirut, Clients Across Eighteen Markets",
+    indexLead:
+      "Every market below has its own page, because every market genuinely differs: which Zoho data centre is available, which currency and which working week the system has to be built around. We have one office, in Beirut, and we say so on every one of these pages.",
+    problemsHeading: "The things that usually bring people to us",
+    relatedKicker: "Other markets",
+    relatedHeading: "Everywhere else we work",
+    groups: [
+      {
+        heading: "Middle East and North Africa",
+        blurb: "Our home region: shared language, overlapping hours, and compliance detail we deal with routinely.",
+        slugs: ["lebanon", "saudi-arabia", "uae", "qatar", "kuwait", "bahrain", "oman", "iraq", "jordan"],
+      },
+      {
+        heading: "Europe, Asia-Pacific and the Americas",
+        blurb: "Delivered remotely from Beirut. Each page is honest about the time-zone and language realities.",
+        slugs: ["turkiye", "georgia", "hungary", "uk", "south-africa", "india", "singapore", "australia", "usa"],
       },
     ],
   },
