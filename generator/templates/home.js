@@ -12,10 +12,26 @@ module.exports = function home(products, blogPosts) {
   const latestPosts = blogPosts.slice(-3).reverse();
 
   return `
-  <section class="hero">
+  <section class="hero hero-photo">
+    <!-- Full-bleed hero backdrop. Decorative, so alt="" and aria-hidden: the
+         headline carries the meaning. Served as <picture> rather than a CSS
+         background so it can carry width/height (no layout shift),
+         fetchpriority (it is the largest contentful paint element) and a WebP
+         source with a JPEG fallback. Cropped to the band actually shown
+         rather than letting object-fit discard a third of the pixels. -->
+    <div class="hero-bg" aria-hidden="true">
+      <picture>
+        <source type="image/webp" sizes="100vw"
+                srcset="/images/hero/mountains-1000.webp 1000w, /images/hero/mountains-1600.webp 1600w">
+        <img src="/images/hero/mountains-1600.jpg" alt="" width="1600" height="680"
+             sizes="100vw"
+             srcset="/images/hero/mountains-1000.jpg 1000w, /images/hero/mountains-1600.jpg 1600w"
+             fetchpriority="high" decoding="async">
+      </picture>
+    </div>
     <div class="container hero-inner has-media">
       <div class="hero-text">
-        <img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="partner-badge" width="220" height="61">
+        <span class="badge-plate"><img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="partner-badge" width="220" height="61"></span>
         <h1>Zoho, set up the way your business <em>actually works</em></h1>
         <p class="lead">A Zoho Authorized Partner headquartered in Beirut — implementation, migration, integrations and ongoing support across the full Zoho suite, for clients in Lebanon, the Gulf, Iraq and North Africa, in Arabic or English.</p>
         <div class="hero-actions">

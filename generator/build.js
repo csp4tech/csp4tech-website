@@ -97,6 +97,15 @@ function copyAssets() {
     }
   }
 
+  // Hero backdrop images (WebP + JPEG, two widths each).
+  const heroDir = path.join(assetsDir, "hero");
+  if (fs.existsSync(heroDir)) {
+    fs.mkdirSync(path.join(DIST, "images", "hero"), { recursive: true });
+    for (const file of fs.readdirSync(heroDir)) {
+      fs.copyFileSync(path.join(heroDir, file), path.join(DIST, "images", "hero", file));
+    }
+  }
+
   const platformLogosDir = path.join(assetsDir, "platform-logos");
   if (fs.existsSync(platformLogosDir)) {
     fs.mkdirSync(path.join(DIST, "images", "platform-logos"), { recursive: true });
