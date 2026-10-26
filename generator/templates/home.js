@@ -65,12 +65,14 @@ module.exports = function home(products, blogPosts) {
               width="1040" height="586"
               muted loop playsinline preload="none"></video>
           </div>
-          <span class="hv-chip hv-chip-1" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          </span>
-          <span class="hv-chip hv-chip-2" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-          </span>
+          <!-- Two cut-out figures anchored to the window's lower corners: the
+               consultant on the right faces into the screen, the assistant bot
+               on the left. Both are pure decoration on an aria-hidden parent,
+               so they carry empty alt text and are never announced. -->
+          <img class="hv-figure hv-figure-agent" src="/images/hero/agent.webp"
+               alt="" width="480" height="342" fetchpriority="low" decoding="async">
+          <img class="hv-figure hv-figure-bot" src="/images/hero/bot.webp"
+               alt="" width="156" height="260" fetchpriority="low" decoding="async">
         </div>
       </div>
     </div>
