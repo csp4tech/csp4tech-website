@@ -888,3 +888,18 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
   .hero-photo h1, .hero-photo p.lead { text-shadow: 0 2px 14px rgba(2,30,28,.55); }
 }
 @media (prefers-reduced-motion: reduce) { .hero-photo .hero-inner { animation: none; } }
+
+/* ---------- Hero demo video ---------- */
+/* Replaces the CSS workspace mock. The poster paints immediately and the
+   video file is fetched after load (see main.js), so the hero's first paint
+   costs the poster only. */
+.hero-video .hv-window { padding: 0; overflow: hidden; }
+.hero-video .hv-titlebar { padding: 11px 14px; border-bottom: 1px solid var(--color-border); }
+.hv-video {
+  display: block; width: 100%; height: auto; aspect-ratio: 1040 / 586;
+  background: #F4F3FB;
+  /* contain, not cover: the box ratio matches the file exactly, so this is a
+     no-op today, but if a future re-encode changes the ratio it letterboxes
+     against the matching chrome colour instead of silently cropping the UI. */
+  object-fit: contain;
+}

@@ -357,7 +357,7 @@ function build() {
   // Privacy Policy
   emit("privacy-policy.html", {
     title: "Privacy Policy | CSP4TECH",
-    description: "How CSP4TECH collects, uses, and protects information submitted through this website.",
+    description: "What CSP4TECH collects through this website, how contact and enquiry details are used, how long they are kept, and how to ask for your information to be removed.",
     path: "/privacy-policy",
     bodyHtml: privacyTpl(),
   });
@@ -365,7 +365,7 @@ function build() {
   // Terms of Use
   emit("terms.html", {
     title: "Terms of Use | CSP4TECH",
-    description: "The terms that govern your use of the CSP4TECH website.",
+    description: "The terms governing use of the CSP4TECH website: what the content covers, the limits of the information published here, and how these terms may change over time.",
     path: "/terms",
     bodyHtml: termsTpl(),
   });

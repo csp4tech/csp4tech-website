@@ -195,4 +195,41 @@ document.addEventListener("DOMContentLoaded", function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
   }
+
+  // ---------- Hero video ----------
+  // The hero carries a looping Zoho CRM demo. Its poster is painted straight
+  // away; the ~300KB video itself is only fetched AFTER the load event, so it
+  // never competes with the hero image or the stylesheet for bandwidth during
+  // first paint. Anyone who prefers reduced motion keeps the poster and the
+  // file is never downloaded at all.
+  (function heroVideo() {
+    var v = document.querySelector(".hv-video");
+    if (!v || !v.dataset.src) return;
+    if (reduceMotion) return;                  // poster stays, nothing fetched
+    // Phones get the poster only. Below 860px the window is ~340px wide, where
+    // the CRM detail is unreadable anyway, so the video would be ~380KB of
+    // mobile data buying nothing. Matches the CSS breakpoint that stacks the
+    // hero. Checked once at load, not on resize: a desktop user who narrows
+    // the window keeps the video they already have, which is the cheap outcome.
+    if (window.matchMedia && window.matchMedia("(max-width: 860px)").matches) return;
+    // Respect an explicit data-saver request where the browser exposes one.
+    var conn = navigator.connection;
+    if (conn && conn.saveData) return;
+
+    function start() {
+      // Two encodes, chosen at runtime rather than with <source> elements so
+      // nothing is fetched until we decide to start. Most browsers take the
+      // H.264 MP4; Chromium builds without proprietary codecs (common on
+      // Linux) fall back to VP9, which they do support.
+      var canH264 = v.canPlayType('video/mp4; codecs="avc1.42E01E"');
+      v.src = (!canH264 && v.dataset.srcWebm) ? v.dataset.srcWebm : v.dataset.src;
+      // play() rejects on some browsers/power-saving modes. That is fine:
+      // the poster is already showing, so there is nothing to clean up.
+      var p = v.play();
+      if (p && typeof p.catch === "function") p.catch(function () {});
+    }
+
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+  })();
 });

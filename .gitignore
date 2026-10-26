@@ -1,3 +1,6 @@
 dist/
 node_modules/
 .DS_Store
+
+# Scratch folder the Claude session drops transfer files and screenshots in.
+Claude outputs/

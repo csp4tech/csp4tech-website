@@ -46,49 +46,31 @@ module.exports = function home(products, blogPosts) {
         </div>
       </div>
       <div class="hero-media">
-        <!-- Decorative only: a stylised workspace, not a screenshot of any real
-             system and not anyone's data. Drawn in CSS rather than shipped as an
-             image so it stays sharp on every screen and costs no extra download.
-             The three app icons are Zoho's own, from the partner icon pack. -->
-        <div class="hero-visual" aria-hidden="true">
+        <!-- Zoho's own CRM demo footage, supplied by the client. No audio
+             track, so autoplay is unobtrusive. It is decorative — the headline
+             carries the meaning — so aria-hidden, and it is NOT announced as a
+             CSP4TECH product or a client's live system.
+             Loading: the poster renders immediately and the video file is
+             fetched only after the page load event (see main.js). That keeps
+             300 KB of video from competing with first paint, and leaves the
+             poster in place for anyone who prefers reduced motion. -->
+        <div class="hero-visual hero-video" aria-hidden="true">
           <div class="hv-window">
             <div class="hv-titlebar"><span></span><span></span><span></span></div>
-            <div class="hv-body">
-              <div class="hv-rail">
-                <div class="hv-rail-dot is-active"></div>
-                <div class="hv-rail-dot"></div>
-                <div class="hv-rail-dot"></div>
-                <div class="hv-rail-dot"></div>
-                <div class="hv-rail-dot"></div>
-              </div>
-              <div class="hv-canvas">
-                <div class="hv-toolbar"><span class="hv-pill-wide"></span><span class="hv-pill-sm"></span></div>
-                <div class="hv-board">
-                  <div class="hv-col">
-                    <span class="hv-col-head"></span>
-                    <span class="hv-card"></span>
-                    <span class="hv-card"></span>
-                  </div>
-                  <div class="hv-col">
-                    <span class="hv-col-head is-accent"></span>
-                    <span class="hv-card"></span>
-                    <span class="hv-card is-tall"></span>
-                  </div>
-                  <div class="hv-col">
-                    <span class="hv-col-head"></span>
-                    <span class="hv-card"></span>
-                  </div>
-                </div>
-                <div class="hv-chart">
-                  <span style="--bar:46%"></span><span style="--bar:68%"></span><span style="--bar:54%"></span>
-                  <span style="--bar:86%"></span><span style="--bar:72%"></span><span style="--bar:94%"></span>
-                </div>
-              </div>
-            </div>
+            <video
+              class="hv-video"
+              data-src="/images/hero/crm-demo.mp4"
+              data-src-webm="/images/hero/crm-demo.webm"
+              poster="/images/hero/crm-demo-poster.webp"
+              width="1040" height="586"
+              muted loop playsinline preload="none"></video>
           </div>
-          <div class="hv-chip hv-chip-a"><img src="/images/logos/crm.png" alt="" width="26" height="26"></div>
-          <div class="hv-chip hv-chip-b"><img src="/images/logos/books.png" alt="" width="26" height="26"></div>
-          <div class="hv-chip hv-chip-c"><img src="/images/logos/desk.png" alt="" width="26" height="26"></div>
+          <span class="hv-chip hv-chip-1" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </span>
+          <span class="hv-chip hv-chip-2" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </span>
         </div>
       </div>
     </div>
