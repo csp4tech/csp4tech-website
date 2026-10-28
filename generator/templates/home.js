@@ -17,15 +17,16 @@ module.exports = function home(products, blogPosts) {
          headline carries the meaning. Served as <picture> rather than a CSS
          background so it can carry width/height (no layout shift),
          fetchpriority (it is the largest contentful paint element) and a WebP
-         source with a JPEG fallback. Cropped to the band actually shown
-         rather than letting object-fit discard a third of the pixels. -->
+         source with a JPEG fallback. The Apple mark on the laptop lid was
+         painted out: another company's trademark does not belong in this
+         hero. -->
     <div class="hero-bg" aria-hidden="true">
       <picture>
         <source type="image/webp" sizes="100vw"
-                srcset="/images/hero/mountains-1000.webp 1000w, /images/hero/mountains-1600.webp 1600w">
-        <img src="/images/hero/mountains-1600.jpg" alt="" width="1600" height="680"
+                srcset="/images/hero/hero-bg-1000.webp 1000w, /images/hero/hero-bg-1600.webp 1600w">
+        <img src="/images/hero/hero-bg-1600.jpg" alt="" width="1600" height="900"
              sizes="100vw"
-             srcset="/images/hero/mountains-1000.jpg 1000w, /images/hero/mountains-1600.jpg 1600w"
+             srcset="/images/hero/hero-bg-1000.jpg 1000w, /images/hero/hero-bg-1600.jpg 1600w"
              fetchpriority="high" decoding="async">
       </picture>
     </div>
@@ -65,14 +66,6 @@ module.exports = function home(products, blogPosts) {
               width="1040" height="586"
               muted loop playsinline preload="none"></video>
           </div>
-          <!-- Two cut-out figures anchored to the window's lower corners: the
-               consultant on the right faces into the screen, the assistant bot
-               on the left. Both are pure decoration on an aria-hidden parent,
-               so they carry empty alt text and are never announced. -->
-          <img class="hv-figure hv-figure-agent" src="/images/hero/agent.webp"
-               alt="" width="480" height="342" fetchpriority="low" decoding="async">
-          <img class="hv-figure hv-figure-bot" src="/images/hero/bot.webp"
-               alt="" width="156" height="260" fetchpriority="low" decoding="async">
         </div>
       </div>
     </div>
