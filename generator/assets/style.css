@@ -801,12 +801,18 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 /* The white plate goes on a wrapper, not the <img>: padding on the image
    itself changes its box without changing the picture, which reads as a
    distorted logo to any aspect-ratio check (including ours). */
-.hero-photo .badge-plate {
-  display: inline-block; background: #fff; padding: 6px 10px;
-  border-radius: 10px; box-shadow: 0 6px 22px rgba(0,0,0,.22);
-  margin-bottom: 24px; line-height: 0;
+/* The supplied badge is already a finished lock-up: white panel, blue panel
+   and rounded corners baked in, with the corners transparent. It was sitting
+   inside a second white plate, which read as a box inside a box - and because
+   `.hero-inner.has-media .partner-badge` is the more specific selector, the
+   image kept its 24px bottom margin INSIDE that plate, leaving 30px of dead
+   white under the badge against 6px above it. No plate; just the badge, with
+   a shadow to lift it off the picture.
+   The selector carries four classes so it beats that margin rule outright. */
+.hero-photo .hero-inner.has-media .partner-badge {
+  height: 56px; width: auto; display: block; margin: 0 0 26px;
+  filter: drop-shadow(0 10px 24px rgba(2, 30, 28, .45));
 }
-.hero-photo .partner-badge { height: 52px; width: auto; margin: 0; display: block; }
 .hero-photo .pill {
   background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22);
   color: #D8E8E5; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);

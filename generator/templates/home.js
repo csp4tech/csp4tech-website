@@ -31,7 +31,7 @@ module.exports = function home(products, blogPosts) {
     </div>
     <div class="container hero-inner has-media">
       <div class="hero-text">
-        <span class="badge-plate"><img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="partner-badge" width="220" height="61"></span>
+        <img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="partner-badge" width="220" height="61">
         <h1>Zoho, set up the way your business <em>actually works</em></h1>
         <p class="lead">A Zoho Authorized Partner headquartered in Beirut — implementation, migration, integrations and ongoing support across the full Zoho suite, for clients in Lebanon, the Gulf, Iraq and North Africa, in Arabic or English.</p>
         <div class="hero-actions">
