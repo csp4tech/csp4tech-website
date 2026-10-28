@@ -17,9 +17,8 @@ module.exports = function home(products, blogPosts) {
          headline carries the meaning. Served as <picture> rather than a CSS
          background so it can carry width/height (no layout shift),
          fetchpriority (it is the largest contentful paint element) and a WebP
-         source with a JPEG fallback. The Apple mark on the laptop lid was
-         painted out: another company's trademark does not belong in this
-         hero. -->
+         source with a JPEG fallback. The artwork is used exactly as the
+         client supplied it, unedited. -->
     <div class="hero-bg" aria-hidden="true">
       <picture>
         <source type="image/webp" sizes="100vw"
