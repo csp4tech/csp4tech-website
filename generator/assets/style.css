@@ -825,6 +825,25 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 /* Lift the mock workspace off the photo so it still reads as a surface. */
 .hero-photo .hv-window { box-shadow: 0 30px 70px rgba(0,0,0,.42); }
 
+/* The CRM window drops to the bottom-right of the hero and hangs 90px over
+   its lower edge onto the band below, so it no longer sits across the top of
+   the artwork. Desktop only: under 861px the hero stacks and the window is
+   already the last thing in it, where an overhang would just collide with the
+   next section.
+   -166px = the hero's own 76px bottom padding, plus the 90px of overhang. The
+   grid aligns the MARGIN box, so a negative bottom margin pushes the element
+   itself that much further down. */
+@media (min-width: 861px) {
+  .hero-photo { overflow: visible; }
+  .hero-photo .hero-media {
+    align-self: end; justify-content: flex-end; margin-bottom: -166px;
+  }
+  /* Paints above the following section, which sets no stacking of its own. */
+  .hero-photo .hero-visual { z-index: 3; }
+  /* Clear the overhang so it never lands on the "Trusted by" line. */
+  .section-after-hero { padding-top: 158px; }
+}
+
 @media (max-width: 860px) {
   /* Stacked layout: the text runs the full width, so the wash has to be
      even rather than weighted to one side. */

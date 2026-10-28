@@ -70,7 +70,7 @@ module.exports = function home(products, blogPosts) {
     </div>
   </section>
 
-  <section>
+  <section class="section-after-hero">
     <div class="container">
       <p class="text-center" style="font-weight:700;color:var(--color-ink-soft);margin-bottom:20px;">Trusted by businesses across Lebanon and the wider region</p>
       <div class="trusted-marquee">
