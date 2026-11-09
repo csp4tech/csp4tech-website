@@ -58,27 +58,16 @@ module.exports = function contact() {
             <label for="company">Company name *</label>
             <input id="company" name="Company" type="text" autocomplete="organization" required>
           </div>
-          <!-- These two carry no name attribute on purpose, so the browser does
-               not submit them. main.js folds both into the hidden Description
-               below, because Zoho has no field for "what are you interested in"
-               and the answer is worth keeping. -->
+          <!-- One question, not two. There is no CRM field for "what are you
+               interested in", so asking it separately meant folding the answer
+               into Description anyway. The placeholder carries the prompts the
+               old dropdown used to offer, and whatever the visitor writes goes
+               straight into the Lead's Description. -->
           <div class="form-row">
-            <label for="interest">What are you interested in?</label>
-            <select id="interest">
-              <option value="">Select an area</option>
-              <option>Zoho CRM</option>
-              <option>Zoho Books / Finance</option>
-              <option>Zoho People / HR</option>
-              <option>Zoho One (full suite)</option>
-              <option>Custom Zoho Creator app</option>
-              <option>Not sure yet</option>
-            </select>
+            <label for="message">What are you interested in, and what are you trying to solve? *</label>
+            <textarea id="message" name="Description" rows="5" required
+              placeholder="Which Zoho apps you have in mind - CRM, Books, People, Zoho One, a custom Creator app, or not sure yet - and the problem you want solved."></textarea>
           </div>
-          <div class="form-row">
-            <label for="message">What are you trying to solve? *</label>
-            <textarea id="message" rows="4" required></textarea>
-          </div>
-          <input type="hidden" name="Description" data-zoho-description value="">
           <button type="submit" class="btn btn-primary btn-block">Send message</button>
           <p data-form-status style="font-size:.85rem;margin-top:10px;min-height:1.2em;"></p>
         </form>
