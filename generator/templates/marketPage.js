@@ -26,6 +26,72 @@ function factsStrip(f) {
   </div>`;
 }
 
+// --- Optional blocks. A market that has no data for one renders nothing. ---
+
+// A plain question-and-answer summary near the top. Search engines lift blocks
+// like this into featured snippets and AI answers, and a buyer who only reads
+// one thing reads this.
+function atAGlance(rows, country) {
+  if (!rows || !rows.length) return "";
+  return `
+  <section>
+    <div class="container" style="max-width:860px;">
+      <div class="section-head" style="text-align:left;margin:0 0 24px;max-width:none;">
+        <span class="kicker">At a glance</span>
+        <h2>Zoho in ${country}: the short answer</h2>
+      </div>
+      <dl class="glance">
+        ${rows.map(([q, a]) => `<dt>${q}</dt><dd>${a}</dd>`).join("")}
+      </dl>
+    </div>
+  </section>`;
+}
+
+// The sourced numbers. Dated and attributed on purpose: an undated tax figure
+// on a consulting site is a liability, and the date is what makes it credible.
+function complianceTable(c, country) {
+  if (!c || !c.rows || !c.rows.length) return "";
+  return `
+  <section class="section-alt">
+    <div class="container" style="max-width:860px;">
+      <div class="section-head" style="text-align:left;margin:0 0 10px;max-width:none;">
+        <span class="kicker">The numbers</span>
+        <h2>What ${country} actually requires</h2>
+      </div>
+      <p class="compliance-meta">Checked ${c.asOf} against <a href="${c.sourceUrl}" target="_blank" rel="noopener">${c.sourceLabel}</a>. We re-check when the budget law moves.</p>
+      <table class="compliance-table">
+        <tbody>
+          ${c.rows.map(([k, v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`).join("")}
+        </tbody>
+      </table>
+      ${c.note ? `<p class="compliance-note">${c.note}</p>` : ""}
+    </div>
+  </section>`;
+}
+
+// Where we go and who we already do this for.
+function onTheGround(g, country) {
+  if (!g) return "";
+  const chips = (items) => `<div class="ground-chips">${items.map((i) => `<span>${i}</span>`).join("")}</div>`;
+  return `
+  <section>
+    <div class="container">
+      <div class="grid grid-2" style="gap:36px;">
+        <div>
+          <h2 class="ground-head">Where we work in ${country}</h2>
+          ${chips(g.cities)}
+          <p class="ground-note">${g.citiesNote}</p>
+        </div>
+        <div>
+          <h2 class="ground-head">Sectors we already run</h2>
+          ${chips(g.sectors)}
+          <p class="ground-note">${g.sectorsNote}</p>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
 module.exports = function marketPage(entry, siblings, products, section) {
   const others = siblings.filter((e) => e.slug !== entry.slug);
   const apps = entry.zohoApps.map((s) => products.find((p) => p.slug === s)).filter(Boolean);
@@ -53,6 +119,8 @@ module.exports = function marketPage(entry, siblings, products, section) {
     </div>
   </section>
 
+  ${atAGlance(entry.atAGlance, entry.country)}
+
   <section>
     <div class="container">
       <div class="section-head">
@@ -72,6 +140,10 @@ module.exports = function marketPage(entry, siblings, products, section) {
       </div>
     </div>
   </section>
+
+  ${complianceTable(entry.compliance, entry.country)}
+
+  ${onTheGround(entry.onTheGround, entry.country)}
 
   <section class="section-alt">
     <div class="container split-head">

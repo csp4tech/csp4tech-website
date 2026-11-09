@@ -32,6 +32,39 @@ module.exports = [
     metaDescription:
       "CSP4TECH is a Zoho Authorized Partner based in Beirut Digital District, implementing Zoho across Lebanon with on-site work, in Arabic and English.",
     facts: { dataCentre: "No in-country region — chosen at sign-up", currency: "LBP and USD side by side", week: "Saturday–Sunday weekend, Saturday often worked", languages: "Arabic, English, French" },
+
+    // ---- Lebanon-only blocks (optional; other markets simply omit them) ----
+    // The numbers below are the reason this page is worth publishing. They are
+    // taken from PwC's Lebanon tax summaries, carry an as-of date and link to
+    // the source, and are the first thing to re-check when the budget law
+    // moves. A figure with no date and no source is worth less than no figure.
+    atAGlance: [
+      ["What this is", "Zoho implementation, migration and support for businesses operating in Lebanon — configured around 11% VAT, Ministry of Finance reporting, NSSF contributions and books that run in LBP and USD at the same time."],
+      ["Who it suits", "Companies that have outgrown spreadsheets and disconnected tools but do not want an enterprise programme: typically small and mid-size businesses, and the Lebanese arm of a larger group."],
+      ["How long it takes", "A single-app rollout — CRM on its own, or Books on its own — is usually a matter of weeks. A full Zoho One deployment depends on how many apps are in scope, how clean the existing data is, and how much integration work sits around it. We give you a plan with dates before you commit, not after."],
+      ["What it costs", "Quoted once the scope is agreed, after a free discovery call. Zoho licence fees are billed separately by Zoho; we are a Zoho Authorized Partner, so renewals and escalations come through us rather than a portal in another time zone."],
+      ["Where we are", "Beirut Digital District. Lebanon is the one market where discovery, training and go-live happen in your office rather than over a call."]
+    ],
+    compliance: {
+      asOf: "November 2026",
+      sourceLabel: "PwC Lebanon tax summaries",
+      sourceUrl: "https://taxsummaries.pwc.com/lebanon/corporate/other-taxes",
+      note: "A rise in the standard VAT rate from 11% to 12% has been announced but is not in force — it needs parliamentary approval first. We track this; your tax advisor confirms the position that applies to you before anything goes live.",
+      rows: [
+        ["VAT — standard rate", "11%"],
+        ["VAT registration threshold", "LL 5 billion of turnover, measured over one to four consecutive quarters (raised from LL 100 million by the 2024 Budget Law)"],
+        ["VAT return deadline", "Within one month of the end of the reporting period, under the 2026 Budget Law — it used to be 20 days"],
+        ["Corporate income tax", "17% on adjusted accounting profit"],
+        ["NSSF — employer", "8% sickness and maternity, 6% family benefits, 5% end-of-service indemnity"],
+        ["NSSF — employee", "3% medical scheme"]
+      ]
+    },
+    onTheGround: {
+      cities: ["Beirut", "Tripoli", "Sidon", "Zahle", "Jounieh", "Byblos", "Tyre"],
+      citiesNote: "One office, in Beirut Digital District. Lebanon is small enough that on-site work anywhere in the country is a drive, not a flight — so we do it.",
+      sectors: ["Payments and fintech", "Transport", "Retail and distribution", "Import and trade", "Travel", "Non-profit"],
+      sectorsNote: "These are not a list of industries we would like to serve. Each one is a Lebanese client already running on a system we built — several of their logos are further down this page."
+    },
     intro: [
       "Our office is in Beirut Digital District, and Lebanon has been our home market since 2018. That means we can sit with your team, watch how an invoice actually gets issued and how payroll actually gets approved, and configure Zoho around what we see rather than around a questionnaire.",
       "Lebanese finance and HR teams carry requirements that generic rollouts tend to miss: VAT-compliant invoicing, NSSF contributions, Ministry of Finance reporting, and a working reality where LBP and USD sit side by side. We build for that from the start, and we confirm the exact current rules with your own tax advisor before anything goes live."

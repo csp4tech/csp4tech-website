@@ -778,6 +778,45 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
   .footer-contact-grid { grid-template-columns: 1fr; gap: 14px; }
 }
 
+/* ---------- Market page: at-a-glance, numbers, where-we-work ---------- */
+/* Only the Lebanon page carries these today; the markup is omitted entirely
+   for markets with no data, so these rules cost other pages nothing. */
+.glance { margin: 0; display: grid; gap: 0; }
+.glance dt {
+  font-weight: 800; color: var(--color-ink); font-size: .95rem;
+  padding: 16px 0 4px; border-top: 1px solid var(--color-border);
+}
+.glance dt:first-of-type { border-top: 0; padding-top: 0; }
+.glance dd { margin: 0 0 4px; color: var(--color-ink-soft); font-size: .95rem; line-height: 1.6; }
+
+.compliance-meta { font-size: .85rem; color: var(--color-ink-soft); margin-bottom: 18px; }
+.compliance-table { width: 100%; border-collapse: collapse; }
+.compliance-table th, .compliance-table td {
+  text-align: left; vertical-align: top; padding: 13px 14px;
+  border-bottom: 1px solid var(--color-border); font-size: .92rem; line-height: 1.55;
+}
+.compliance-table th { font-weight: 800; color: var(--color-ink); width: 34%; background: #fff; }
+.compliance-table td { color: var(--color-ink-soft); }
+.compliance-table tr:first-child th, .compliance-table tr:first-child td { border-top: 1px solid var(--color-border); }
+.compliance-note {
+  margin-top: 16px; padding: 14px 16px; border-radius: var(--radius-sm);
+  background: var(--color-primary-light); color: var(--color-primary-dark);
+  font-size: .88rem; line-height: 1.6;
+}
+@media (max-width: 560px) {
+  .compliance-table th, .compliance-table td { display: block; width: auto; }
+  .compliance-table th { border-bottom: 0; padding-bottom: 2px; }
+}
+
+.ground-head { font-size: 1.15rem; margin-bottom: 14px; }
+.ground-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.ground-chips span {
+  display: inline-block; padding: 6px 13px; border-radius: 999px;
+  background: var(--color-surface-alt); border: 1px solid var(--color-border);
+  font-size: .85rem; font-weight: 700; color: var(--color-ink);
+}
+.ground-note { font-size: .9rem; color: var(--color-ink-soft); margin: 0; }
+
 /* ---------- Market page facts strip ---------- */
 /* The researched, country-specific box at the top of each /markets/ page.
    It is the reason these pages are worth publishing rather than a set of
