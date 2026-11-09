@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var MIN_SUBMIT_MS = 2500;
 
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
       var status = form.querySelector("[data-form-status]");
       var honeypot = form.querySelector("#website");
       var loadedAt = loadedAtField ? parseInt(loadedAtField.value, 10) : 0;
@@ -34,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Likely a bot. Show the same success message as a real submission
         // (so scripts don't learn to detect and route around this check)
         // but don't actually send anything.
+        e.preventDefault();
         if (status) {
           status.textContent = "Thanks — we've received your message and will reply within one business day.";
           status.style.color = "#059669";
@@ -62,19 +62,31 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!field.value.trim()) valid = false;
       });
       if (!valid) {
+        e.preventDefault();
         if (status) {
           status.textContent = "Please fill in all required fields.";
           status.style.color = "#B91C1C";
         }
         return;
       }
-      // NOTE: replace this with your real form endpoint (Zoho Forms / CRM webhook) before launch.
+
+      // Everything checks out, so let the browser POST to Zoho. Zoho creates
+      // the Lead and redirects to /thank-you, which is where the visitor sees
+      // the confirmation - so do not reset the form or print a success message
+      // here. The button is disabled on the next tick (not inside this
+      // handler) so that disabling it cannot interfere with the submission
+      // already in flight; it stops a second POST if the redirect is slow.
       if (status) {
-        status.textContent = "Thanks — we've received your message and will reply within one business day.";
-        status.style.color = "#059669";
+        status.textContent = "Sending\u2026";
+        status.style.color = "";
       }
-      form.reset();
-      if (loadedAtField) loadedAtField.value = String(Date.now());
+      var submitBtn = form.querySelector("button[type=submit]");
+      if (submitBtn) {
+        window.setTimeout(function () {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending\u2026";
+        }, 0);
+      }
     });
   }
 

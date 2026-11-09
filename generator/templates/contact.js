@@ -20,10 +20,27 @@ module.exports = function contact() {
       <div class="form-card">
         <h2 style="font-size:1.3rem;">Send us a message</h2>
         <p style="font-size:.9rem;">Tell us briefly about your idea, timeline, or goals — a real person reads every message.</p>
-        <form data-contact-form novalidate>
+        <!-- Posts straight to Zoho CRM's Web-to-Lead endpoint. Zoho writes the
+             Lead, then redirects the visitor to the returnURL below. The four
+             token fields are issued per form by Zoho and are what proves this
+             submission came from our registered form - do not edit or reuse
+             them on another form. -->
+        <form data-contact-form novalidate
+              action="https://crm.zoho.com/crm/WebToLeadForm"
+              method="POST"
+              accept-charset="UTF-8">
+          <input type="hidden" name="xnQsjsdp" value="88c4a6bba0f6b0fa9c86508c2bc3dd4dd6e73f188d87690c00b8e3981d85ecc8">
+          <input type="hidden" name="xmIwtLD" value="3a315686073cb1fdb4b5d82f87f1ddb663079fd178e077e9102287ad2c6331f9a44f5c90722dc59dc408cc379d5d68a6">
+          <input type="hidden" name="actionType" value="TGVhZHM=">
+          <input type="hidden" name="returnURL" value="https://www.csp4tech.com/thank-you">
+          <!-- Google Ads click id, filled by Zoho's own script when present. -->
+          <input type="hidden" name="zc_gad" id="zc_gad" value="">
+          <!-- Zoho's own honeypot. Must be submitted and must stay empty. -->
+          <input type="text" name="aG9uZXlwb3Q" value="" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <!-- Our second honeypot, caught in main.js before the POST happens. -->
           <div class="visually-hidden" aria-hidden="true">
             <label for="website">Leave this field blank</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            <input type="text" id="website" tabindex="-1" autocomplete="off">
           </div>
           <input type="hidden" data-form-loaded-at value="">
           <!-- Field NAMES match the Zoho CRM Leads web form exactly; Zoho keys
