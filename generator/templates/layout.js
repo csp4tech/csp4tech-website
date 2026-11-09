@@ -221,6 +221,15 @@ function footer(products) {
           <a href="/compare/">Compare</a>
           <a href="/platforms/">Other Platforms</a>
         </div>
+        <!-- The grid is four columns wide and Company is the fifth block, so it
+             wraps to a second row and used to leave three cells empty. This
+             fills them. It spans those three cells on desktop and the full
+             width once the grid drops to two columns. -->
+        <div class="footer-cta">
+          <h2>Not sure where to start?</h2>
+          <p>Tell us how your business runs today and we'll map out which Zoho apps actually fit — and which ones you can skip.</p>
+          <a href="/contact-us" class="btn btn-accent">Get a Free Consultation</a>
+        </div>
       </div>
 
       <!-- Contact details in the footer, not only on the contact page: most
