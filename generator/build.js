@@ -65,6 +65,17 @@ function copyAssets() {
       fs.copyFileSync(path.join(iconsDir, file), path.join(DIST, file));
     }
   }
+  // Anything that has to sit at the site root under an exact filename that
+  // someone else chose: search-engine ownership files today, ads.txt or a
+  // well-known file tomorrow. Drop it in and it ships. These are NOT pages -
+  // they carry no title, description or canonical, and the page audit skips
+  // them by name.
+  const rootDir = path.join(assetsDir, "root");
+  if (fs.existsSync(rootDir)) {
+    for (const file of fs.readdirSync(rootDir)) {
+      fs.copyFileSync(path.join(rootDir, file), path.join(DIST, file));
+    }
+  }
   fs.copyFileSync(path.join(assetsDir, "og-banner.jpg"), path.join(DIST, "images", "og-banner.jpg"));
   fs.copyFileSync(path.join(assetsDir, "zoho-partner-badge.png"), path.join(DIST, "images", "zoho-partner-badge.png"));
   // Real client logos for the "trusted by" marquee.
