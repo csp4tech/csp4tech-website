@@ -43,6 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // Zoho's Leads form has no field for "what are you interested in", and
+      // the answer is the most useful line in the whole enquiry. Fold it into
+      // the Description, which is the field Zoho does have. The select and the
+      // textarea carry no name attribute, so this hidden input is the only
+      // thing that reaches Zoho.
+      var hiddenDesc = form.querySelector("[data-zoho-description]");
+      var interest = form.querySelector("#interest");
+      var message = form.querySelector("#message");
+      if (hiddenDesc && message) {
+        var picked = interest && interest.value ? interest.value : "";
+        hiddenDesc.value = (picked ? "Interested in: " + picked + "\n\n" : "") + message.value;
+      }
+
       var required = form.querySelectorAll("[required]");
       var valid = true;
       required.forEach(function (field) {

@@ -23,6 +23,7 @@ const blogIndexTpl = require("./templates/blogIndex");
 const blogPostTpl = require("./templates/blogPost");
 const privacyTpl = require("./templates/privacy");
 const termsTpl = require("./templates/terms");
+const thankYouTpl = require("./templates/thankYou");
 const platformsIndexTpl = require("./templates/platformsIndex");
 const platformPageTpl = require("./templates/platformPage");
 const compareIndexTpl = require("./templates/compareIndex");
@@ -380,6 +381,17 @@ function build() {
     description: "What CSP4TECH collects through this website, how contact and enquiry details are used, how long they are kept, and how to ask for your information to be removed.",
     path: "/privacy-policy",
     bodyHtml: privacyTpl(),
+  });
+
+  // Thank-you page. Zoho redirects here once it has accepted the lead, so it
+  // is reachable only after a real submission — noindex, and kept out of the
+  // sitemap on purpose.
+  emit("thank-you.html", {
+    title: "Thanks — message received | CSP4TECH",
+    description: "Your message has reached the CSP4TECH team in Beirut. We read every enquiry and normally reply within one business day.",
+    path: "/thank-you",
+    robots: "noindex, follow",
+    bodyHtml: thankYouTpl(),
   });
 
   // Terms of Use

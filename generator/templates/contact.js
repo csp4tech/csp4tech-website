@@ -26,17 +26,28 @@ module.exports = function contact() {
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
           <input type="hidden" data-form-loaded-at value="">
+          <!-- Field NAMES match the Zoho CRM Leads web form exactly; Zoho keys
+               on the field label, so "First Name" with the space is correct and
+               must not be tidied up. The ids stay readable for the CSS and JS. -->
           <div class="form-grid-2">
-            <div class="form-row"><label for="fullName">Full name *</label><input id="fullName" name="fullName" type="text" required></div>
-            <div class="form-row"><label for="workEmail">Work email *</label><input id="workEmail" name="workEmail" type="email" required></div>
+            <div class="form-row"><label for="firstName">First name *</label><input id="firstName" name="First Name" type="text" autocomplete="given-name" required></div>
+            <div class="form-row"><label for="lastName">Last name *</label><input id="lastName" name="Last Name" type="text" autocomplete="family-name" required></div>
           </div>
           <div class="form-grid-2">
-            <div class="form-row"><label for="company">Company name *</label><input id="company" name="company" type="text" required></div>
-            <div class="form-row"><label for="mobile">Phone (with country code) *</label><input id="mobile" name="mobile" type="tel" required></div>
+            <div class="form-row"><label for="workEmail">Work email *</label><input id="workEmail" name="Email" type="email" autocomplete="email" required></div>
+            <div class="form-row"><label for="mobile">Phone (with country code) *</label><input id="mobile" name="Phone" type="tel" autocomplete="tel" required></div>
           </div>
           <div class="form-row">
-            <label for="services">What are you interested in?</label>
-            <select id="services" name="services">
+            <label for="company">Company name *</label>
+            <input id="company" name="Company" type="text" autocomplete="organization" required>
+          </div>
+          <!-- These two carry no name attribute on purpose, so the browser does
+               not submit them. main.js folds both into the hidden Description
+               below, because Zoho has no field for "what are you interested in"
+               and the answer is worth keeping. -->
+          <div class="form-row">
+            <label for="interest">What are you interested in?</label>
+            <select id="interest">
               <option value="">Select an area</option>
               <option>Zoho CRM</option>
               <option>Zoho Books / Finance</option>
@@ -47,12 +58,12 @@ module.exports = function contact() {
             </select>
           </div>
           <div class="form-row">
-            <label for="description">What are you trying to solve? *</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
+            <label for="message">What are you trying to solve? *</label>
+            <textarea id="message" rows="4" required></textarea>
           </div>
+          <input type="hidden" name="Description" data-zoho-description value="">
           <button type="submit" class="btn btn-primary btn-block">Send message</button>
           <p data-form-status style="font-size:.85rem;margin-top:10px;min-height:1.2em;"></p>
-          <p style="font-size:.76rem;color:#9C9AC4;margin-top:6px;">This form is a static front-end — connect it to your Zoho Forms/CRM webhook endpoint before launch. See README.</p>
         </form>
       </div>
 
