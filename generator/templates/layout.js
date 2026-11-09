@@ -349,7 +349,13 @@ function page({ title, description, path, bodyHtml, products, extraHead = "", ro
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${config.domain}${path}">
-<link rel="icon" href="/images/logo-mark.png" type="image/png">
+<!-- The logo mark is 192x214. Google wants a SQUARE icon and will skip or
+     awkwardly crop one that is not, which is why these are generated padded
+     to a square rather than pointing straight at the mark. -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="robots" content="${robots}">
 <meta property="og:site_name" content="${config.siteName}">
 <meta property="og:locale" content="en_US">

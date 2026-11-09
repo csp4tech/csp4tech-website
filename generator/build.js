@@ -56,6 +56,15 @@ function copyAssets() {
   fs.copyFileSync(path.join(assetsDir, "main.js"), path.join(DIST, "js", "main.js"));
   // Real CSP4TECH brand assets (replaced the placeholder recreated mark).
   fs.copyFileSync(path.join(assetsDir, "logo-mark.png"), path.join(DIST, "images", "logo-mark.png"));
+  // Site icons go to the ROOT, not under /images/: Google looks for
+  // /favicon.ico at the root regardless of what the <link> tags say, and a
+  // stable top-level URL is what it caches.
+  const iconsDir = path.join(assetsDir, "icons");
+  if (fs.existsSync(iconsDir)) {
+    for (const file of fs.readdirSync(iconsDir)) {
+      fs.copyFileSync(path.join(iconsDir, file), path.join(DIST, file));
+    }
+  }
   fs.copyFileSync(path.join(assetsDir, "og-banner.jpg"), path.join(DIST, "images", "og-banner.jpg"));
   fs.copyFileSync(path.join(assetsDir, "zoho-partner-badge.png"), path.join(DIST, "images", "zoho-partner-badge.png"));
   // Real client logos for the "trusted by" marquee.
