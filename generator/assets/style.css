@@ -76,7 +76,7 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 /* ---------- Header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border);
   transition: box-shadow .25s ease;
 }
 .site-header.is-scrolled { box-shadow: 0 4px 20px rgba(30,27,46,0.1); }
@@ -551,7 +551,9 @@ section { padding: 78px 0; }
 .product-hero .category-tag { display: inline-block; background: var(--color-primary-light); color: var(--color-primary-dark); padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-bottom: 14px; }
 .product-hero h1 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); }
 .product-hero .tagline { font-size: 1.05rem; }
-.product-hero-icon-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+/* Wraps because the widest platform wordmark (Oracle) plus the tag beside
+   it ran 46px past a 320px screen. */
+.product-hero-icon-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 14px; }
 .product-hero-icon { width: 56px; height: 56px; object-fit: contain; padding: 8px; background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); flex: none; }
 
 /* Official Zoho app logos on product cards and in nav menus */
@@ -570,6 +572,7 @@ section { padding: 78px 0; }
    Oracle, Salesforce, Shopify) — wordmarks, so sized by height with the
    width left free rather than boxed like the square Zoho app icons. */
 .platform-hero-icon { height: 40px; width: auto; max-width: 200px; object-fit: contain; flex: none; }
+@media (max-width: 420px) { .platform-hero-icon { height: 32px; max-width: 160px; } }
 .card .platform-logo { height: 32px; width: auto; max-width: 160px; object-fit: contain; margin-bottom: 14px; display: block; }
 
 /* ---------- "Our presence" (events / where we show up) ---------- */
@@ -633,10 +636,16 @@ section { padding: 78px 0; }
 
 /* Forms */
 .form-card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-md); }
+@media (max-width: 420px) { .form-card { padding: 22px 18px; } }
 .form-row { display: grid; gap: 6px; margin-bottom: 16px; }
 .form-row label { font-size: 0.85rem; font-weight: 700; color: var(--color-ink); }
 .form-row input, .form-row textarea, .form-row select {
   border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 12px 14px; font-family: inherit; font-size: 0.95rem; color: var(--color-ink);
+  /* An <input> carries an intrinsic width from its default size=20, and a
+     grid item will not shrink below its content, so on a 320px screen
+     (iPhone SE, Galaxy S9+) the card was pushed 40px past the viewport.
+     These two let it shrink to whatever room there is. */
+  width: 100%; min-width: 0;
 }
 .form-row input:focus, .form-row textarea:focus, .form-row select:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; }
 .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -722,6 +731,9 @@ section { padding: 78px 0; }
 .text-center { text-align: center; }
 .mt-0 { margin-top: 0; }
 .two-col { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+/* Grid items default to min-width:auto and refuse to shrink below their
+   content. Without this a wide child widens the whole page. */
+.two-col > * { min-width: 0; }
 @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
 .badge-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .badge { background: var(--color-surface-alt); border: 1px solid var(--color-border); padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; }
