@@ -323,9 +323,13 @@ function build() {
         { name: section.label, url: section.base },
         { name: e.kicker, url: `${section.base}${e.slug}` },
       ]);
-      const detailTpl = section.key === "markets" ? marketPageTpl : solutionPageTpl;
+      // Lebanon city pages use the market template too: both describe a
+      // place rather than a service, and both need the facts strip, the
+      // at-a-glance block and the "where we work" section.
+      const placeSection = section.key === "markets" || section.key === "lebanon";
+      const detailTpl = placeSection ? marketPageTpl : solutionPageTpl;
       emit(`${section.base.slice(1)}${e.slug}.html`, {
-        title: section.key === "markets" ? `${e.metaTitle} | CSP4TECH` : `${e.metaTitle}`,
+        title: placeSection ? `${e.metaTitle} | CSP4TECH` : `${e.metaTitle}`,
         description: e.metaDescription,
         path: `${section.base}${e.slug}`,
         bodyHtml: detailTpl(e, section.entries, products, section),

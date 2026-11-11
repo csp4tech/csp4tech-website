@@ -604,4 +604,122 @@ module.exports = [
       { q: "Do you resell Microsoft licences?", a: "No. You buy licences directly from Microsoft or through your own Microsoft reseller, and we work inside the tenant you already have. We will advise on which user types your scope needs so you are not paying for more than you use." }
     ]
   },
+  {
+    slug: "crm-software-lebanon",
+    kicker: "CRM",
+    title: "CRM Software for Lebanese Businesses",
+    metaTitle: "CRM Software in Lebanon | Zoho CRM Setup | CSP4TECH",
+    metaDescription:
+      "Zoho CRM configured for Lebanon: WhatsApp as a real sales channel, quoting in USD and collecting in LBP, Arabic and English, and when you do not need a CRM.",
+    intro: [
+      "Most Lebanese companies do not lose deals because nobody is selling. They lose them because the pipeline lives in three places at once: a WhatsApp thread on one person's phone, a spreadsheet somebody updates on Fridays, and the memory of whoever took the call. Nothing is written down in a way that survives that person being on leave, and quotes get re-typed from scratch every time.",
+      "A CRM fixes that only if it matches how selling here actually happens. The single biggest reason CRM projects fail in Lebanon is that the system ignores WhatsApp, so the real conversation stays on the phone and the CRM slowly fills with stale records nobody trusts. We configure around that rather than against it.",
+    ],
+    problems: [
+      "The pipeline is a spreadsheet, and the only accurate version is in one person's head.",
+      "The real conversation happens on WhatsApp, so the CRM never reflects what was actually agreed.",
+      "Quotes are rebuilt in Word each time, with prices in USD and part-payment expected in LBP.",
+      "Nobody can say what was sold last month without someone spending an afternoon adding it up.",
+    ],
+    included: [
+      {
+        title: "WhatsApp treated as a sales channel, not an afterthought",
+        text: "In Lebanon WhatsApp is where the deal actually happens. Zoho CRM connects to WhatsApp Business so conversations attach to the contact record and a colleague can pick up a thread without asking who spoke to the customer last. Get this wrong and the rest of the CRM is decoration.",
+      },
+      {
+        title: "Quoting in one currency, collecting in another",
+        text: "We set the pricing, currency and tax handling up so a quote can be issued in USD and settlement recorded in LBP or a mix, with 11% VAT applied correctly, and so the quote becomes an invoice in Zoho Books without anyone re-typing a line.",
+      },
+      {
+        title: "Arabic and English side by side",
+        text: "Field labels, templates and customer-facing documents configured in both, with right-to-left layout that holds together. We do this during setup, because converting a live CRM after the team has learned the English labels costs more disruption than it saves.",
+      },
+      {
+        title: "The data migration nobody budgets for",
+        text: "Contacts arrive as duplicated spreadsheets, old exports and phone contact lists. Cleaning, de-duplicating and mapping that is usually the longest part of the project and the part that decides whether anyone trusts the system. We quote it honestly rather than hiding it in a configuration line.",
+      },
+      {
+        title: "The right size of CRM, which is often the smaller one",
+        text: "Zoho Bigin suits a small team that wants a pipeline today. Zoho CRM is worth it once you need custom fields, automation and real reporting. Zoho CRM Plus adds support, marketing and analytics around it. We recommend the one that fits, and we have talked people down a tier more than once.",
+      },
+    ],
+    zohoApps: ["crm", "bigin", "crmplus", "salesiq", "marketingplus"],
+    faqs: [
+      {
+        q: "Can Zoho CRM really work with WhatsApp?",
+        a: "Yes. Zoho CRM integrates with WhatsApp Business so messages are logged against the contact and can be sent from inside the CRM. It needs a WhatsApp Business account set up properly first, and we handle that as part of the project rather than leaving it as homework.",
+      },
+      {
+        q: "Will it handle prices in USD and payment in LBP?",
+        a: "Yes. Zoho CRM and Zoho Books support multi-currency, so you can quote in USD and record settlement in LBP, in USD, or split between them. The part that matters is setting the base currency and exchange-rate handling before the first quote goes out, because changing it afterwards means reworking history.",
+      },
+      {
+        q: "How long does a CRM setup take?",
+        a: "It depends almost entirely on the state of your existing data, not on the configuration. A clean start for a small team can be live in weeks. Migrating years of messy contacts from several spreadsheets takes considerably longer, and we scope that honestly after seeing the actual files.",
+      },
+      {
+        q: "Do we actually need a CRM?",
+        a: "Not always. If one person handles every customer and remembers every conversation, a CRM adds admin and removes nothing. It starts paying when more than one person touches a deal, when handovers lose information, or when you cannot answer what is in the pipeline without asking around. We will tell you if you are not there yet.",
+      },
+    ],
+  },
+  {
+    slug: "payroll-software-lebanon",
+    kicker: "Payroll",
+    title: "Payroll Software for Lebanon — and Why Zoho Payroll Is Not It",
+    metaTitle: "Payroll Software in Lebanon | NSSF & LBP/USD | CSP4TECH",
+    metaDescription:
+      "Zoho Payroll does not cover Lebanon. What we build instead: Zoho People for HR plus a Lebanese payroll calculation handling NSSF and LBP/USD salary splits.",
+    intro: [
+      "Start with the part most vendors leave out: Zoho Payroll does not support Lebanon. It is built for a specific list of countries, and Lebanon is not on it. Anyone who tells you they will simply switch on Zoho Payroll for your Beirut company either has not checked or is hoping you will not.",
+      "That does not leave you stuck, but it does change the answer. What works here is Zoho People for the HR side — the employee file, contracts, leave, attendance and documents — with the payroll calculation itself built to Lebanese rules in Zoho Creator and connected to Zoho Books so the journal entries land in the accounts rather than being typed in again.",
+    ],
+    problems: [
+      "Payroll is a spreadsheet one person maintains, and nobody else can run it if they are away.",
+      "Salaries are split between LBP and USD, with the split changing, and the spreadsheet handles it by hand.",
+      "NSSF contributions and end-of-service accrual are recalculated manually every month, with no audit trail.",
+      "HR records, leave balances and payroll live in different files that disagree with each other.",
+    ],
+    included: [
+      {
+        title: "Zoho People for everything around the payslip",
+        text: "Employee records, contracts and documents, leave types and balances, attendance and approvals, joiners and leavers. This part is standard Zoho and it works well in Lebanon — it is the calculation underneath that needs building.",
+      },
+      {
+        title: "A payroll calculation built to Lebanese rules",
+        text: "Built in Zoho Creator so the rules are visible and editable rather than buried in a spreadsheet formula: NSSF contributions, payroll tax withholding, end-of-service indemnity accrual, and the deductions and allowances your company actually uses. Built per client, because no two Lebanese payrolls apply the same allowances.",
+      },
+      {
+        title: "Salaries split across two currencies",
+        text: "A salary agreed partly in USD and partly in LBP, at a rate that may be reviewed, is normal here and is where manual payroll goes wrong. We model the split explicitly so each month's calculation is reproducible and auditable, rather than depending on someone remembering what rate was used.",
+      },
+      {
+        title: "The contribution rates, dated and sourced",
+        text: "As of November 2026, NSSF employer contributions are 8% for sickness and maternity, 6% for family benefits and 5% for end-of-service indemnity, with 3% from the employee for the medical scheme (source: PwC Lebanon tax summaries). Rates and ceilings change, so they are configured as editable values, not hard-coded — and your accountant confirms the position that applies to you before anything runs live.",
+      },
+      {
+        title: "Payroll that reaches the accounts",
+        text: "The monthly run posts to Zoho Books as a journal, so salary cost, employer contributions and liabilities appear in the accounts without re-entry. This is the step most spreadsheet payrolls skip, and it is why the management accounts and the payroll file so often disagree.",
+      },
+    ],
+    zohoApps: ["people", "creator", "books", "recruit", "peopleplus"],
+    faqs: [
+      {
+        q: "Can we just use Zoho Payroll in Lebanon?",
+        a: "No. Zoho Payroll is only available for the countries Zoho has built it for, and Lebanon is not among them. We would rather say that up front than sell you a licence that cannot run your payroll.",
+      },
+      {
+        q: "So what do you actually build?",
+        a: "Zoho People for HR — employee file, leave, attendance, documents — plus a payroll calculation built in Zoho Creator to your company's rules and Lebanese requirements, posting its results into Zoho Books. The HR half is configuration; the calculation is a build, and we scope it as one.",
+      },
+      {
+        q: "What happens when NSSF rates or tax rules change?",
+        a: "The rates are configured as values you can edit, not constants buried in code, so a change is an update rather than a rebuild. We do not act as your tax advisor — your accountant confirms what applies, and the system is built so that applying it is quick.",
+      },
+      {
+        q: "Can it handle end-of-service indemnity?",
+        a: "Yes, as an accrual carried per employee so the liability is visible in the accounts rather than appearing as a surprise when someone leaves. The exact basis is agreed with your accountant during scoping, since this is the area where company practice varies most.",
+      },
+    ],
+  },
 ];

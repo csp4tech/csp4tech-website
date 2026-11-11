@@ -278,6 +278,14 @@ function footer(products) {
         ]
       )}
       ${footerChipRow(
+        "Zoho partner across Lebanon",
+        "Our home market. One office, in Beirut Digital District — the other cities are served from it, which each page states plainly.",
+        SECTIONS.find((s) => s.key === "lebanon").entries.map((e) => ({
+          label: `Zoho Partner ${e.country}`,
+          href: `/lebanon/${e.slug}`,
+        }))
+      )}
+      ${footerChipRow(
         "Zoho partner by country",
         "We have one office, in Beirut. Each market page sets out the Zoho data centre, currency and working week that apply there.",
         SECTIONS.find((s) => s.key === "markets").entries.map((e) => ({

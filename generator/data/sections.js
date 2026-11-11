@@ -1,6 +1,7 @@
 const solutions = require("./solutions");
 const aiApps = require("./aiApps");
 const markets = require("./markets");
+const lebanon = require("./lebanon");
 
 // The two shyphan-parity hubs. Both data sets share one shape, so one pair of
 // templates renders both; this is the only place their copy and URLs live.
@@ -42,7 +43,9 @@ const SECTIONS = [
         heading: "By function",
         blurb: "The capabilities most businesses need regardless of sector, plus the two platforms outside Zoho we work on.",
         slugs: [
+          "crm-software-lebanon",
           "accounting-erp-software",
+          "payroll-software-lebanon",
           "inventory-management-software",
           "hr-software-erp",
           "human-resource-software",
@@ -100,6 +103,35 @@ const SECTIONS = [
           "ecommerce-website",
           "it-staff-augmentation",
         ],
+      },
+    ],
+  },
+  {
+    key: "lebanon",
+    entries: lebanon,
+    base: "/lebanon/",
+    label: "Lebanon",
+    navLabel: "Lebanon",
+    navCta: "Our home market. One office, in Beirut — and real on-site work across the country.",
+    indexTitle: "Zoho Partner in Lebanon, City by City | CSP4TECH",
+    indexDescription:
+      "Zoho implementation across Lebanon: Beirut, Tripoli, Sidon, Tyre, Zahle, Jounieh, Byblos and Baabda. One office, in Beirut Digital District.",
+    indexH1: "Zoho in Lebanon, City by City",
+    indexLead:
+      "Lebanon is our home market and the only one where we work on site as a matter of routine. Each page below covers a different part of the country, because the work genuinely differs: a Bekaa producer needs batch costing, a Tripoli manufacturer needs stock he can trust, and a Beirut agency needs neither. We have exactly one office, in Beirut Digital District, and every page says so.",
+    problemsHeading: "The things that usually bring people to us",
+    relatedKicker: "Elsewhere in Lebanon",
+    relatedHeading: "Other cities and districts we work in",
+    groups: [
+      {
+        heading: "Beirut and Mount Lebanon",
+        blurb: "The capital and the districts around it, where on-site work is a short drive rather than a planned trip.",
+        slugs: ["zoho-partner-beirut", "zoho-partner-baabda", "zoho-partner-jounieh", "zoho-partner-byblos"],
+      },
+      {
+        heading: "North, South and the Bekaa",
+        blurb: "The rest of the country, served with scheduled on-site days from Beirut — no branch offices, and we say so.",
+        slugs: ["zoho-partner-tripoli", "zoho-partner-sidon", "zoho-partner-zahle", "zoho-partner-tyre"],
       },
     ],
   },
