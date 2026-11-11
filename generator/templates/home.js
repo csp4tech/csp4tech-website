@@ -38,12 +38,6 @@ module.exports = function home(products, blogPosts) {
           <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
           <a href="/zoho-products/" class="btn btn-ghost">Browse Zoho Products</a>
         </div>
-        <div class="pill-row">
-          <span class="pill">Implementation &amp; Migration</span>
-          <span class="pill">Arabic/English &amp; RTL</span>
-          <span class="pill">Integrations &amp; APIs</span>
-          <span class="pill">Training &amp; Support</span>
-        </div>
       </div>
       <div class="hero-media">
         <!-- Zoho's own CRM demo footage, supplied by the client. No audio

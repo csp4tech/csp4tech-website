@@ -180,8 +180,6 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 .hero h1 em { font-style: normal; color: var(--color-primary); }
 .hero p.lead { font-size: 1.15rem; line-height: 1.65; max-width: 640px; margin: 0 auto 28px; }
 .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
-.pill-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-.pill { background: #fff; border: 1px solid var(--color-border); border-radius: 999px; padding: 8px 16px; font-size: 0.82rem; font-weight: 600; color: var(--color-ink-soft); }
 
 /* Two-column hero variant with a side illustration. */
 .hero-inner.has-media {
@@ -192,7 +190,6 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 .hero-inner.has-media .eyebrow { margin-bottom: 18px; }
 .hero-inner.has-media p.lead { margin: 0 0 28px; max-width: 560px; }
 .hero-inner.has-media .hero-actions { justify-content: flex-start; }
-.hero-inner.has-media .pill-row { justify-content: flex-start; }
 .hero-media { display: flex; align-items: center; justify-content: center; animation: hero-enter-media .8s cubic-bezier(.2,.7,.3,1) .12s both; }
 .hero-media img { width: 100%; max-width: 440px; height: auto; display: block; }
 
@@ -249,7 +246,6 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
   .hero-inner.has-media .partner-badge { margin: 0 auto 24px; }
   .hero-inner.has-media p.lead { margin: 0 auto 28px; }
   .hero-inner.has-media .hero-actions,
-  .hero-inner.has-media .pill-row { justify-content: center; }
   /* The headline and the call-to-action come first on a phone. The old
      rule floated the hero image above them, which pushed the button
      below the fold now that the visual is a full app window. */
@@ -884,10 +880,6 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 .hero-photo .hero-inner.has-media .partner-badge {
   height: 56px; width: auto; display: block; margin: 0 0 26px;
   filter: drop-shadow(0 10px 24px rgba(2, 30, 28, .45));
-}
-.hero-photo .pill {
-  background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22);
-  color: #D8E8E5; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .hero-photo .btn-ghost {
   background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.38); color: #fff;
