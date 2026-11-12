@@ -277,22 +277,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- Hero video ----------
-  // The hero carries a looping Zoho CRM demo. Its poster is painted straight
-  // away; the ~300KB video itself is only fetched AFTER the load event, so it
-  // never competes with the hero image or the stylesheet for bandwidth during
-  // first paint. Anyone who prefers reduced motion keeps the poster and the
-  // file is never downloaded at all.
-  (function heroVideo() {
+  // ---------- CRM demo video ----------
+  // A looping Zoho CRM demo in its own section below the hero. Its poster is
+  // painted straight away; the ~300KB video itself is only fetched AFTER the
+  // load event, so it never competes with the hero image or the stylesheet
+  // for bandwidth during first paint. Anyone who prefers reduced motion keeps
+  // the poster and the file is never downloaded at all.
+  (function demoVideo() {
     var v = document.querySelector(".hv-video");
     if (!v || !v.dataset.src) return;
     if (reduceMotion) return;                  // poster stays, nothing fetched
-    // Phones get the poster only. Below 860px the window is ~340px wide, where
-    // the CRM detail is unreadable anyway, so the video would be ~380KB of
-    // mobile data buying nothing. Matches the CSS breakpoint that stacks the
-    // hero. Checked once at load, not on resize: a desktop user who narrows
-    // the window keeps the video they already have, which is the cheap outcome.
-    if (window.matchMedia && window.matchMedia("(max-width: 860px)").matches) return;
+    // Small phones get the poster only: at roughly 340px wide the CRM detail
+    // is unreadable, so the file would be ~380KB of mobile data buying
+    // nothing. The threshold used to be 860px, matching the old hero layout;
+    // now the video runs full-width in its own section it is legible well
+    // below that, so it only drops out under 700px. Checked once at load, not
+    // on resize: someone who narrows a desktop window keeps the video they
+    // already have, which is the cheap outcome.
+    if (window.matchMedia && window.matchMedia("(max-width: 700px)").matches) return;
     // Respect an explicit data-saver request where the browser exposes one.
     var conn = navigator.connection;
     if (conn && conn.saveData) return;

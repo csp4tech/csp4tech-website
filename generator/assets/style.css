@@ -199,7 +199,6 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
    Built in CSS rather than as an image so it is crisp on any display and
    adds zero network requests. Every animation here is transform/opacity
    only, and all of it stops under prefers-reduced-motion (see below). */
-.hero-visual { position: relative; width: 100%; max-width: 520px; }
 .hv-window {
   position: relative; z-index: 1; background: #fff;
   border: 1px solid var(--color-border); border-radius: var(--radius-lg);
@@ -219,10 +218,6 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
 @keyframes hv-float {
   from { transform: translateY(0); }
   to { transform: translateY(-10px); }
-}
-
-@media (max-width: 860px) {
-  .hero-visual { max-width: 420px; margin: 0 auto; }
 }
 
 /* ---------- Soft gradient sections + floating image cards ---------- */
@@ -251,7 +246,6 @@ p { margin: 0 0 1em; color: var(--color-ink-soft); }
      below the fold now that the visual is a full app window. */
   .hero-media { order: 0; margin-top: 32px; }
   .hero-media img { max-width: 260px; }
-  .hero-visual { max-width: 340px; }
 }
 
 /* ---------- Sections ---------- */
@@ -943,25 +937,6 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 /* Lift the mock workspace off the photo so it still reads as a surface. */
 .hero-photo .hv-window { box-shadow: 0 30px 70px rgba(0,0,0,.42); }
 
-/* The CRM window drops to the bottom-right of the hero and hangs 90px over
-   its lower edge onto the band below, so it no longer sits across the top of
-   the artwork. Desktop only: under 861px the hero stacks and the window is
-   already the last thing in it, where an overhang would just collide with the
-   next section.
-   -166px = the hero's own 76px bottom padding, plus the 90px of overhang. The
-   grid aligns the MARGIN box, so a negative bottom margin pushes the element
-   itself that much further down. */
-@media (min-width: 861px) {
-  .hero-photo { overflow: visible; }
-  .hero-photo .hero-media {
-    align-self: end; justify-content: flex-end; margin-bottom: -166px;
-  }
-  /* Paints above the following section, which sets no stacking of its own. */
-  .hero-photo .hero-visual { z-index: 3; }
-  /* Clear the overhang so it never lands on the "Trusted by" line. */
-  .section-after-hero { padding-top: 158px; }
-}
-
 @media (max-width: 860px) {
   /* Stacked layout: the text runs the full width, so the wash has to be
      even rather than weighted to one side. */
@@ -981,12 +956,32 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 }
 @media (prefers-reduced-motion: reduce) { .hero-photo .hero-inner { animation: none; } }
 
+/* ---------- CRM showcase section ---------- */
+/* The demo video moved out of the hero into a section of its own, so it can
+   run at its native 1040px instead of 520px. */
+.crm-showcase { padding-bottom: 72px; }
+.crm-demo {
+  position: relative; width: 100%; max-width: 1040px; margin: 0 auto 28px;
+}
+/* The hero version drifted up and down on a loop. At this size that reads as
+   the page wobbling, so it is switched off here. */
+.crm-demo .hv-window { animation: none; }
+.crm-demo figcaption {
+  margin-top: 14px; text-align: center;
+  font-size: .85rem; color: var(--color-ink-soft);
+}
+.crm-showcase-cta { text-align: center; margin: 32px 0 0; }
+@media (max-width: 700px) {
+  .crm-showcase { padding-bottom: 48px; }
+  .crm-demo { margin-bottom: 22px; }
+}
+
 /* ---------- Hero demo video ---------- */
 /* Replaces the CSS workspace mock. The poster paints immediately and the
    video file is fetched after load (see main.js), so the hero's first paint
    costs the poster only. */
-.hero-video .hv-window { padding: 0; overflow: hidden; }
-.hero-video .hv-titlebar { padding: 11px 14px; border-bottom: 1px solid var(--color-border); }
+.app-demo .hv-window { padding: 0; overflow: hidden; }
+.app-demo .hv-titlebar { padding: 11px 14px; border-bottom: 1px solid var(--color-border); }
 .hv-video {
   display: block; width: 100%; height: auto; aspect-ratio: 1040 / 586;
   background: #F4F3FB;

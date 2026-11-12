@@ -56,28 +56,60 @@ module.exports = function home(products, blogPosts) {
           <p class="hero-lead-status" data-hero-lead-status role="status" aria-live="polite"></p>
         </form>
       </div>
-      <div class="hero-media">
-        <!-- Zoho's own CRM demo footage, supplied by the client. No audio
-             track, so autoplay is unobtrusive. It is decorative — the headline
-             carries the meaning — so aria-hidden, and it is NOT announced as a
-             CSP4TECH product or a client's live system.
-             Loading: the poster renders immediately and the video file is
-             fetched only after the page load event (see main.js). That keeps
-             300 KB of video from competing with first paint, and leaves the
-             poster in place for anyone who prefers reduced motion. -->
-        <div class="hero-visual hero-video" aria-hidden="true">
-          <div class="hv-window">
-            <div class="hv-titlebar"><span></span><span></span><span></span></div>
-            <video
-              class="hv-video"
-              data-src="/images/hero/crm-demo.mp4"
-              data-src-webm="/images/hero/crm-demo.webm"
-              poster="/images/hero/crm-demo-poster.webp"
-              width="1040" height="586"
-              muted loop playsinline preload="none"></video>
-          </div>
+    </div>
+  </section>
+
+  <!-- The CRM demo used to sit beside the headline at 520px, where it was
+       decorative and too small to read. Here it is the point of the section,
+       so: full width at its native 1040px, no longer aria-hidden, the float
+       animation switched off (a large element drifting is a distraction, not
+       a flourish), and a visible caption naming whose software it is. That
+       caption is not optional - it is what stops the footage reading as a
+       CSP4TECH product or a client's live system.
+       Loading is unchanged: the poster paints immediately and the file is
+       fetched only after the page load event (see main.js). -->
+  <section class="crm-showcase">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Zoho CRM</span>
+        <h2>The CRM every department can actually work from</h2>
+        <p>Not just a tool for the sales team. Sales, support, finance and HR working from one customer record instead of four, with the routine steps automated and Zoho&rsquo;s own AI handling the parts nobody enjoys.</p>
+      </div>
+
+      <figure class="crm-demo app-demo">
+        <div class="hv-window">
+          <div class="hv-titlebar"><span></span><span></span><span></span></div>
+          <video
+            class="hv-video"
+            data-src="/images/hero/crm-demo.mp4"
+            data-src-webm="/images/hero/crm-demo.webm"
+            poster="/images/hero/crm-demo-poster.webp"
+            width="1040" height="586"
+            muted loop playsinline preload="none"
+            aria-label="Screen recording of Zoho CRM"></video>
+        </div>
+        <figcaption>Zoho CRM in use. Product footage from Zoho &mdash; not a CSP4TECH product, and not a client&rsquo;s live data.</figcaption>
+      </figure>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>One record, every department</h3>
+          <p>Sales works the pipeline, support sees the whole history, finance raises the invoice from the same deal. Nobody re-types a customer into a second system, and nobody argues about which copy is right.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3>Automation that removes the admin</h3>
+          <p>Workflow rules, approval chains and blueprints assign the lead, chase the follow-up and hold a deal at a stage until the right step is actually done &mdash; so your process stops depending on somebody remembering.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg></div>
+          <h3>Zia, the AI built into Zoho</h3>
+          <p>Zia scores leads, flags unusual activity, suggests when someone is most likely to answer and drafts replies. It assists; a person still decides. We switch it on for the work where it is reliable and leave it off where it is not.</p>
         </div>
       </div>
+
+      <p class="crm-showcase-cta"><a href="/zoho-products/crm" class="btn btn-primary">See what Zoho CRM does</a></p>
     </div>
   </section>
 
