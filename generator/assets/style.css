@@ -979,10 +979,11 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 .app-demo .hv-window { padding: 0; overflow: hidden; }
 .app-demo .hv-titlebar { padding: 11px 14px; border-bottom: 1px solid var(--color-border); }
 .hv-video {
-  display: block; width: 100%; height: auto; aspect-ratio: 1040 / 586;
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
   background: #F4F3FB;
-  /* contain, not cover: the box ratio matches the file exactly, so this is a
-     no-op today, but if a future re-encode changes the ratio it letterboxes
-     against the matching chrome colour instead of silently cropping the UI. */
+  /* contain, not cover: the box ratio matches the file exactly (1920x1080),
+     so this is a no-op today, but if a future re-encode changes the ratio it
+     letterboxes against the matching chrome colour instead of silently
+     cropping the UI. */
   object-fit: contain;
 }

@@ -86,7 +86,7 @@ module.exports = function home(products, blogPosts) {
             data-src="/images/hero/crm-demo.mp4"
             data-src-webm="/images/hero/crm-demo.webm"
             poster="/images/hero/crm-demo-poster.webp"
-            width="1040" height="586"
+            width="1920" height="1080"
             muted loop playsinline preload="none"
             aria-label="Screen recording of Zoho CRM"></video>
         </div>
