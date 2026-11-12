@@ -845,7 +845,17 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 /* ---------- Photo hero (homepage) ---------- */
 /* A full-bleed image behind the headline. Scoped to .hero-photo so every
    other page's hero keeps the lighter gradient treatment. */
-.hero-photo { background: #06312E; padding: 88px 0 76px; }
+.hero-photo { background: #06312E; padding: 56px 0 76px; }
+/* The lead-capture panel is taller than the pair of buttons it replaced, so
+   the homepage hero is tightened to keep the Book a Free Consultation button
+   above the fold on a 1366x768 laptop. Scoped to .hero-photo: the other
+   heroes are shorter and keep their original rhythm. */
+.hero-photo h1 { font-size: clamp(2.3rem, 4.3vw, 3.4rem); margin-bottom: 0.30em; }
+/* Break between the plain and the highlighted half of the headline, so it
+   never reads as "...Implementation Your / Team Will Actually Use". Same
+   number of lines either way at this column width. */
+.hero-photo h1 em { display: block; }
+.hero-photo .hero-inner.has-media p.lead { margin-bottom: 20px; }
 /* The drifting colour blobs are for the light hero; over a photograph they
    just muddy it. */
 .hero-photo::before, .hero-photo::after { display: none; }
@@ -878,9 +888,53 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
    a shadow to lift it off the picture.
    The selector carries four classes so it beats that margin rule outright. */
 .hero-photo .hero-inner.has-media .partner-badge {
-  height: 56px; width: auto; display: block; margin: 0 0 26px;
+  height: 56px; width: auto; display: block; margin: 0 0 16px;
   filter: drop-shadow(0 10px 24px rgba(2, 30, 28, .45));
 }
+/* Two-field lead capture that replaced the pair of hero buttons. It sits on
+   the dark photo hero, so it is built as a translucent panel rather than a
+   white card: a white card here would fight the artwork behind it. */
+.hero-lead {
+  max-width: 520px; margin: 0 0 28px; padding: 20px;
+  background: rgba(2, 30, 28, .42);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  text-align: left;
+}
+.hero-lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.hero-lead-row { display: flex; flex-direction: column; min-width: 0; }
+.hero-lead-row label {
+  font-size: .85rem; font-weight: 600; color: rgba(255, 255, 255, .92); margin-bottom: 7px;
+}
+.hero-lead-row input {
+  width: 100%; min-width: 0; padding: 12px 14px;
+  background: rgba(0, 0, 0, .30);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: var(--radius-sm);
+  color: #fff; font-size: .95rem; font-family: inherit;
+}
+.hero-lead-row input::placeholder { color: rgba(255, 255, 255, .45); }
+.hero-lead-row input:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, .85); outline-offset: 1px;
+  border-color: rgba(255, 255, 255, .5);
+}
+.hero-lead-row input[aria-invalid="true"] { border-color: #FCA5A5; }
+.hero-lead-submit {
+  display: block; width: 100%; border-radius: 999px; padding: 15px 24px; font-size: 1rem;
+}
+.hero-lead-note { font-size: .82rem; color: rgba(255, 255, 255, .62); margin: 12px 0 0; }
+.hero-lead-status { font-size: .82rem; color: #FCA5A5; margin: 8px 0 0; min-height: 0; }
+.hero-lead-status:empty { margin: 0; }
+/* The two fields are too cramped side by side on a narrow phone. */
+@media (max-width: 560px) {
+  .hero-lead { padding: 18px; }
+  .hero-lead-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+/* Centred hero variant (no media column) centres everything else, so centre
+   the panel too rather than leaving it stranded on the left. */
+.hero-inner:not(.has-media) .hero-lead { margin-left: auto; margin-right: auto; }
+
 .hero-photo .btn-ghost {
   background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.38); color: #fff;
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);

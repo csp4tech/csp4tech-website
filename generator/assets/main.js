@@ -12,8 +12,77 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ---------- Hero lead capture (step 1 of 2) ----------
+  // The hero form carries the first name and email over to the contact page
+  // in sessionStorage, not in the URL. A query string would put a real name
+  // and email into the address bar, the browser history, the referrer sent
+  // to any third party and the server logs, for no benefit.
+  var LEAD_KEY = "csp4tech:lead";
+  var heroLead = document.querySelector("[data-hero-lead]");
+  if (heroLead) {
+    heroLead.addEventListener("submit", function (e) {
+      var status = heroLead.querySelector("[data-hero-lead-status]");
+      var fnField = heroLead.querySelector("#heroFirstName");
+      var emField = heroLead.querySelector("#heroEmail");
+      var firstName = fnField ? fnField.value.trim() : "";
+      var email = emField ? emField.value.trim() : "";
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+
+      if (fnField) fnField.setAttribute("aria-invalid", firstName ? "false" : "true");
+      if (emField) emField.setAttribute("aria-invalid", emailOk ? "false" : "true");
+
+      if (!firstName || !emailOk) {
+        e.preventDefault();
+        if (status) {
+          status.textContent = !firstName
+            ? "Please add your first name so we know who we are replying to."
+            : "That email address does not look right \u2014 please check it.";
+        }
+        var focusTarget = !firstName ? fnField : emField;
+        if (focusTarget) focusTarget.focus();
+        return;
+      }
+
+      if (status) status.textContent = "";
+      try {
+        window.sessionStorage.setItem(
+          LEAD_KEY,
+          JSON.stringify({ firstName: firstName, email: email })
+        );
+      } catch (err) {
+        // Private browsing or blocked storage. The form still submits; the
+        // contact page simply starts empty rather than prefilled.
+      }
+      // Navigate explicitly rather than letting the GET form submit. A GET
+      // submission with no named fields still appends a bare "?" to the URL,
+      // which is an ugly second address for the same page. Without
+      // JavaScript the form submits normally and that stray "?" is harmless.
+      e.preventDefault();
+      window.location.assign(heroLead.getAttribute("action") || "/contact-us");
+    });
+  }
+
   var form = document.querySelector("[data-contact-form]");
   if (form) {
+    // Arriving from the hero's step 1: prefill, then clear the handover so a
+    // later visit to this page does not resurrect somebody else's details on
+    // a shared machine.
+    try {
+      var handover = window.sessionStorage.getItem(LEAD_KEY);
+      if (handover) {
+        window.sessionStorage.removeItem(LEAD_KEY);
+        var lead = JSON.parse(handover);
+        var preFirst = form.querySelector("#firstName");
+        var preEmail = form.querySelector("#workEmail");
+        if (preFirst && lead.firstName) preFirst.value = lead.firstName;
+        if (preEmail && lead.email) preEmail.value = lead.email;
+        var nextField = form.querySelector("#lastName");
+        if (nextField) nextField.focus({ preventScroll: true });
+      }
+    } catch (err) {
+      // Unreadable or malformed storage: fall through to an empty form.
+    }
+
     // Basic spam protection: a honeypot field real visitors never see or
     // fill (bots that auto-fill every field will), plus a minimum time
     // between page load and submit (bots tend to submit almost instantly).

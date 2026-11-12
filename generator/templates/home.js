@@ -32,12 +32,29 @@ module.exports = function home(products, blogPosts) {
     <div class="container hero-inner has-media">
       <div class="hero-text">
         <img src="/images/zoho-partner-badge.png" alt="Zoho Authorized Partner badge" class="partner-badge" width="220" height="61">
-        <h1>Zoho, set up the way your business <em>actually works</em></h1>
+        <h1>Zoho Consulting &amp; Implementation <em>Your Team Will Actually Use</em></h1>
         <p class="lead">A Zoho Authorized Partner headquartered in Beirut — implementation, migration, integrations and ongoing support across the full Zoho suite, for clients in Lebanon, the Gulf, Iraq and North Africa, in Arabic or English.</p>
-        <div class="hero-actions">
-          <a href="/contact-us" class="btn btn-primary">Get a Free Consultation</a>
-          <a href="/zoho-products/" class="btn btn-ghost">Browse Zoho Products</a>
-        </div>
+        <!-- Step one of a two-step enquiry. These inputs deliberately carry no
+             name attribute, so submitting navigates to /contact-us with a
+             clean URL and no personal data in the query string. main.js hands
+             the two values over in sessionStorage instead and the contact page
+             prefills itself from that. With JavaScript off the form still
+             works - it just lands on the contact page empty. -->
+        <form class="hero-lead" action="/contact-us" method="get" data-hero-lead novalidate>
+          <div class="hero-lead-grid">
+            <div class="hero-lead-row">
+              <label for="heroFirstName">First name</label>
+              <input id="heroFirstName" type="text" autocomplete="given-name" placeholder="Rami" aria-describedby="heroLeadNote">
+            </div>
+            <div class="hero-lead-row">
+              <label for="heroEmail">Work email</label>
+              <input id="heroEmail" type="email" autocomplete="email" placeholder="rami@company.com" aria-describedby="heroLeadNote">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary hero-lead-submit">Book a Free Consultation</button>
+          <p class="hero-lead-note" id="heroLeadNote">Step 1 of 2. Next, you&rsquo;ll finish a short consultation form.</p>
+          <p class="hero-lead-status" data-hero-lead-status role="status" aria-live="polite"></p>
+        </form>
       </div>
       <div class="hero-media">
         <!-- Zoho's own CRM demo footage, supplied by the client. No audio
