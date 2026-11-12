@@ -966,10 +966,6 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 /* The hero version drifted up and down on a loop. At this size that reads as
    the page wobbling, so it is switched off here. */
 .crm-demo .hv-window { animation: none; }
-.crm-demo figcaption {
-  margin-top: 14px; text-align: center;
-  font-size: .85rem; color: var(--color-ink-soft);
-}
 .crm-showcase-cta { text-align: center; margin: 32px 0 0; }
 @media (max-width: 700px) {
   .crm-showcase { padding-bottom: 48px; }

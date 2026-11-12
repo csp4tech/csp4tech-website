@@ -63,9 +63,11 @@ module.exports = function home(products, blogPosts) {
        decorative and too small to read. Here it is the point of the section,
        so: full width at its native 1040px, no longer aria-hidden, the float
        animation switched off (a large element drifting is a distraction, not
-       a flourish), and a visible caption naming whose software it is. That
-       caption is not optional - it is what stops the footage reading as a
-       CSP4TECH product or a client's live system.
+       a flourish). Provenance is carried by the section itself: the kicker
+       reads "Zoho CRM", the heading names the product, and the recording
+       shows Zoho's own branded interface and its own demo data - so nothing
+       here reads as a CSP4TECH product or a client's live system. The
+       video keeps its aria-label for assistive tech.
        Loading is unchanged: the poster paints immediately and the file is
        fetched only after the page load event (see main.js). -->
   <section class="crm-showcase">
@@ -88,7 +90,6 @@ module.exports = function home(products, blogPosts) {
             muted loop playsinline preload="none"
             aria-label="Screen recording of Zoho CRM"></video>
         </div>
-        <figcaption>Zoho CRM in use. Product footage from Zoho &mdash; not a CSP4TECH product, and not a client&rsquo;s live data.</figcaption>
       </figure>
 
       <div class="grid grid-3">
