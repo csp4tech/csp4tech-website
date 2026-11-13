@@ -625,6 +625,54 @@ section { padding: 78px 0; }
 .blog-post-body ul li { margin-bottom: 6px; color: var(--color-ink-soft); }
 
 /* Forms */
+/* ---------- Contact dialog ----------
+   Opened by the Get Started buttons, and on desktop only by a 60-second timer
+   and by exit intent (see main.js). Never opens by itself on a phone: a dialog
+   covering a small screen is exactly the case Google's interstitial guidance
+   describes, and most of this site's traffic is mobile.
+   Sits above the sticky header (z-index 100) and the floating buttons (80). */
+.cm-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(2, 30, 28, .58);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  animation: cm-fade .18s ease-out both;
+}
+/* display:flex would otherwise beat the hidden attribute. */
+.cm-overlay[hidden] { display: none; }
+.cm-panel {
+  position: relative; width: 100%; max-width: 560px;
+  max-height: calc(100vh - 40px); overflow-y: auto;
+  background: #fff; border-radius: var(--radius-lg);
+  padding: 32px; box-shadow: 0 30px 80px rgba(2, 30, 28, .34);
+  animation: cm-rise .22s cubic-bezier(.2,.7,.3,1) both;
+}
+.cm-panel h2 { font-size: 1.45rem; margin: 10px 0 8px; }
+.cm-lead { font-size: .92rem; color: var(--color-ink-soft); margin: 0 0 22px; }
+.cm-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 0; border-radius: 50%;
+  color: var(--color-ink-soft); cursor: pointer;
+}
+.cm-close:hover { background: var(--color-surface-alt); color: var(--color-ink); }
+.cm-close:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.cm-status { font-size: .85rem; margin: 10px 0 0; min-height: 1.2em; }
+.cm-alt { font-size: .85rem; color: var(--color-ink-soft); margin: 14px 0 0; text-align: center; }
+@keyframes cm-fade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes cm-rise { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: none } }
+/* The title is the first thing a small screen should show, so the panel is
+   pinned to the top rather than centred once there is no room to centre in. */
+@media (max-width: 560px) {
+  .cm-overlay { padding: 12px; align-items: flex-start; }
+  .cm-panel { padding: 24px 18px; max-height: calc(100vh - 24px); }
+  .cm-panel h2 { font-size: 1.25rem; padding-right: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cm-overlay, .cm-panel { animation: none; }
+}
+
 .form-card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-md); }
 @media (max-width: 420px) { .form-card { padding: 22px 18px; } }
 .form-row { display: grid; gap: 6px; margin-bottom: 16px; }

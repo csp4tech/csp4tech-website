@@ -62,13 +62,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  var form = document.querySelector("[data-contact-form]");
-  if (form) {
+  // Two of these can exist: the one on the contact page, and the one inside
+  // the dialog that every other page carries. Identical behaviour, so the
+  // same setup runs over whichever are present.
+  document.querySelectorAll("[data-contact-form]").forEach(function (form) {
     // Arriving from the hero's step 1: prefill, then clear the handover so a
     // later visit to this page does not resurrect somebody else's details on
-    // a shared machine.
+    // a shared machine. Only the contact page's own form consumes it - the
+    // dialog's fields have different ids, so it must not swallow the handover
+    // on its way past.
     try {
-      var handover = window.sessionStorage.getItem(LEAD_KEY);
+      var handover = form.querySelector("#firstName") ? window.sessionStorage.getItem(LEAD_KEY) : null;
       if (handover) {
         window.sessionStorage.removeItem(LEAD_KEY);
         var lead = JSON.parse(handover);
@@ -144,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 0);
       }
     });
-  }
+  });
 
   // ---------- Industries tabs ("Our Service Sector") ----------
   var industryBlock = document.querySelector("[data-industry-block]");
@@ -276,6 +280,108 @@ document.addEventListener("DOMContentLoaded", function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
   }
+
+  // ---------- Contact dialog ----------
+  // Opens on click anywhere, and ON DESKTOP ONLY after 60 seconds or on exit
+  // intent. Never opens by itself on a phone: Google's guidance is about
+  // dialogs that obscure the content someone came to read, and on a small
+  // screen any dialog does. A click is the visitor asking for it, which that
+  // guidance explicitly allows.
+  (function contactDialog() {
+    var overlay = document.querySelector("[data-contact-modal]");
+    if (!overlay) return;                       // contact and thank-you pages
+    var panel = overlay.querySelector(".cm-panel");
+    var AUTO_KEY = "csp4tech:contactAutoShown";
+    var lastFocus = null;
+
+    // "Desktop" = wide enough that the dialog does not swallow the page, and
+    // a real pointer, so a touch laptop is treated as touch.
+    function isDesktop() {
+      return window.matchMedia &&
+        window.matchMedia("(min-width: 861px) and (hover: hover)").matches;
+    }
+    function isOpen() { return !overlay.hasAttribute("hidden"); }
+
+    function focusable() {
+      return Array.prototype.filter.call(
+        panel.querySelectorAll('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'),
+        function (el) { return !el.disabled && el.offsetParent !== null; }
+      );
+    }
+
+    function open() {
+      if (isOpen()) return;
+      lastFocus = document.activeElement;
+      overlay.removeAttribute("hidden");
+      // Stop the page behind from scrolling under the dialog.
+      document.body.style.overflow = "hidden";
+      var first = panel.querySelector("#cmFirstName");
+      if (first) first.focus({ preventScroll: true });
+    }
+
+    function close() {
+      if (!isOpen()) return;
+      overlay.setAttribute("hidden", "");
+      document.body.style.overflow = "";
+      // Put the keyboard back where it was, or the visitor is dropped at the
+      // top of the document with no idea where they are.
+      if (lastFocus && typeof lastFocus.focus === "function") {
+        lastFocus.focus({ preventScroll: true });
+      }
+      lastFocus = null;
+    }
+
+    function autoOpen() {
+      if (isOpen() || !isDesktop()) return;
+      try {
+        if (window.sessionStorage.getItem(AUTO_KEY)) return;   // once a visit
+        window.sessionStorage.setItem(AUTO_KEY, "1");
+      } catch (err) {
+        return;   // storage blocked: do not risk showing it on every page
+      }
+      open();
+    }
+
+    // Any element marked up as a trigger. These stay real links to
+    // /contact-us, so with no JavaScript they still go somewhere useful.
+    document.addEventListener("click", function (e) {
+      var trigger = e.target.closest ? e.target.closest("[data-open-contact]") : null;
+      if (trigger) {
+        e.preventDefault();
+        open();
+        return;
+      }
+      if (e.target.closest && e.target.closest("[data-close-contact]")) {
+        e.preventDefault();
+        close();
+      }
+    });
+
+    // Click the backdrop, not the panel.
+    overlay.addEventListener("mousedown", function (e) {
+      if (e.target === overlay) close();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (!isOpen()) return;
+      if (e.key === "Escape") { close(); return; }
+      if (e.key !== "Tab") return;
+      // Keep Tab inside the dialog while it is open.
+      var items = focusable();
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    if (isDesktop()) {
+      window.setTimeout(autoOpen, 60000);
+      // Exit intent: pointer leaves through the top of the window.
+      document.addEventListener("mouseout", function (e) {
+        if (e.relatedTarget === null && e.clientY <= 0) autoOpen();
+      });
+    }
+  })();
 
   // ---------- CRM demo video ----------
   // A looping Zoho CRM demo in its own section below the hero. Its poster is

@@ -139,7 +139,7 @@ function header(products, activePath) {
         </ul>
       </nav>
       <div class="header-actions">
-        <a href="/contact-us" class="btn btn-primary btn-sm">Get Started</a>
+        <a href="/contact-us" class="btn btn-primary btn-sm" data-open-contact>Get Started</a>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </button>
@@ -156,7 +156,7 @@ function header(products, activePath) {
     <a href="/about">About Us</a>
     <a href="/blog/">Blog</a>
     <a href="/contact-us">Contact Us</a>
-    <a href="/contact-us" class="btn btn-primary btn-block" style="margin-top:16px;">Get Started</a>
+    <a href="/contact-us" class="btn btn-primary btn-block" style="margin-top:16px;" data-open-contact>Get Started</a>
   </div>`;
 }
 
@@ -348,6 +348,65 @@ function analyticsTags() {
   return "";
 }
 
+
+// The contact form as a dialog, rendered on every page except the two where
+// it would be redundant. Field NAMES are identical to the inline form on the
+// contact page because Zoho keys on the label; the element IDs are prefixed
+// so the two forms can never collide if both ever appear on one page.
+//
+// It is a real form with a real action: if JavaScript never runs, the dialog
+// stays hidden and the triggers remain ordinary links to /contact-us.
+function contactModal(path) {
+  if (path === "/contact-us" || path === "/thank-you") return "";
+  return `
+  <div class="cm-overlay" data-contact-modal hidden>
+    <div class="cm-panel" role="dialog" aria-modal="true" aria-labelledby="cmTitle" aria-describedby="cmLead">
+      <button type="button" class="cm-close" data-close-contact aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <span class="kicker">Free consultation</span>
+      <h2 id="cmTitle">Tell us what you are trying to solve</h2>
+      <p id="cmLead" class="cm-lead">A real person reads every message, and you will hear back within one business day. No obligation, and we will say so if Zoho is not the right answer for you.</p>
+      <form data-contact-form novalidate
+            action="https://crm.zoho.com/crm/WebToLeadForm"
+            method="POST"
+            accept-charset="UTF-8">
+        <input type="hidden" name="xnQsjsdp" value="88c4a6bba0f6b0fa9c86508c2bc3dd4dd6e73f188d87690c00b8e3981d85ecc8">
+        <input type="hidden" name="xmIwtLD" value="3a315686073cb1fdb4b5d82f87f1ddb663079fd178e077e9102287ad2c6331f9a44f5c90722dc59dc408cc379d5d68a6">
+        <input type="hidden" name="actionType" value="TGVhZHM=">
+        <input type="hidden" name="returnURL" value="${config.domain}/thank-you">
+        <input type="hidden" name="zc_gad" value="">
+        <input type="text" name="aG9uZXlwb3Q" value="" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="visually-hidden" aria-hidden="true">
+          <label for="cmWebsite">Leave this field blank</label>
+          <input type="text" id="cmWebsite" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" data-form-loaded-at value="">
+        <div class="form-grid-2">
+          <div class="form-row"><label for="cmFirstName">First name *</label><input id="cmFirstName" name="First Name" type="text" autocomplete="given-name" required></div>
+          <div class="form-row"><label for="cmLastName">Last name *</label><input id="cmLastName" name="Last Name" type="text" autocomplete="family-name" required></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-row"><label for="cmEmail">Work email *</label><input id="cmEmail" name="Email" type="email" autocomplete="email" required></div>
+          <div class="form-row"><label for="cmPhone">Phone (with country code) *</label><input id="cmPhone" name="Phone" type="tel" autocomplete="tel" required></div>
+        </div>
+        <div class="form-row">
+          <label for="cmCompany">Company name *</label>
+          <input id="cmCompany" name="Company" type="text" autocomplete="organization" required>
+        </div>
+        <div class="form-row">
+          <label for="cmMessage">What are you interested in, and what are you trying to solve? *</label>
+          <textarea id="cmMessage" name="Description" rows="4" required
+            placeholder="Which Zoho apps you have in mind - CRM, Books, People, Zoho One, a custom Creator app, or not sure yet - and the problem you want solved."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send message</button>
+        <p data-form-status class="cm-status"></p>
+        <p class="cm-alt">Prefer to talk? <a href="https://wa.me/${config.whatsapp}" target="_blank" rel="noopener">WhatsApp ${config.phone.display}</a></p>
+      </form>
+    </div>
+  </div>`;
+}
+
 function page({ title, description, path, bodyHtml, products, extraHead = "", robots = "index, follow" }) {
   return `<!doctype html>
 <html lang="en">
@@ -392,6 +451,7 @@ ${header(products, path)}
 ${bodyHtml}
 </main>
 ${footer(products)}
+${contactModal(path)}
 </body>
 </html>`;
 }
