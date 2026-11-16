@@ -48,9 +48,9 @@ function rateLimited(ip) {
 
 function parseBody(req) {
   const b = req.body;
-  if (!b) return {};
-  if (typeof b === "object") return b;
-  const out = {};
+  if (!b) return Object.create(null);
+  if (typeof b === "object") return Object.assign(Object.create(null), b);
+  const out = Object.create(null);
   String(b).split("&").forEach((pair) => {
     if (!pair) return;
     const i = pair.indexOf("=");
@@ -86,6 +86,8 @@ function spamReason(d) {
 }
 
 module.exports = async function handler(req, res) {
+  res.setHeader("Cache-Control", "no-store");
+  res.setHeader("Referrer-Policy", "same-origin");
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ ok: false, error: "Method not allowed" });
@@ -95,9 +97,15 @@ module.exports = async function handler(req, res) {
   // this site. A script posting blind usually sends neither.
   const origin = req.headers.origin || "";
   const referer = req.headers.referer || "";
+  // A prefix test is not enough: "https://csp4tech.com.evil.com/" starts with
+  // "https://csp4tech.com". The character after the origin has to be a path
+  // separator or the end of the string.
+  const refererFromUs = ALLOWED_ORIGINS.some(
+    (o) => referer === o || referer.indexOf(o + "/") === 0
+  );
   const fromUs =
-    (origin && ALLOWED_ORIGINS.some((o) => origin === o)) ||
-    (!origin && referer && ALLOWED_ORIGINS.some((o) => referer.indexOf(o) === 0));
+    (origin && ALLOWED_ORIGINS.indexOf(origin) !== -1) ||
+    (!origin && referer && refererFromUs);
   if (!fromUs) return res.status(403).json({ ok: false, error: "Forbidden" });
 
   const data = parseBody(req);
@@ -128,7 +136,11 @@ module.exports = async function handler(req, res) {
 
   const reason = spamReason(data);
   if (reason) {
-    console.warn("lead rejected:", reason, "| email:", data.Email, "| ip:", ip);
+    console.warn(
+      "lead rejected:", reason,
+      "| email:", String(data.Email || "").replace(/[\r\n]/g, " ").slice(0, 120),
+      "| ip:", ip
+    );
     return done(true);                          // never tell a bot why
   }
 
