@@ -1035,3 +1035,55 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
      cropping the UI. */
   object-fit: contain;
 }
+
+/* ---------- Service pages ---------- */
+/* The stage-by-stage plan. A numbered rail on the left, one stage per row,
+   with the "you get" line set off so the deliverable of each stage can be
+   scanned without reading the paragraph. */
+.plan { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; display: grid; gap: 0; }
+.plan-step { display: grid; grid-template-columns: 44px 1fr; gap: 0 22px; position: relative; padding-bottom: 28px; }
+.plan-step::before {
+  content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px;
+  background: var(--color-border);
+}
+.plan-step:last-child::before { display: none; }
+.plan-step:last-child { padding-bottom: 0; }
+.plan-num {
+  width: 44px; height: 44px; border-radius: 50%; flex: none;
+  background: var(--color-primary); color: #fff; font-weight: 800; font-size: 1.05rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 6px var(--color-surface-alt);
+  position: relative; z-index: 1;
+}
+.plan-body { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 22px 24px; box-shadow: var(--shadow-sm); }
+.plan-body h3 { font-size: 1.1rem; margin-bottom: 6px; }
+.plan-body p { font-size: 0.95rem; margin-bottom: 0; }
+.plan-get {
+  margin-top: 14px !important; padding-top: 12px; border-top: 1px dashed var(--color-border);
+  font-size: 0.9rem !important; color: var(--color-ink) !important; font-weight: 600;
+  display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.plan-get span {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 800;
+  color: var(--color-primary-dark); background: var(--color-primary-light);
+  padding: 3px 9px; border-radius: 999px; flex: none;
+}
+@media (max-width: 560px) {
+  .plan-step { grid-template-columns: 34px 1fr; gap: 0 14px; }
+  .plan-num { width: 34px; height: 34px; font-size: .92rem; box-shadow: 0 0 0 4px var(--color-surface-alt); }
+  .plan-step::before { left: 16px; top: 34px; }
+  .plan-body { padding: 18px 18px; }
+}
+
+.category-tag-soft { background: #FFF1E8 !important; color: var(--color-accent-dark) !important; }
+.hero-note { font-size: .85rem; color: var(--color-ink-soft); margin: 18px 0 0; }
+
+/* A whole card as the link, for the services hub. Colour and hover come from
+   .card; this only keeps the text ink-coloured and adds the arrow line. */
+.card-link-block { color: inherit; }
+.card-more {
+  margin-top: auto; padding-top: 16px; display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 700; font-size: .9rem; color: var(--color-primary);
+}
+.card-link-block:hover .card-more { gap: 10px; }
+.card-more svg { transition: transform .15s ease; }

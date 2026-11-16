@@ -2,10 +2,45 @@ const solutions = require("./solutions");
 const aiApps = require("./aiApps");
 const markets = require("./markets");
 const lebanon = require("./lebanon");
+const services = require("./services");
 
 // The two shyphan-parity hubs. Both data sets share one shape, so one pair of
 // templates renders both; this is the only place their copy and URLs live.
 const SECTIONS = [
+  {
+    key: "services",
+    entries: services,
+    base: "/services/",
+    label: "Services",
+    navLabel: "Services",
+    navCta: "What we are actually hired to do, stage by stage.",
+    indexTitle: "Zoho Services | Implementation to Support | CSP4TECH",
+    indexDescription:
+      "Zoho implementation, consulting, migration, customization, integration, automation, training, support and licenses from a Zoho Authorized Partner in Beirut.",
+    indexH1: "Zoho services, from the first conversation to long after go-live",
+    indexLead:
+      "We do not just switch software on. Each service below has its own page with the plan we follow, stage by stage, what you have at the end, and the places where we will tell you not to bother.",
+    problemsHeading: "The things that usually bring people to us",
+    relatedKicker: "More services",
+    relatedHeading: "The other things we do",
+    groups: [
+      {
+        heading: "Before you buy",
+        blurb: "The two services that decide whether a project is the right shape before any money is spent.",
+        slugs: ["zoho-consulting", "zoho-licenses"],
+      },
+      {
+        heading: "Getting it built",
+        blurb: "The project itself: setting Zoho up, moving your data in, and building the parts standard Zoho does not cover.",
+        slugs: ["zoho-implementation", "zoho-migration", "zoho-customization", "zoho-integration", "zoho-automation"],
+      },
+      {
+        heading: "Making it stick",
+        blurb: "What keeps a system used and trusted a year later, including rescuing one that is not.",
+        slugs: ["zoho-training", "zoho-support", "zoho-audit"],
+      },
+    ],
+  },
   {
     key: "solutions",
     entries: solutions,

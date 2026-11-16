@@ -11,11 +11,14 @@ const files = [];
   }
 })(DIST);
 
+// Vercel serves "/x" from x.html or x/index.html (cleanUrls), and "/x/" is a
+// redirect to "/x". A link is good if any of those files exists.
 function resolveTarget(link, fromFile) {
   if (link.startsWith("/")) {
-    let p = link.split("#")[0];
+    let p = link.split("#")[0].split("?")[0];
     if (p.endsWith("/")) p += "index.html";
-    return path.join(DIST, p);
+    const candidates = [p, p + ".html", p + "/index.html"].map((c) => path.join(DIST, c));
+    return candidates.find((c) => fs.existsSync(c)) || candidates[0];
   }
   return null; // external or relative — skip
 }

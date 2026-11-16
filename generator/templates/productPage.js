@@ -41,6 +41,7 @@ module.exports = function productPage(product, allProducts) {
       <div class="section-head">
         <span class="kicker">How we implement it</span>
         <h2>${product.name}, configured around your business</h2>
+        <p>The short version. The full stage-by-stage plan, with what you have at the end of each stage, is on the <a href="/services/zoho-implementation" style="color:var(--color-primary);font-weight:600;">implementation page</a>.</p>
       </div>
       <div class="grid grid-4">
         <div class="card"><h3>1. Discovery</h3><p style="font-size:.88rem;">We map how your team works today before configuring anything.</p></div>

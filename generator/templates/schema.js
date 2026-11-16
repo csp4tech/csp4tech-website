@@ -93,6 +93,35 @@ function serviceSchema(product, basePath) {
   });
 }
 
+// For /services/<service>: the service itself, named plainly, with the
+// provider's identity attached so the page and the organization agree.
+function offeredServiceSchema(entry) {
+  return ld({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: entry.kicker === "Audit and Repair" ? "Zoho Audit and Repair" : `Zoho ${entry.kicker}`,
+    serviceType: entry.kicker === "Audit and Repair" ? "Zoho audit and repair" : `Zoho ${entry.kicker.toLowerCase()}`,
+    description: entry.metaDescription,
+    url: `${config.domain}/services/${entry.slug}`,
+    provider: {
+      "@type": "Organization",
+      name: config.siteName,
+      url: config.domain,
+      telephone: `+${config.phone.href}`,
+      email: config.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: config.address.street,
+        addressLocality: config.address.locality,
+        addressCountry: config.address.country,
+      },
+    },
+    areaServed: config.regions.schema,
+    availableLanguage: ["en", "ar"],
+    category: "Zoho consulting and implementation",
+  });
+}
+
 function faqSchema(qaPairs) {
   return ld({
     "@context": "https://schema.org",
@@ -144,6 +173,7 @@ module.exports = {
   breadcrumbSchema,
   articleSchema,
   serviceSchema,
+  offeredServiceSchema,
   faqSchema,
   websiteSchema,
   itemListSchema,

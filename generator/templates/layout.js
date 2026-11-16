@@ -1,6 +1,7 @@
 const config = require("../data/config");
 const { organizationSchema } = require("./schema");
 const SECTIONS = require("../data/sections");
+const { cleanPath, cleanHtml } = require("../lib/urls");
 
 // Everything that lands inside an HTML attribute (title, description, og/
 // twitter tags) goes through this. A single unescaped double quote closes the
@@ -120,9 +121,9 @@ function header(products, activePath) {
       <a href="/" class="brand"><img src="/images/logo-mark.png" alt="" class="brand-mark" width="31" height="34"> CSP4TECH</a>
       <nav class="primary-nav" aria-label="Primary">
         <ul>
-          <li><a href="/services" class="nav-link">Services</a></li>
+          <li>${sectionMegaMenu(SECTIONS.find((s) => s.key === "services"))}</li>
           <li>${megaMenu(products)}</li>
-          ${SECTIONS.map((section) => `<li>${sectionMegaMenu(section)}</li>`).join("")}
+          ${SECTIONS.filter((s) => s.key !== "services").map((section) => `<li>${sectionMegaMenu(section)}</li>`).join("")}
           <li class="nav-item has-mega">
             <a href="#" class="nav-link" aria-haspopup="true">More <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
             <div class="mega-menu" style="grid-template-columns:1fr;width:230px;padding:12px;">
@@ -147,9 +148,9 @@ function header(products, activePath) {
     </div>
   </header>
   <div class="mobile-nav">
-    <a href="/services">Services</a>
+    ${mobileSectionGroups(SECTIONS.find((s) => s.key === "services"))}
     ${mobileProductGroups(products)}
-    ${SECTIONS.map((section) => mobileSectionGroups(section)).join("")}
+    ${SECTIONS.filter((s) => s.key !== "services").map((section) => mobileSectionGroups(section)).join("")}
     <a href="/zoho-suites">Zoho Suites</a>
     <a href="/compare/">Compare</a>
     <a href="/platforms/">Other Platforms</a>
@@ -213,6 +214,7 @@ function footer(products) {
         <div>
           <h2 class="footer-col-title">Company</h2>
           <a href="/about">About Us</a>
+          <a href="/services">Services</a>
           <a href="/blog/">Blog</a>
           <a href="/contact-us">Contact Us</a>
           <a href="/solutions/">Solutions</a>
@@ -273,6 +275,7 @@ function footer(products) {
         "Our services",
         "What CSP4TECH does, by discipline and by industry.",
         [
+          ...SECTIONS.find((s) => s.key === "services").entries.map((e) => ({ label: e.kicker === "Audit and Repair" ? "Zoho audit and repair" : `Zoho ${e.kicker.toLowerCase()}`, href: `/services/${e.slug}` })),
           ...SECTIONS.find((s) => s.key === "aiApps").entries.map((e) => ({ label: e.kicker, href: `/ai-apps/${e.slug}` })),
           ...SECTIONS.find((s) => s.key === "solutions").entries.map((e) => ({ label: e.kicker, href: `/solutions/${e.slug}` })),
         ]
@@ -400,7 +403,8 @@ function contactModal(path) {
 }
 
 function page({ title, description, path, bodyHtml, products, extraHead = "", robots = "index, follow" }) {
-  return `<!doctype html>
+  path = cleanPath(path);
+  return cleanHtml(`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -445,7 +449,7 @@ ${bodyHtml}
 ${footer(products)}
 ${contactModal(path)}
 </body>
-</html>`;
+</html>`);
 }
 
 module.exports = { page, groupByCategory };
