@@ -90,7 +90,16 @@ module.exports = {
     googleSiteVerification: "",
     bingSiteVerification: "",
     plausibleDomain: "",
-    googleTagId: "",
+    // CHANGING THIS BREAKS ANALYTICS SILENTLY. The Google tag needs an
+    // inline <script>, and vercel.json allows that one script by the SHA-256
+    // hash of its exact text rather than by opening script-src to all inline
+    // script. The id is part of that text, so a new id means a new hash.
+    // To change it: set the id, run the build, then take the inline snippet
+    // out of dist/index.html, sha256 it, base64 it, and replace the
+    // 'sha256-...' entry in vercel.json's script-src. If the two ever
+    // disagree the browser refuses the tag and no data is collected, with
+    // nothing visibly wrong on the page.
+    googleTagId: "G-DG8BV28P2Z",
   },
 
   nav: {
