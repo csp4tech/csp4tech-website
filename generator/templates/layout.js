@@ -367,21 +367,13 @@ function contactModal(path) {
       <span class="kicker">Free consultation</span>
       <h2 id="cmTitle">Tell us what you are trying to solve</h2>
       <p id="cmLead" class="cm-lead">A real person reads every message, and you will hear back within one business day. No obligation, and we will say so if Zoho is not the right answer for you.</p>
-      <form data-contact-form novalidate
-            action="https://crm.zoho.com/crm/WebToLeadForm"
-            method="POST"
-            accept-charset="UTF-8">
-        <input type="hidden" name="xnQsjsdp" value="88c4a6bba0f6b0fa9c86508c2bc3dd4dd6e73f188d87690c00b8e3981d85ecc8">
-        <input type="hidden" name="xmIwtLD" value="3a315686073cb1fdb4b5d82f87f1ddb663079fd178e077e9102287ad2c6331f9a44f5c90722dc59dc408cc379d5d68a6">
-        <input type="hidden" name="actionType" value="TGVhZHM=">
-        <input type="hidden" name="returnURL" value="${config.domain}/thank-you">
-        <input type="hidden" name="zc_gad" value="">
+      <form data-contact-form novalidate action="/api/lead" method="POST" accept-charset="UTF-8">
         <input type="text" name="aG9uZXlwb3Q" value="" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="visually-hidden" aria-hidden="true">
           <label for="cmWebsite">Leave this field blank</label>
-          <input type="text" id="cmWebsite" tabindex="-1" autocomplete="off">
+          <input type="text" id="cmWebsite" name="website" tabindex="-1" autocomplete="off">
         </div>
-        <input type="hidden" data-form-loaded-at value="">
+        <input type="hidden" name="t" data-form-loaded-at value="">
         <div class="form-grid-2">
           <div class="form-row"><label for="cmFirstName">First name *</label><input id="cmFirstName" name="First Name" type="text" autocomplete="given-name" required></div>
           <div class="form-row"><label for="cmLastName">Last name *</label><input id="cmLastName" name="Last Name" type="text" autocomplete="family-name" required></div>

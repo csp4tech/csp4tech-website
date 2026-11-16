@@ -130,23 +130,47 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // Everything checks out, so let the browser POST to Zoho. Zoho creates
-      // the Lead and redirects to /thank-you, which is where the visitor sees
-      // the confirmation - so do not reset the form or print a success message
-      // here. The button is disabled on the next tick (not inside this
-      // handler) so that disabling it cannot interfere with the submission
-      // already in flight; it stops a second POST if the redirect is slow.
+      // Everything checks out. Hand it to /api/lead, which validates it again
+      // server-side and forwards it to Zoho. Submitting by fetch rather than
+      // navigating lets a rejection be shown in place - which matters for the
+      // dialog, where a page change would throw away what was typed.
       if (status) {
         status.textContent = "Sending\u2026";
         status.style.color = "";
       }
       var submitBtn = form.querySelector("button[type=submit]");
-      if (submitBtn) {
-        window.setTimeout(function () {
-          submitBtn.disabled = true;
-          submitBtn.textContent = "Sending\u2026";
-        }, 0);
+      var restore = submitBtn ? submitBtn.textContent : "";
+
+      // No fetch (very old browser): let the form post normally. The endpoint
+      // answers those with a redirect, so it still works.
+      if (!window.fetch || !window.FormData) return;
+
+      e.preventDefault();
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending\u2026"; }
+
+      function fail(message) {
+        if (status) {
+          status.textContent = message;
+          status.style.color = "#B91C1C";
+        }
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = restore; }
       }
+
+      window.fetch(form.getAttribute("action"), {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new window.FormData(form)
+      }).then(function (r) {
+        return r.json().catch(function () { return { ok: r.ok }; });
+      }).then(function (out) {
+        if (out && out.ok) {
+          window.location.assign("/thank-you");
+        } else {
+          fail((out && out.error) || "We could not send that just now. Please email info@csp4tech.com.");
+        }
+      }).catch(function () {
+        fail("That did not send \u2014 check your connection and try again, or message us on WhatsApp.");
+      });
     });
   });
 
