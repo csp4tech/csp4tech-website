@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // No fetch (very old browser): let the form post normally. The endpoint
       // answers those with a redirect, so it still works.
-      if (!window.fetch || !window.FormData) return;
+      if (!window.fetch || !window.FormData || !window.URLSearchParams) return;
 
       e.preventDefault();
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending\u2026"; }
@@ -156,10 +156,22 @@ document.addEventListener("DOMContentLoaded", function () {
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = restore; }
       }
 
+      // URL-encoded, NOT a bare FormData object. Passing FormData makes the
+      // browser send multipart/form-data, which the serverless platform does
+      // not parse into req.body - the function then sees no fields at all and
+      // answers "fill in all required fields" on a form that was filled in.
+      var encoded = new window.URLSearchParams();
+      new window.FormData(form).forEach(function (value, key) {
+        encoded.append(key, value);
+      });
+
       window.fetch(form.getAttribute("action"), {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: new window.FormData(form)
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: encoded.toString()
       }).then(function (r) {
         return r.json().catch(function () { return { ok: r.ok }; });
       }).then(function (out) {

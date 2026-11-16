@@ -34,7 +34,11 @@ const URL_RE = /(https?:\/\/|www\.)/i;
 // address, not a guarantee. The content checks below do the real work.
 const seen = new Map();
 const WINDOW_MS = 10 * 60 * 1000;
-const MAX_PER_WINDOW = 8;
+// Deliberately loose. This counts every attempt, including ones rejected for
+// a missing field, so someone correcting a typo three times must not trip it.
+// The origin check and the content checks do the real work; this only stops
+// one address hammering the endpoint.
+const MAX_PER_WINDOW = 25;
 
 function rateLimited(ip) {
   if (!ip) return false;
@@ -47,8 +51,10 @@ function rateLimited(ip) {
 }
 
 function parseBody(req) {
-  const b = req.body;
+  let b = req.body;
   if (!b) return Object.create(null);
+  // Some runtimes hand over a Buffer for content types they do not parse.
+  if (typeof Buffer !== "undefined" && Buffer.isBuffer(b)) b = b.toString("utf8");
   if (typeof b === "object") return Object.assign(Object.create(null), b);
   const out = Object.create(null);
   String(b).split("&").forEach((pair) => {
