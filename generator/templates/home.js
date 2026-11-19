@@ -4,6 +4,7 @@ const faq = require("../data/faq");
 const platforms = require("../data/platforms");
 const integrations = require("../data/integrations");
 const presence = require("../data/presence");
+const industriesSection = require("./industries");
 
 module.exports = function home(products, blogPosts) {
   const featured = products.filter((p) =>
@@ -147,7 +148,9 @@ module.exports = function home(products, blogPosts) {
     </div>
   </section>
 
-  <section>
+  ${industriesSection()}
+
+  <section class="section-alt">
     <div class="container">
       <div class="section-head">
         <span class="kicker">What we do</span>
@@ -163,7 +166,7 @@ module.exports = function home(products, blogPosts) {
     </div>
   </section>
 
-  <section class="section-alt">
+  <section>
     <div class="container">
       <div class="section-head">
         <span class="kicker">Popular apps</span>
@@ -186,7 +189,7 @@ module.exports = function home(products, blogPosts) {
     </div>
   </section>
 
-  <section>
+  <section class="section-alt">
     <div class="container">
       <div class="section-head">
         <span class="kicker">Connected stack</span>
