@@ -144,6 +144,108 @@ module.exports = function home(products, blogPosts) {
     </div>
   </section>
 
+  <!-- Zia AI and Zoho MCP. Facts are from Zoho's own pages (zoho.com/zia,
+       zoho.com/zia/agents) and Zoho's launch announcement; nothing here
+       states pricing or availability dates, which Zoho has changed before.
+       The chat panel is an illustration with invented demo data, labelled
+       as such, and hidden from assistive tech in favour of a plain summary. -->
+  <section class="zia-section" id="zia-ai">
+    <div class="zia-glow zia-glow-a" aria-hidden="true"></div>
+    <div class="zia-glow zia-glow-b" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-head zia-head">
+        <span class="zia-kicker"><span class="zia-spark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.1L20 10l-5.8 1.9L12 18l-2.2-6.1L4 10l5.8-1.9L12 2z"/></svg></span>Zia AI &amp; Zoho MCP</span>
+        <h2>AI that works <span class="zia-grad">inside</span> your Zoho, not beside it</h2>
+        <p>Zia is the AI built into Zoho. It reads the same records your team does, answers in plain words, and can act: through agents that run the routine work, and through Zoho MCP, which lets assistants like Claude and ChatGPT work with your Zoho data safely.</p>
+      </div>
+
+      <div class="zia-grid">
+        <figure class="zia-demo">
+          <p class="visually-hidden">Illustration: a user asks Zia which deals in negotiation have not moved in 14 days. Zia lists four deals, and a follow-up agent drafts emails that wait for the user to review before sending.</p>
+          <div class="zia-window" aria-hidden="true">
+            <div class="zia-window-bar">
+              <span class="zia-dot"></span><span class="zia-dot"></span><span class="zia-dot"></span>
+              <span class="zia-window-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.1L20 10l-5.8 1.9L12 18l-2.2-6.1L4 10l5.8-1.9L12 2z"/></svg> Ask Zia</span>
+            </div>
+            <div class="zia-chat">
+              <div class="zia-msg zia-msg-user">Which deals in Negotiation haven't moved in 14 days?</div>
+              <div class="zia-msg zia-msg-ai">
+                <span class="zia-avatar"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.1L20 10l-5.8 1.9L12 18l-2.2-6.1L4 10l5.8-1.9L12 2z"/></svg></span>
+                <div>
+                  <p class="zia-msg-text"><strong>4 deals</strong> worth <strong>$182,400</strong> are stalled. The oldest has waited 23 days.</p>
+                  <ul class="zia-deals">
+                    <li><span>Cedar Logistics</span><span class="zia-badge zia-badge-warn">23 days</span></li>
+                    <li><span>Harbor Clinics</span><span class="zia-badge">17 days</span></li>
+                    <li><span>Northline Foods</span><span class="zia-badge">15 days</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="zia-agent">
+                <div class="zia-agent-head">
+                  <span class="zia-agent-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1"/><circle cx="9" cy="14" r="1.2" fill="currentColor"/><circle cx="15" cy="14" r="1.2" fill="currentColor"/></svg></span>
+                  <span><strong>Follow-up agent</strong> drafted 4 emails</span>
+                  <span class="zia-status"><span class="zia-pulse"></span>Waiting for you</span>
+                </div>
+                <div class="zia-agent-actions">
+                  <span class="zia-btn zia-btn-primary">Review &amp; send</span>
+                  <span class="zia-btn">Edit drafts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>Illustration with demo data</figcaption>
+        </figure>
+
+        <ul class="zia-features">
+          <li>
+            <span class="zia-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1"/><path d="M9 14h.01M15 14h.01"/></svg></span>
+            <div><h3>Zia Agents</h3><p>Ready-made AI agents from Zoho's own marketplace for sales, service and operations: qualifying leads, answering routine tickets, scheduling meetings. They work around the clock on your live records.</p></div>
+          </li>
+          <li>
+            <span class="zia-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 4 5 5L9 20H4v-5L15 4z"/><path d="m12.5 6.5 5 5"/><path d="M19 15l.8 1.7L21.5 17.5l-1.7.8L19 20l-.8-1.7-1.7-.8 1.7-.8L19 15z"/></svg></span>
+            <div><h3>Agent Studio</h3><p>Your own agent, for the process that is specific to you. Described in plain language, with low-code where it needs more, and able to act across the Zoho apps you already use.</p></div>
+          </li>
+          <li>
+            <span class="zia-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7l1 2.4 2.4 1-2.4 1L12 14l-1-2.6-2.4-1 2.4-1L12 7z"/></svg></span>
+            <div><h3>Ask Zia</h3><p>Ask a question the way you would ask a colleague and get the answer from your own live data. No report builder, no export to Excel.</p></div>
+          </li>
+          <li>
+            <span class="zia-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7V3M15 7V3"/><path d="M6 7h12v4a6 6 0 0 1-12 0V7z"/><path d="M12 17v4"/></svg></span>
+            <div><h3>Zoho MCP</h3><p>Plugs AI assistants such as Claude and ChatGPT into your Zoho apps, so they can look things up and get work done for you, only within the permissions each user already has.</p></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="zia-mcp" aria-label="How Zoho MCP connects an AI assistant to Zoho">
+        <div class="zia-node">
+          <span class="zia-node-label">Your AI assistant</span>
+          <span class="zia-node-chips"><span>Claude</span><span>ChatGPT</span><span>Other MCP apps</span></span>
+        </div>
+        <div class="zia-link" aria-hidden="true"><span></span></div>
+        <div class="zia-node zia-node-core">
+          <span class="zia-node-label">Zoho MCP</span>
+          <span class="zia-node-sub">Checks each user's permissions before anything is read or changed</span>
+        </div>
+        <div class="zia-link" aria-hidden="true"><span></span></div>
+        <div class="zia-node">
+          <span class="zia-node-label">Your Zoho apps</span>
+          <span class="zia-node-chips"><span>CRM</span><span>Books</span><span>Desk</span><span>People</span></span>
+        </div>
+      </div>
+
+      <div class="zia-trust">
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><strong>Private by design.</strong> Zia can run on Zoho's own AI models, hosted in Zoho's own data centres, and Zoho states its models aren't trained on customer data.</span></div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span><strong>A person decides.</strong> We set agents up so anything that reaches a customer or moves money waits for someone on your team to approve it.</span></div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span><strong>Set up by us.</strong> We switch on the Zia features that are reliable for your work, build the agents you need, and connect your AI assistant through MCP.</span></div>
+      </div>
+
+      <div class="zia-cta">
+        <a href="/ai-apps/ai-agent-development" class="btn zia-btn-main">Build an AI agent for your Zoho</a>
+        <a href="/ai-apps/ai-crm-integration" class="btn zia-btn-ghost">How AI fits into your CRM</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section-after-hero">
     <div class="container">
       <p class="text-center" style="font-weight:700;color:var(--color-ink-soft);margin-bottom:20px;">Trusted by businesses across Lebanon and the wider region</p>
