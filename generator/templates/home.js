@@ -7,9 +7,15 @@ const presence = require("../data/presence");
 const industriesSection = require("./industries");
 
 module.exports = function home(products, blogPosts) {
-  const featured = products.filter((p) =>
-    ["crm", "books", "people", "desk", "analytics", "inventory"].includes(p.slug)
-  );
+  // Shown in this order. Payroll gets its own card text below: Zoho Payroll
+  // does not cover Lebanon, and the homepage must not suggest it does.
+  const featured = ["crm", "books", "inventory", "people", "payroll", "creator", "desk", "analytics"]
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter(Boolean);
+  const cardText = (p) =>
+    p.slug === "payroll"
+      ? "Salary runs, deductions and payslips for teams in the Gulf. For Lebanon, we build payroll on Zoho People and Creator."
+      : p.tagline;
   const latestPosts = blogPosts.slice(-3).reverse();
 
   return `
@@ -57,6 +63,29 @@ module.exports = function home(products, blogPosts) {
           <p class="hero-lead-status" data-hero-lead-status role="status" aria-live="polite"></p>
         </form>
       </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Popular apps</span>
+        <h2>Zoho products we implement most</h2>
+      </div>
+      <div class="grid grid-3">
+        ${featured
+          .map(
+            (p) => `
+        <div class="card">
+          ${p.logo ? `<img src="/images/logos/${p.logo}" alt="" class="product-logo" width="40" height="40">` : ""}
+          <h3>${p.name}</h3>
+          <p>${cardText(p)}</p>
+          <a href="/zoho-products/${p.slug}" class="btn btn-ghost btn-sm">Learn more</a>
+        </div>`
+          )
+          .join("")}
+      </div>
+      <p class="text-center" style="margin-top:28px;"><a href="/zoho-products/" class="btn btn-primary">Browse all 39 Zoho apps</a></p>
     </div>
   </section>
 
@@ -167,29 +196,6 @@ module.exports = function home(products, blogPosts) {
   </section>
 
   <section>
-    <div class="container">
-      <div class="section-head">
-        <span class="kicker">Popular apps</span>
-        <h2>Zoho products we implement most</h2>
-      </div>
-      <div class="grid grid-3">
-        ${featured
-          .map(
-            (p) => `
-        <div class="card">
-          ${p.logo ? `<img src="/images/logos/${p.logo}" alt="" class="product-logo" width="40" height="40">` : ""}
-          <h3>${p.name}</h3>
-          <p>${p.tagline}</p>
-          <a href="/zoho-products/${p.slug}" class="btn btn-ghost btn-sm">Learn more</a>
-        </div>`
-          )
-          .join("")}
-      </div>
-      <p class="text-center" style="margin-top:28px;"><a href="/zoho-products/" class="btn btn-primary">Browse all 39 Zoho apps</a></p>
-    </div>
-  </section>
-
-  <section class="section-alt">
     <div class="container">
       <div class="section-head">
         <span class="kicker">Connected stack</span>
