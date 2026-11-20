@@ -1095,8 +1095,8 @@ a.fc-item:hover .fc-ic { background: rgba(255, 255, 255, .16); }
 .zia-section {
   position: relative; overflow: hidden; padding: 96px 0 88px; color: #fff;
   background:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px) 0 0 / 44px 44px,
     linear-gradient(160deg, #0B1626 0%, #0C2433 48%, #063F3B 100%);
 }
 .zia-section .container { position: relative; z-index: 1; }
